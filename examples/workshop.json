@@ -1,0 +1,12 @@
+{
+  "template": "lab-card",
+  "size": "og",
+  "format": "png",
+  "output": "output/workshop.png",
+  "label": "Live Workshop",
+  "title": "Build Reliable AI Agents",
+  "subtitle": "A hands-on session for shipping agentic workflows people can actually use.",
+  "meta": "May 28, 2026 / Online",
+  "brand": "AI Shipping Labs",
+  "accent": "Workshop banner template"
+}

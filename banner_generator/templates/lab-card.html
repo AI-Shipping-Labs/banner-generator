@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=${width}, initial-scale=1">
+  <title>${title}</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap");
+
+    :root {
+      --ink: #101214;
+      --muted: #5d656f;
+      --paper: #f6f7f1;
+      --lime: #b9ff2c;
+      --line: rgba(16, 18, 20, 0.18);
+      --panel: rgba(255, 255, 255, 0.72);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      width: ${width}px;
+      height: ${height}px;
+      margin: 0;
+      overflow: hidden;
+      color: var(--ink);
+      font-family: Inter, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 84% 26%, rgba(185, 255, 44, 0.9) 0 12%, transparent 28%),
+        linear-gradient(135deg, #f6f7f1 0%, #e8edf1 52%, #d4e2df 100%);
+    }
+
+    .canvas {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      width: 100%;
+      height: 100%;
+      padding: 56px 64px 52px;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(135deg, rgba(0, 0, 0, 0.28), transparent 74%);
+    }
+
+    .top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      background: var(--lime);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .accent {
+      max-width: 420px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 18px;
+      line-height: 1.35;
+      text-align: right;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      align-self: center;
+      max-width: 900px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      margin-bottom: 26px;
+      padding: 0 20px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: var(--panel);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    h1 {
+      max-width: 940px;
+      margin: 0;
+      font-size: 86px;
+      font-weight: 700;
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.18;
+    }
+
+    .bottom {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 40px;
+      border-top: 2px solid var(--line);
+      padding-top: 26px;
+    }
+
+    .meta {
+      color: var(--ink);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 24px;
+      line-height: 1.35;
+    }
+
+    .stripes {
+      display: flex;
+      gap: 10px;
+      align-items: end;
+      height: 74px;
+    }
+
+    .stripe {
+      width: 18px;
+      border: 2px solid var(--ink);
+      background: var(--lime);
+    }
+
+    .stripe:nth-child(1) { height: 30px; }
+    .stripe:nth-child(2) { height: 48px; background: #ffffff; }
+    .stripe:nth-child(3) { height: 64px; }
+    .stripe:nth-child(4) { height: 40px; background: #101214; }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <div class="grid"></div>
+    <header class="top">
+      <div class="brand">
+        <div class="mark">AI</div>
+        <div>${brand}</div>
+      </div>
+      <div class="accent">${accent}</div>
+    </header>
+
+    <section class="content">
+      <div class="label">${label}</div>
+      <h1>${title}</h1>
+      <div class="subtitle">${subtitle}</div>
+    </section>
+
+    <footer class="bottom">
+      <div class="meta">${meta}</div>
+      <div class="stripes" aria-hidden="true">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
