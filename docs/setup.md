@@ -76,7 +76,7 @@ If that happens, the Django app should call a separate rendering boundary rather
 - CLI entrypoint: `banner-generator`
 - Renderer: `banner_generator/renderer.py`
 - CLI: `banner_generator/cli.py`
-- Built-in template: `banner_generator/templates/lab-card.html`
+- Built-in template: `banner_generator/templates/lab-card/template.html`
 - Example spec: `examples/workshop.json`
 - Docs: `README.md` and `docs/architecture.md`
 - Supported outputs: `png`, `jpeg` with quality, and `pdf`

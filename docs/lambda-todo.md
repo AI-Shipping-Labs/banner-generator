@@ -12,14 +12,15 @@ Package the same renderer for two execution paths:
 1. Add a Lambda handler that converts an event into a `RenderSpec`.
 2. Return base64-encoded render bytes when no publishing target is provided.
 3. Optionally upload to S3 when the event includes an `s3` target.
-4. Add sample events for:
+4. Add certificate QR-code generation with template-level defaults for style/size.
+5. Add sample events for:
    - content banner PNG
    - content banner JPEG
    - AI Hero certificate PDF
-5. Add tests for event parsing and response shape.
-6. Add Dockerfile with Chromium/Playwright support.
-7. Add local Docker invocation docs.
-8. Verify:
+6. Add tests for event parsing and response shape.
+7. Add Dockerfile with Chromium/Playwright support.
+8. Add local Docker invocation docs.
+9. Verify:
    - `make test`
    - `make lint`
    - `make render-content-examples`

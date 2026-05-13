@@ -83,7 +83,7 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("course_url", "https://aishippinglabs.com/courses/aihero")
     values.setdefault("certificate_id", "example")
     values.setdefault("certificate_url", "#")
-    values.setdefault("qr", "assets/ai-hero/test-qr.svg")
+    values.setdefault("qr", "assets/test-qr.svg")
     html_text = template.safe_substitute(values)
     base_href = f"{template_path.parent.resolve().as_uri()}/"
     return html_text.replace("<head>", f'<head>\n  <base href="{base_href}">', 1)
@@ -98,13 +98,15 @@ def resolve_template(name_or_path: str, template_dir: Path | None = None) -> Pat
     if template_dir:
         candidates.append(template_dir / name_or_path)
         candidates.append(template_dir / f"{name_or_path}.html")
+        candidates.append(template_dir / name_or_path / "template.html")
 
     bundled_dir = Path(__file__).parent / "templates"
     candidates.append(bundled_dir / name_or_path)
     candidates.append(bundled_dir / f"{name_or_path}.html")
+    candidates.append(bundled_dir / name_or_path / "template.html")
 
     for candidate in candidates:
-        if candidate.exists():
+        if candidate.is_file():
             return candidate
 
     raise FileNotFoundError(f"Template not found: {name_or_path}")

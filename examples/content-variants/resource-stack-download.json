@@ -1,0 +1,19 @@
+{
+  "template": "asl-resource-stack/template.html",
+  "size": "og",
+  "format": "png",
+  "output": "output/content-variants/resource-stack-download.png",
+  "kind": "Resource",
+  "brand": "AI Shipping Labs",
+  "kicker": "Downloadable toolkit",
+  "title": "The AI Feature Readiness Checklist",
+  "subtitle": "Use this before a demo, release, or stakeholder review to catch the product and engineering gaps that matter.",
+  "tag_one": "Scope",
+  "tag_two": "Evaluation",
+  "tag_three": "Release",
+  "meta_primary": "PDF + Notion",
+  "meta_secondary": "Updated for 2026",
+  "footer": "aishippinglabs.com/resources",
+  "title_size": 68,
+  "subtitle_size": 28
+}

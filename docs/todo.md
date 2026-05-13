@@ -22,6 +22,8 @@
 2. Define a Lambda-compatible JSON event shape.
 3. Reuse the same renderer from CLI and Lambda.
 4. Add tests for asset resolution and render-spec loading.
+5. Add certificate QR-code generation so callers provide a verification URL or
+   certificate ID, while QR style/defaults live with the certificate template.
 
 ## Phase 3: Lambda Container
 

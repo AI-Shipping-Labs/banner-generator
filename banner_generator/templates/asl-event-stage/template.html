@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=${width}, initial-scale=1">
+  <title>${title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --width: ${width}px;
+      --height: ${height}px;
+      --title-size: ${title_size}px;
+      --subtitle-size: ${subtitle_size}px;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <section class="poster">
+      <header>
+        <div class="brand"><img src="../ai-hero-certificate/assets/rocket-logo.png" alt=""><span>${brand}</span></div>
+        <span>${kind}</span>
+      </header>
+
+      <div class="copy">
+        <p class="kicker">${kicker}</p>
+        <h1>${title}</h1>
+        <p class="subtitle">${subtitle}</p>
+      </div>
+
+      <footer>
+        <div><b>${meta_primary}</b><span>${meta_secondary}</span></div>
+        <div><b>${tag_one}</b><span>${footer}</span></div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

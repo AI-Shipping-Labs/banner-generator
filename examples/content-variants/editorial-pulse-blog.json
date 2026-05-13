@@ -1,0 +1,17 @@
+{
+  "template": "asl-editorial-pulse/template.html",
+  "size": "og",
+  "format": "png",
+  "output": "output/content-variants/editorial-pulse-blog.png",
+  "kind": "Article",
+  "brand": "AI Shipping Labs",
+  "kicker": "Field notes for AI engineers",
+  "title": "How to Turn a Messy Prototype into a Shippable AI Feature",
+  "subtitle": "A practical checklist for reducing risk, tightening the feedback loop, and getting the first real users through the door.",
+  "meta_primary": "Guide",
+  "meta_secondary": "12 min read",
+  "footer": "aishippinglabs.com/blog",
+  "tag_one": "Build notes",
+  "title_size": 67,
+  "subtitle_size": 28
+}

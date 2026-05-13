@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=${width}, initial-scale=1">
+  <title>${title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --width: ${width}px;
+      --height: ${height}px;
+      --title-size: ${title_size}px;
+      --subtitle-size: ${subtitle_size}px;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <aside>
+      <div class="brand">
+        <img src="../ai-hero-certificate/assets/rocket-logo.png" alt="">
+        <span>${brand}</span>
+      </div>
+      <div class="metric">
+        <span>${stat_label}</span>
+        <b>${stat_value}</b>
+      </div>
+      <div class="tags">
+        <span>${tag_one}</span>
+        <span>${tag_two}</span>
+        <span>${tag_three}</span>
+      </div>
+    </aside>
+
+    <section>
+      <div class="kind">${kind}</div>
+      <p class="kicker">${kicker}</p>
+      <h1>${title}</h1>
+      <p class="subtitle">${subtitle}</p>
+      <footer>
+        <span>${meta_primary}</span>
+        <span>${meta_secondary}</span>
+        <span>${footer}</span>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

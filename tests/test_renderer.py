@@ -44,7 +44,8 @@ def test_load_spec_supports_inline_data(tmp_path: Path):
 def test_resolve_template_finds_bundled_template():
     path = resolve_template("lab-card")
 
-    assert path.name == "lab-card.html"
+    assert path.name == "template.html"
+    assert path.parent.name == "lab-card"
     assert path.exists()
 
 

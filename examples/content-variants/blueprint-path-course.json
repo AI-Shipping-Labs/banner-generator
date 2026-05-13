@@ -1,0 +1,19 @@
+{
+  "template": "asl-blueprint-path/template.html",
+  "size": "og",
+  "format": "png",
+  "output": "output/content-variants/blueprint-path-course.png",
+  "kind": "Course",
+  "brand": "AI Shipping Labs",
+  "kicker": "Structured learning path",
+  "title": "Build Production AI Apps Without Guessing the Architecture",
+  "subtitle": "Move from prompt experiments to tested services, evaluation loops, and deployment habits.",
+  "step_one": "Prototype the workflow",
+  "step_two": "Add evals and guardrails",
+  "step_three": "Ship and observe",
+  "meta_primary": "4 modules",
+  "meta_secondary": "Hands-on labs",
+  "footer": "aishippinglabs.com/courses",
+  "title_size": 64,
+  "subtitle_size": 27
+}

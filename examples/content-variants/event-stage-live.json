@@ -1,0 +1,17 @@
+{
+  "template": "asl-event-stage/template.html",
+  "size": "og",
+  "format": "png",
+  "output": "output/content-variants/event-stage-live.png",
+  "kind": "Live Session",
+  "brand": "AI Shipping Labs",
+  "kicker": "Community build review",
+  "title": "Debugging Real AI Product Workflows in Public",
+  "subtitle": "Bring a stuck automation, agent, or eval loop. We will inspect the system and choose the next shippable step.",
+  "meta_primary": "May 28, 2026",
+  "meta_secondary": "18:00 CEST / Zoom",
+  "tag_one": "Members",
+  "footer": "aishippinglabs.com/events",
+  "title_size": 73,
+  "subtitle_size": 29
+}

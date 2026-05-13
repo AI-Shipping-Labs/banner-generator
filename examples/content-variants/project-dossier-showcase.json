@@ -1,0 +1,21 @@
+{
+  "template": "asl-project-dossier/template.html",
+  "size": "og",
+  "format": "png",
+  "output": "output/content-variants/project-dossier-showcase.png",
+  "kind": "Project",
+  "brand": "AI Shipping Labs",
+  "kicker": "Member shipped project",
+  "title": "A Research Assistant That Turns Papers into Decision Briefs",
+  "subtitle": "Retrieval, summarization, and source tracing packaged as a usable workflow for technical teams.",
+  "stat_label": "Built in",
+  "stat_value": "10 days",
+  "tag_one": "RAG",
+  "tag_two": "Agents",
+  "tag_three": "Evaluation",
+  "meta_primary": "Case study",
+  "meta_secondary": "Architecture notes",
+  "footer": "aishippinglabs.com/projects",
+  "title_size": 62,
+  "subtitle_size": 27
+}

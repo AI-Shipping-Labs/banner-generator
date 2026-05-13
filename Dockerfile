@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright/python:v1.58.0-noble
+FROM python:3.12-slim-bookworm
 
 WORKDIR /var/task
 
@@ -11,7 +11,9 @@ COPY scripts ./scripts
 
 RUN python -m pip install --no-cache-dir --upgrade pip \
     && python -m pip install --no-cache-dir awslambdaric . \
-    && python -m playwright install chromium
+    && python -m playwright install --with-deps chromium \
+    && rm -rf /ms-playwright/chromium-* /ms-playwright/ffmpeg-* \
+    && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["python", "-m", "awslambdaric"]
 CMD ["banner_generator.lambda_handler.handler"]
