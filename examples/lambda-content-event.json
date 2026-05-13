@@ -1,0 +1,16 @@
+{
+  "template": "asl-content-card",
+  "format": "png",
+  "size": "og",
+  "data": {
+    "kind": "Live Event",
+    "kicker": "Community launch and live Q&A",
+    "title": "AI Shipping Labs Community Launch",
+    "subtitle": "A practical community for builders turning AI engineering ideas into shipped projects.",
+    "meta_primary": "April 13, 2026",
+    "meta_secondary": "Zoom / Alexey Grigorev",
+    "footer": "aishippinglabs.com/events",
+    "title_size": 82,
+    "subtitle_size": 30
+  }
+}

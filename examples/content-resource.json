@@ -1,0 +1,15 @@
+{
+  "template": "asl-content-card",
+  "size": "og",
+  "format": "png",
+  "output": "output/content/resource-ai-agents-email-crash-course.png",
+  "kind": "Resource",
+  "kicker": "Curated link",
+  "title": "AI Agents Email Crash-Course Cohort Edition",
+  "subtitle": "A free project-based course path with peer review and a certificate of completion.",
+  "meta_primary": "Course link",
+  "meta_secondary": "Agents / Projects / Certificate",
+  "footer": "AI Shipping Labs Resources",
+  "title_size": 74,
+  "subtitle_size": 30
+}

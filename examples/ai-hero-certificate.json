@@ -1,0 +1,14 @@
+{
+  "template": "ai-hero-certificate",
+  "width": 1536,
+  "height": 1024,
+  "format": "pdf",
+  "output": "output/ai-hero-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "7-Day AI Agents Crash-Course",
+  "dates": "20 January 2026",
+  "course_url": "https://aishippinglabs.com/courses/aihero",
+  "certificate_id": "example1",
+  "certificate_url": "https://certificates.aishippinglabs.com/ai-hero/example1.pdf",
+  "qr": "assets/ai-hero/test-qr.svg"
+}

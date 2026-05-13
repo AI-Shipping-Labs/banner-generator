@@ -1,0 +1,15 @@
+{
+  "template": "asl-content-card",
+  "size": "og",
+  "format": "png",
+  "output": "output/content/workshop-reliable-agents.png",
+  "kind": "Workshop",
+  "kicker": "Hands-on building session",
+  "title": "Build Reliable AI Agents People Can Actually Use",
+  "subtitle": "Design agent workflows with tools, retries, structured outputs, and evaluation from the start.",
+  "meta_primary": "Live online",
+  "meta_secondary": "90 minutes / project-based",
+  "footer": "AI Shipping Labs Workshops",
+  "title_size": 72,
+  "subtitle_size": 29
+}

@@ -23,6 +23,18 @@ The example writes:
 output/workshop.png
 ```
 
+Render the AI Hero certificate example:
+
+```bash
+uv run banner-generator render examples/ai-hero-certificate.json
+```
+
+Render the content banner examples:
+
+```bash
+make render-content-examples
+```
+
 You can also render with inline arguments:
 
 ```bash
@@ -72,13 +84,16 @@ For certificates, use a document-shaped viewport:
 
 ```json
 {
-  "template": "certificate",
+  "template": "ai-hero-certificate",
   "width": 1536,
   "height": 1024,
   "format": "pdf",
-  "output": "output/certificate.pdf",
+  "output": "output/ai-hero-certificate.pdf",
   "name": "Jane Doe",
-  "course": "AI Engineering"
+  "course_name": "7-Day AI Agents Crash-Course",
+  "dates": "20 January 2026",
+  "certificate_id": "example1",
+  "certificate_url": "https://certificates.aishippinglabs.com/ai-hero/example1.pdf"
 }
 ```
 

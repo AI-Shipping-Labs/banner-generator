@@ -70,7 +70,23 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("meta", "")
     values.setdefault("brand", "AI Shipping Labs")
     values.setdefault("accent", "Ship real things with AI")
-    return template.safe_substitute(values)
+    values.setdefault("kind", "Content")
+    values.setdefault("kicker", "Build, ship, and learn with practical AI projects.")
+    values.setdefault("meta_primary", "")
+    values.setdefault("meta_secondary", "")
+    values.setdefault("footer", "aishippinglabs.com")
+    values.setdefault("title_size", "78")
+    values.setdefault("subtitle_size", "30")
+    values.setdefault("name", "Jane Doe")
+    values.setdefault("course_name", "7-Day AI Agents Crash-Course")
+    values.setdefault("dates", "2026")
+    values.setdefault("course_url", "https://aishippinglabs.com/courses/aihero")
+    values.setdefault("certificate_id", "example")
+    values.setdefault("certificate_url", "#")
+    values.setdefault("qr", "assets/ai-hero/test-qr.svg")
+    html_text = template.safe_substitute(values)
+    base_href = f"{template_path.parent.resolve().as_uri()}/"
+    return html_text.replace("<head>", f'<head>\n  <base href="{base_href}">', 1)
 
 
 def resolve_template(name_or_path: str, template_dir: Path | None = None) -> Path:

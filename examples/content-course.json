@@ -1,0 +1,15 @@
+{
+  "template": "asl-content-card",
+  "size": "og",
+  "format": "png",
+  "output": "output/content/course-ai-hero.png",
+  "kind": "Course",
+  "kicker": "Free cohort-based crash-course",
+  "title": "AI Hero: 7-Day AI Agents Crash-Course",
+  "subtitle": "Build a complete AI agent from data ingestion to deployment on your own GitHub project.",
+  "meta_primary": "Free",
+  "meta_secondary": "RAG / Search / Function Calling / Evaluation",
+  "footer": "aishippinglabs.com/courses/aihero",
+  "title_size": 78,
+  "subtitle_size": 30
+}

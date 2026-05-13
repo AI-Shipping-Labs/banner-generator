@@ -1,0 +1,15 @@
+{
+  "template": "asl-content-card",
+  "size": "og",
+  "format": "png",
+  "output": "output/content/stress-long-title.png",
+  "kind": "Stress Test",
+  "kicker": "Long title fit check",
+  "title": "How I Built an Automated Image-to-Podcast Pipeline and What It Taught Me About Shipping AI Features",
+  "subtitle": "A deliberately long title to check wrapping, spacing, and visual balance before we generate real batches.",
+  "meta_primary": "Layout check",
+  "meta_secondary": "Long title / article banner",
+  "footer": "aishippinglabs.com",
+  "title_size": 51,
+  "subtitle_size": 27
+}

@@ -1,0 +1,15 @@
+{
+  "template": "asl-content-card",
+  "size": "og",
+  "format": "png",
+  "output": "output/content/blog-ai-engineer-learning-path.png",
+  "kind": "Article",
+  "kicker": "AI engineering learning path",
+  "title": "What Skills Do You Need to Become an AI Engineer?",
+  "subtitle": "Based on real job descriptions, practical project work, and production AI responsibilities.",
+  "meta_primary": "Blog",
+  "meta_secondary": "Guides / Career / AI Engineering",
+  "footer": "aishippinglabs.com/blog",
+  "title_size": 70,
+  "subtitle_size": 29
+}

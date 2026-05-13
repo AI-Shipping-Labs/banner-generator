@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Certificate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/ai-hero/certificate-dark.css">
+</head>
+
+<body>
+  <section class="certificate" aria-label="Certificate of Completion">
+    <div class="content">
+      <div class="title">Certificate <i>of</i> Completion</div>
+      <div class="flourish"><span>&#10022;</span></div>
+
+      <div class="name">${name}</div>
+
+      <p class="sub">Successfully Completed the Course</p>
+
+      <div class="workshop">${course_name}</div>
+
+      <div class="dates">${dates}</div>
+
+      <div class="sig-wrap">
+        <img class="signature" src="assets/ai-hero/alexey-signature-white.svg" alt="Alexey Grigorev signature">
+        <div class="sig-line"></div>
+        <p class="sig-role">Instructor</p>
+      </div>
+
+      <div class="footer-info">
+        <p class="course-link"><a href="${course_url}" target="_blank">${course_url}</a></p>
+        <p class="cert-number">Certificate number: <a href="${certificate_url}" target="_blank">${certificate_id}</a></p>
+      </div>
+    </div>
+
+    <div class="qr-box">
+      <img id="qr" src="${qr}" alt="QR code" />
+      <img class="qr-logo" src="assets/ai-hero/rocket-logo.png" alt="Logo" />
+    </div>
+  </section>
+</body>
+</html>

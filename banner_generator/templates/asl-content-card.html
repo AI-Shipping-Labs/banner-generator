@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=${width}, initial-scale=1">
+  <title>${title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/asl/content-card.css">
+  <style>
+    :root {
+      --width: ${width}px;
+      --height: ${height}px;
+      --title-size: ${title_size}px;
+      --subtitle-size: ${subtitle_size}px;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <header class="top">
+      <div class="brand">
+        <div class="mark">AI</div>
+        <div class="brand-text">${brand}</div>
+      </div>
+      <div class="kind">${kind}</div>
+    </header>
+
+    <section class="main">
+      <div class="kicker">${kicker}</div>
+      <h1 class="title">${title}</h1>
+      <div class="subtitle">${subtitle}</div>
+    </section>
+
+    <footer class="bottom">
+      <div class="meta">
+        <div class="pill lime">${meta_primary}</div>
+        <div class="pill">${meta_secondary}</div>
+      </div>
+      <div class="footer-brand">${footer}</div>
+    </footer>
+  </main>
+</body>
+</html>

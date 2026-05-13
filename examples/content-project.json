@@ -1,0 +1,15 @@
+{
+  "template": "asl-content-card",
+  "size": "og",
+  "format": "png",
+  "output": "output/content/project-multi-agent-research.png",
+  "kind": "Project",
+  "kicker": "Intermediate build",
+  "title": "Multi-Agent Research Assistant with Search, Summaries, and Fact Checks",
+  "subtitle": "Coordinate specialized agents through an orchestrator and evaluate the workflow end to end.",
+  "meta_primary": "Agents",
+  "meta_secondary": "OpenAI / Pydantic / Tool Use",
+  "footer": "AI Shipping Labs Projects",
+  "title_size": 58,
+  "subtitle_size": 28
+}

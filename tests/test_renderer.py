@@ -58,6 +58,15 @@ def test_render_html_escapes_user_content(tmp_path: Path):
     assert "1200x630" in html
 
 
+def test_render_html_adds_base_url_for_relative_assets(tmp_path: Path):
+    template = tmp_path / "template.html"
+    template.write_text("<!doctype html><html><head></head><body></body></html>")
+
+    html = render_html(template, {}, 1200, 630)
+
+    assert f'<base href="{tmp_path.as_uri()}/">' in html
+
+
 @pytest.mark.parametrize(
     ("output", "expected"),
     [
