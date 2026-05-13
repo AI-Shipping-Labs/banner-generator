@@ -1,4 +1,6 @@
-.PHONY: setup test lint render-example render-content-examples render-content-variants render-content-matrix render-certificate-example docker-build docker-smoke install-browser
+.PHONY: setup test lint render-example render-content-examples render-content-variants render-content-matrix render-certificate-example docker-build docker-smoke docker-benchmark-certificates install-browser
+
+COUNT ?= 10
 
 setup:
 	uv sync --dev
@@ -45,3 +47,6 @@ docker-smoke:
 	docker run --rm --entrypoint python -v "$$PWD/examples:/tmp/examples:ro" banner-generator-lambda scripts/invoke_lambda_event.py /tmp/examples/lambda-content-event.json
 	docker run --rm --entrypoint python -v "$$PWD/examples:/tmp/examples:ro" banner-generator-lambda scripts/invoke_lambda_event.py /tmp/examples/lambda-content-event-jpeg.json
 	docker run --rm --entrypoint python -v "$$PWD/examples:/tmp/examples:ro" banner-generator-lambda scripts/invoke_lambda_event.py /tmp/examples/lambda-ai-hero-certificate.json
+
+docker-benchmark-certificates:
+	docker run --rm --entrypoint python -v "$$PWD/examples:/tmp/examples:ro" banner-generator-lambda scripts/benchmark_lambda_event.py /tmp/examples/lambda-ai-hero-certificate.json --count $(COUNT) --warmup 1 --unique-certificates

@@ -13,6 +13,7 @@ authors = [
     {name = "AI Shipping Labs"}
 ]
 dependencies = [
+    "boto3>=1.41.0",
     "playwright==1.58.0",
 ]
 

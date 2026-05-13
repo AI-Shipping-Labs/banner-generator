@@ -82,6 +82,17 @@ Direct local smoke test:
 make docker-smoke
 ```
 
+Sequential certificate benchmark in the Lambda container:
+
+```bash
+make docker-benchmark-certificates COUNT=50
+```
+
+This exercises the same handler path as Lambda, including PDF generation and
+base64 response encoding. For production certificate batches, prefer passing an
+`s3` target so the Lambda uploads each certificate and returns only the S3
+location metadata.
+
 Lambda Runtime Interface Emulator test, after downloading `aws-lambda-rie`:
 
 ```bash
@@ -93,6 +104,32 @@ docker run --rm -p 9000:8080 \
 
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" \
   -d @examples/lambda-content-event.json
+```
+
+Certificate output modes:
+
+- Without `s3`, the handler returns base64-encoded bytes in the Lambda response.
+- With `s3`, the handler uploads the rendered file and returns `{ "ok": true,
+  "s3": { "bucket": "...", "key": "..." } }`.
+
+Example S3 target:
+
+```json
+{
+  "template": "ai-hero-certificate",
+  "format": "pdf",
+  "width": 1536,
+  "height": 1024,
+  "data": {
+    "name": "Jane Doe",
+    "certificate_id": "example1"
+  },
+  "s3": {
+    "bucket": "aishippinglabs-assets",
+    "key": "certificates/ai-hero/example1.pdf",
+    "content_type": "application/pdf"
+  }
+}
 ```
 
 ## Validation Before Publishing

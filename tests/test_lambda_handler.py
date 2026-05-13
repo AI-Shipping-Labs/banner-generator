@@ -65,3 +65,47 @@ def test_handler_returns_base64_response(monkeypatch, tmp_path: Path):
     assert response["isBase64Encoded"] is True
     assert response["headers"]["Content-Type"] == "image/png"
     assert response["body"] == "ZmFrZS1wbmc="
+
+
+def test_handler_uploads_to_s3_when_target_is_present(monkeypatch, tmp_path: Path):
+    rendered = tmp_path / "rendered.pdf"
+    rendered.write_bytes(b"fake-pdf")
+    upload_target = {
+        "bucket": "certificates-bucket",
+        "key": "certificates/example.pdf",
+    }
+
+    def fake_spec_from_event(event, output=None):
+        return lambda_handler.RenderSpec(
+            template="ai-hero-certificate",
+            output=rendered,
+            format="pdf",
+        )
+
+    def fake_render(spec):
+        return spec.output
+
+    def fake_upload_to_s3(path, target, content_type):
+        assert path == rendered
+        assert target == upload_target
+        assert content_type == "application/pdf"
+        return {"bucket": target["bucket"], "key": target["key"]}
+
+    monkeypatch.setattr(lambda_handler, "spec_from_event", fake_spec_from_event)
+    monkeypatch.setattr(lambda_handler, "render", fake_render)
+    monkeypatch.setattr(lambda_handler, "_upload_to_s3", fake_upload_to_s3)
+
+    response = lambda_handler.handler(
+        {
+            "template": "ai-hero-certificate",
+            "format": "pdf",
+            "s3": upload_target,
+        }
+    )
+
+    assert response == {
+        "ok": True,
+        "format": "pdf",
+        "content_type": "application/pdf",
+        "s3": upload_target,
+    }
