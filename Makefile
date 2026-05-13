@@ -1,4 +1,4 @@
-.PHONY: setup test lint render-example render-content-examples render-content-variants render-certificate-example docker-build docker-smoke install-browser
+.PHONY: setup test lint render-example render-content-examples render-content-variants render-content-matrix render-certificate-example docker-build docker-smoke install-browser
 
 setup:
 	uv sync --dev
@@ -31,6 +31,9 @@ render-content-variants:
 	uv run banner-generator render examples/content-variants/event-stage-live.json
 	uv run banner-generator render examples/content-variants/project-dossier-showcase.json
 	uv run banner-generator render examples/content-variants/resource-stack-download.json
+
+render-content-matrix:
+	uv run python scripts/render_content_variant_matrix.py
 
 render-certificate-example:
 	uv run banner-generator render examples/ai-hero-certificate.json
