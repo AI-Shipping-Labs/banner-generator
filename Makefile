@@ -1,6 +1,8 @@
-.PHONY: setup test lint render-example render-content-examples render-content-variants render-content-matrix render-certificate-example docker-build docker-smoke docker-benchmark-certificates install-browser
+.PHONY: setup test lint render-example render-content-examples render-content-variants render-content-matrix render-source-banners render-certificate-example docker-build docker-smoke docker-benchmark-certificates install-browser
 
 COUNT ?= 10
+MAX_KB ?= 100
+TEMPLATE ?=
 
 setup:
 	uv sync --dev
@@ -36,6 +38,9 @@ render-content-variants:
 
 render-content-matrix:
 	uv run python scripts/render_content_variant_matrix.py
+
+render-source-banners:
+	uv run python scripts/generate_source_banners.py $(if $(TEMPLATE),--template $(TEMPLATE),) --max-kb $(MAX_KB)
 
 render-certificate-example:
 	uv run banner-generator render examples/ai-hero-certificate.json
