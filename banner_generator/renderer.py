@@ -163,7 +163,14 @@ def render(
 
     try:
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch()
+            browser = playwright.chromium.launch(
+                args=[
+                    "--disable-dev-shm-usage",
+                    "--disable-gpu",
+                    "--no-sandbox",
+                    "--single-process",
+                ]
+            )
             page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
             page.goto(tmp_path.as_uri())
             format_name = output_format(spec)

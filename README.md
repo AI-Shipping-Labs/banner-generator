@@ -146,6 +146,19 @@ Good targets for generated banners:
 
 This keeps Django, Studio, and production workers independent from browser rendering.
 
+## AWS Lambda Deployment
+
+Terraform for the AWS deployment lives in `infra/`. It creates:
+
+- ECR for the Lambda container image
+- a private S3 bucket for templates synced from `banner_generator/templates`
+- a private S3 bucket for rendered outputs
+- a Lambda Function URL protected by a bearer token from Terraform state or `auth_token`
+
+See `infra/README.md` for the deploy and invoke commands. Do not hardcode the
+Function URL or token into the Remix app; pass them through that app's
+environment variables or secret manager.
+
 ## Roadmap
 
 - Add more AI Shipping Labs templates and Canva-inspired style variants.

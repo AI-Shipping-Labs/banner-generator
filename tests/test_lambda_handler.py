@@ -67,6 +67,44 @@ def test_handler_returns_base64_response(monkeypatch, tmp_path: Path):
     assert response["body"] == "ZmFrZS1wbmc="
 
 
+def test_handler_rejects_missing_auth_token(monkeypatch):
+    monkeypatch.setenv("BANNER_GENERATOR_AUTH_TOKEN", "secret-token")
+
+    response = lambda_handler.handler({"template": "asl-content-card"})
+
+    assert response["statusCode"] == 401
+    assert "unauthorized" in response["body"]
+
+
+def test_handler_accepts_bearer_auth_token(monkeypatch, tmp_path: Path):
+    rendered = tmp_path / "rendered.png"
+    rendered.write_bytes(b"fake-png")
+    monkeypatch.setenv("BANNER_GENERATOR_AUTH_TOKEN", "secret-token")
+
+    def fake_spec_from_event(event, output=None):
+        return lambda_handler.RenderSpec(
+            template="asl-content-card",
+            output=rendered,
+            format="png",
+        )
+
+    def fake_render(spec):
+        return spec.output
+
+    monkeypatch.setattr(lambda_handler, "spec_from_event", fake_spec_from_event)
+    monkeypatch.setattr(lambda_handler, "render", fake_render)
+
+    response = lambda_handler.handler(
+        {
+            "headers": {"authorization": "Bearer secret-token"},
+            "body": {"template": "asl-content-card"},
+        }
+    )
+
+    assert response["statusCode"] == 200
+    assert response["body"] == "ZmFrZS1wbmc="
+
+
 def test_handler_uploads_to_s3_when_target_is_present(monkeypatch, tmp_path: Path):
     rendered = tmp_path / "rendered.pdf"
     rendered.write_bytes(b"fake-pdf")

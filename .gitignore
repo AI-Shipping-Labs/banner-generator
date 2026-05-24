@@ -9,3 +9,9 @@ __pycache__/
 .DS_Store
 output/
 .tmp/
+infra/.terraform/
+infra/terraform.tfstate
+infra/terraform.tfstate.*
+infra/*.tfvars
+infra/*.tfplan
+infra/deploy.env
