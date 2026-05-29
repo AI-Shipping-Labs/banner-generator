@@ -9,6 +9,11 @@ This Terraform deploys the renderer as an AWS Lambda container with:
 
 Terraform state, plans, tfvars, and generated deploy env files are ignored by git.
 
+Note: this Terraform is temporary in this repository. After the renderer is
+redeployed in the other AWS account, the long-lived infrastructure definition
+should move to the dedicated infra repository. Once that migration is complete,
+destroy the stack managed from this repo.
+
 ## Deploy
 
 From the repo root:

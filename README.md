@@ -159,6 +159,11 @@ See `infra/README.md` for the deploy and invoke commands. Do not hardcode the
 Function URL or token into the Remix app; pass them through that app's
 environment variables or secret manager.
 
+Note: this in-repo Terraform is temporary. After the renderer is redeployed in
+the other AWS account, the long-lived infrastructure definition should live in
+the dedicated infra repository. Once that migration is complete, destroy the
+stack managed from this repo.
+
 ## Roadmap
 
 - Add more AI Shipping Labs templates and Canva-inspired style variants.
