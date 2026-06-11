@@ -33,6 +33,8 @@ render-content-variants:
 	uv run banner-generator render examples/content-variants/blueprint-path-course.json
 	uv run banner-generator render examples/content-variants/editorial-pulse-blog.json
 	uv run banner-generator render examples/content-variants/event-stage-live.json
+	uv run banner-generator render examples/content-variants/event-series-long-title.json
+	uv run banner-generator render examples/content-event-series.json
 	uv run banner-generator render examples/content-variants/project-dossier-showcase.json
 	uv run banner-generator render examples/content-variants/resource-stack-download.json
 

@@ -1,0 +1,16 @@
+{
+  "template": "asl-event-series",
+  "format": "png",
+  "size": "og",
+  "data": {
+    "kind": "Event Series",
+    "kicker": "Weekly series",
+    "title": "AI Shipping Labs Build Reviews",
+    "subtitle": "Every week we open a live build review: bring a stuck agent, eval loop, or automation and ship the next concrete step together.",
+    "meta_primary": "Wednesdays / 18:00 CEST",
+    "meta_secondary": "12 sessions / Members",
+    "footer": "AI Shipping Labs Events",
+    "title_size": 76,
+    "subtitle_size": 29
+  }
+}
