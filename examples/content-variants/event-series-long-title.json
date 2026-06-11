@@ -1,0 +1,15 @@
+{
+  "template": "asl-event-series",
+  "size": "og",
+  "format": "png",
+  "output": "output/content-variants/event-series-long-title.png",
+  "kind": "Event Series",
+  "kicker": "Bi-weekly series",
+  "title": "Shipping Production AI Agents and Evaluation Workflows in Public",
+  "subtitle": "A recurring deep-dive cohort working through real agent failures, retrieval quality, and evaluation harnesses one shippable improvement at a time.",
+  "meta_primary": "Every other Thursday / 17:00 UTC",
+  "meta_secondary": "8 sessions / Members + guests",
+  "footer": "AI Shipping Labs Events",
+  "title_size": 64,
+  "subtitle_size": 28
+}

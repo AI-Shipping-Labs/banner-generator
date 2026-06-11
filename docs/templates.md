@@ -57,8 +57,39 @@ Alternate content banner variants:
 examples/content-variants/blueprint-path-course.json
 examples/content-variants/editorial-pulse-blog.json
 examples/content-variants/event-stage-live.json
+examples/content-variants/event-series-long-title.json
 examples/content-variants/project-dossier-showcase.json
 examples/content-variants/resource-stack-download.json
+```
+
+## Event Series
+
+`asl-event-series` is for recurring (weekly / bi-weekly) event series, as opposed to
+the single-occurrence `asl-event-stage`. The design reuses the AI Shipping Labs
+black/lime brand and adds recurring-series cues: stacked offset cards behind the
+poster (multiple occurrences), a three-dot repeat marker beside the cadence kicker,
+and concentric accent rings.
+
+```text
+banner_generator/templates/asl-event-series/template.html
+banner_generator/templates/asl-event-series/style.css
+examples/content-event-series.json
+examples/lambda-content-event-series.json
+examples/content-variants/event-series-long-title.json
+```
+
+Data slots (the website auto-banner pipeline sends these `data` field names):
+
+```text
+kind            "Event Series"                      (badge, top-right)
+kicker          cadence label, e.g. "Weekly series" (mono uppercase + repeat dots)
+title           series name
+subtitle        series description (truncated)
+meta_primary    cadence / day + time, e.g. "Wednesdays / 18:00 CEST"
+meta_secondary  occurrence count or tags, e.g. "12 sessions / Members"
+footer          "AI Shipping Labs Events"
+title_size      optional explicit title fit (px)
+subtitle_size   optional explicit subtitle fit (px)
 ```
 
 Render them with:
