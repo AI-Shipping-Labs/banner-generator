@@ -136,4 +136,5 @@ image_url        optional image URL; initials remain the deterministic fallback
 
 The named `luma` size is deliberately 1000 x 1000. Event banners also have `og` (1200 x
 630) and explicit YouTube (1280 x 720) examples; YouTube omits event dates so thumbnails
-remain evergreen. Render the complete sample set with `make render-dtc-examples`.
+remain evergreen. Render the complete sample set with
+`uv run python scripts/render_dtc_examples.py`.

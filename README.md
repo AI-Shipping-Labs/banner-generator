@@ -38,7 +38,7 @@ make render-content-examples
 Render the DataTalks.Club social kit examples:
 
 ```bash
-make render-dtc-examples
+uv run python scripts/render_dtc_examples.py
 ```
 
 The `dtc-social` template follows the supplied DataTalks.Club canvas: Quicksand type,
