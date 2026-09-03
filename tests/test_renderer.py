@@ -1,8 +1,10 @@
+import json
 from pathlib import Path
 
 import pytest
 
 from banner_generator.renderer import (
+    SIZES,
     RenderSpec,
     load_spec,
     output_format,
@@ -68,6 +70,34 @@ def test_luma_size_matches_the_public_event_artwork_contract():
     spec = RenderSpec(template="lab-card", output=Path("card.png"), size="luma")
 
     assert spec.viewport == (1000, 1000)
+
+
+def test_certificate_size_matches_the_certificate_generator_contract():
+    spec = load_spec(Path(__file__).parents[1] / "examples/ai-hero-certificate.json")
+
+    assert spec.size == "certificate"
+    assert spec.viewport == (1536, 1024)
+
+
+def test_example_specs_declare_a_named_or_explicit_canvas():
+    examples_dir = Path(__file__).parents[1] / "examples"
+
+    for path in sorted(examples_dir.rglob("*.json")):
+        payload = json.loads(path.read_text())
+        if "template" not in payload:
+            continue
+
+        has_named_size = "size" in payload
+        has_width = "width" in payload
+        has_height = "height" in payload
+        assert has_width == has_height, path
+        assert has_named_size or has_width, path
+
+        if has_named_size:
+            assert payload["size"] in SIZES, path
+        if has_width:
+            assert isinstance(payload["width"], int) and payload["width"] > 0, path
+            assert isinstance(payload["height"], int) and payload["height"] > 0, path
 
 
 def test_dtc_social_template_contains_the_public_brand_and_data_slots():

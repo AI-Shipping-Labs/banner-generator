@@ -15,7 +15,7 @@ def build_parser() -> argparse.ArgumentParser:
     render.add_argument("spec", nargs="?", type=Path, help="Path to a JSON render spec.")
     render.add_argument("--template", help="Bundled template name or path to an HTML template.")
     render.add_argument("--template-dir", type=Path, help="Directory with custom templates.")
-    render.add_argument("--size", help="Named size: og, wide, square, luma, linkedin.")
+    render.add_argument("--size", help="Named size: og, certificate, wide, square, luma, linkedin.")
     render.add_argument("--format", choices=["png", "jpeg", "pdf"], help="Output format.")
     render.add_argument("--quality", type=int, help="JPEG quality, from 0 to 100.")
     render.add_argument("--width", type=int, help="Custom viewport width.")

@@ -23,7 +23,7 @@ def test_template_catalog_exposes_spec_canvas_recommendations():
     assert content_canvas["height"] == 630
 
     certificate_canvas = templates["ai-hero-certificate"]["recommended_canvas"]
-    assert certificate_canvas["size"] is None
+    assert certificate_canvas["size"] == "certificate"
     assert certificate_canvas["width"] == 1536
     assert certificate_canvas["height"] == 1024
     assert certificate_canvas["format"] == "pdf"

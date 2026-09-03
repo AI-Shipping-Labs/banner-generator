@@ -117,9 +117,8 @@ Example S3 target:
 ```json
 {
   "template": "ai-hero-certificate",
+  "size": "certificate",
   "format": "pdf",
-  "width": 1536,
-  "height": 1024,
   "data": {
     "name": "Jane Doe",
     "certificate_id": "example1"

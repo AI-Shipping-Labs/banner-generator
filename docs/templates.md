@@ -26,6 +26,11 @@ Render it with:
 make render-certificate-example
 ```
 
+The certificate spec uses the named `certificate` size (1536 x 1024). The AI Shipping
+Labs content-banner specs use the named `og` size (1200 x 630). A CLI or Lambda caller
+can explicitly override a spec's size, but normal clients should preserve the size from
+the spec.
+
 ## Content Banners
 
 The first banner family uses the Canva reference direction from `docs/references/`:

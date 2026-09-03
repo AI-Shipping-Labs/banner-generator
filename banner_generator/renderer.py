@@ -12,6 +12,7 @@ from typing import Any
 DEFAULT_SIZE = "og"
 SIZES = {
     "og": (1200, 630),
+    "certificate": (1536, 1024),
     "wide": (1600, 900),
     "square": (1080, 1080),
     "luma": (1000, 1000),

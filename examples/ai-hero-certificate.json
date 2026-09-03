@@ -1,7 +1,6 @@
 {
   "template": "ai-hero-certificate",
-  "width": 1536,
-  "height": 1024,
+  "size": "certificate",
   "format": "pdf",
   "output": "output/ai-hero-certificate.pdf",
   "name": "Jane Doe",
