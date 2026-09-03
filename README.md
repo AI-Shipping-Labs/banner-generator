@@ -38,13 +38,7 @@ output/dtc/article-preview.png
 Render the AI Hero certificate example:
 
 ```bash
-uv run banner-generator render examples/aisl/ai-hero-certificate.json
-```
-
-Render the content banner examples:
-
-```bash
-make render-content-examples
+uv run banner-generator render examples/certificates/ai-hero-certificate.json
 ```
 
 Render the DataTalks.Club social kit examples:
@@ -98,8 +92,9 @@ More examples: `examples/dtc/dtc-event-speaker-two-speakers-luma.json` and
 ## Render Specs
 
 Specs are JSON files. See `examples/dtc/dtc-article-preview.json` for a complete
-DataTalks.Club card spec and `examples/aisl/ai-hero-certificate.json` for the AI Hero
-certificate spec.
+DataTalks.Club card spec, `examples/certificates/dtc-data-engineering-zoomcamp-certificate.json`
+for the Zoomcamp certificate spec, and `examples/certificates/ai-hero-certificate.json` for the
+AI Hero certificate spec.
 
 ## Output Formats
 
@@ -132,12 +127,18 @@ For certificates, use a document-shaped viewport:
 }
 ```
 
+The DataTalks.Club Zoomcamp certificate uses the same fields with the
+`zoomcamp-certificate` size. Its bundled course examples intentionally use one lead
+instructor signature, including Data Engineering and MLOps Zoomcamp, rather than
+including every historical course contributor.
+
 Supported built-in sizes:
 
 | Size | Dimensions |
 |---|---:|
 | `og` | 1200 x 630 |
 | `certificate` | 1536 x 1024 |
+| `zoomcamp-certificate` | 1920 x 1080 |
 | `linkedin` | 1200 x 627 |
 | `wide` | 1600 x 900 |
 | `square` | 1080 x 1080 |
@@ -148,6 +149,12 @@ Use `width` and `height` in the spec, or `--width` and `--height`, for custom si
 ## Templates
 
 Bundled templates live in `banner_generator/templates/`. Custom templates can be passed by path:
+
+Certificate templates currently include:
+
+- `ai-hero-certificate` — AI Hero dark certificate
+- `ai-buildcamp-certificate` — AI Engineering Buildcamp dark certificate
+- `dtc-zoomcamp-certificate` — reusable DataTalks.Club Zoomcamp certificate
 
 ```bash
 uv run banner-generator render \
