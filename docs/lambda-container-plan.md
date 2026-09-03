@@ -133,11 +133,8 @@ Example S3 target:
 
 ## Validation Before Publishing
 
-1. `make test`
-2. `make lint`
-3. `make render-content-examples`
-4. `make render-content-variants`
-5. `make render-certificate-example`
-6. Build Docker image.
-7. Invoke Docker image locally with PNG, JPEG, and PDF events.
-8. Push to ECR only after local Docker rendering works.
+1. `uv run pytest`
+2. `uv run ruff check .`
+3. Build Docker image.
+4. Invoke Docker image locally with PNG, JPEG, and PDF events.
+5. Push to ECR only after local Docker rendering works.
