@@ -1,0 +1,660 @@
+@font-face {
+  font-family: "Quicksand";
+  src: url("assets/quicksand-latin-var.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+:root {
+  --ink: #1e2136;
+  --muted: #4c5066;
+  --cream: #fdfaf3;
+  --lavender: #eff1fc;
+  --lavender-strong: #c9cdf2;
+  --mint: #eff5ea;
+  --green: #2b7a35;
+  --gold: #e2c67a;
+  --indigo: #5a62c4;
+  --shadow: rgba(30, 33, 54, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: var(--width);
+  height: var(--height);
+  margin: 0;
+  overflow: hidden;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Quicksand", "Trebuchet MS", Arial, sans-serif;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.poster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 3.2vw;
+  overflow: hidden;
+  border: 6px solid var(--ink);
+  border-radius: 3.1vw;
+  padding: 6.1vw 6.7vw 6.2vw;
+  background: var(--cream);
+  isolation: isolate;
+}
+
+.variant-workshop .poster {
+  background: var(--mint);
+}
+
+.variant-podcast .shape-bottom {
+  position: absolute;
+  left: -12vw;
+  bottom: -16vw;
+  width: 43vw;
+  height: 43vw;
+  border-radius: 46% 55% 44% 50%;
+  background: #f3f0e8;
+}
+
+.variant-webinar .shape-top,
+.variant-course .shape-top {
+  position: absolute;
+  top: -16vw;
+  right: -14vw;
+  width: 46vw;
+  height: 46vw;
+  border-radius: 50% 44% 55% 46%;
+  background: var(--lavender);
+}
+
+.variant-workshop .shape-top {
+  position: absolute;
+  top: -19vw;
+  right: -18vw;
+  width: 49vw;
+  height: 49vw;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.top,
+.bottom,
+.copy,
+.main-avatar {
+  position: relative;
+  z-index: 1;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2vw;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.8vw;
+  color: var(--ink);
+  font-size: clamp(25px, 3.8vw, 41px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  width: clamp(42px, 6vw, 65px);
+  height: clamp(40px, 5.8vw, 62px);
+  flex: 0 0 auto;
+  overflow: visible;
+  color: var(--ink);
+}
+
+.brand-mark > path {
+  fill: #b9bff0;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+.brand-letters {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kind {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 1.3vw 2.8vw;
+  border: 4px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 0.65vw 0.65vw 0 var(--shadow);
+  background: var(--lavender-strong);
+  color: var(--ink);
+  font-size: clamp(18px, 2.3vw, 25px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.variant-podcast .kind {
+  background: var(--gold);
+}
+
+.variant-workshop .kind {
+  background: var(--green);
+  color: white;
+}
+
+.variant-article .kind,
+.variant-book .kind {
+  background: #f3f0e8;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 100%;
+  max-width: 90%;
+  margin-top: auto;
+  margin-bottom: auto;
+  gap: 1.8vw;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--green);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(14px, 2vw, 25px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.variant-webinar .kicker,
+.variant-article .kicker,
+.variant-course .kicker {
+  color: var(--indigo);
+}
+
+h1 {
+  max-width: 100%;
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--title-size);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.subtitle {
+  max-width: 80%;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--subtitle-size);
+  font-weight: 500;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5vw;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 1.6vw;
+}
+
+.avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: clamp(68px, 16.7vw, 180px);
+  height: clamp(68px, 16.7vw, 180px);
+  overflow: hidden;
+  border: 5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--indigo);
+}
+
+.avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-initials {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(17px, 3.4vw, 38px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.person-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.35vw;
+}
+
+.person-copy b {
+  max-width: 30vw;
+  font-size: clamp(20px, 3.7vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.person-copy span {
+  color: var(--muted);
+  font-size: clamp(15px, 2.4vw, 26px);
+  line-height: 1.25;
+}
+
+.metadata {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.5vw;
+  padding: 2.2vw 2.8vw;
+  border: 4px solid var(--ink);
+  border-radius: 2vw;
+  box-shadow: 0.8vw 0.8vw 0 var(--shadow);
+  background: var(--mint);
+}
+
+.metadata b {
+  color: var(--green);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(13px, 2vw, 21px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.metadata strong {
+  font-size: clamp(22px, 3.5vw, 38px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.metadata span {
+  color: var(--muted);
+  font-size: clamp(14px, 2vw, 21px);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.footer-brand {
+  align-self: flex-end;
+  color: var(--ink);
+  font-size: clamp(16px, 2.5vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.main-avatar {
+  display: none;
+}
+
+/* The 1000 x 1000 Luma/Meetup card follows the supplied square crop. */
+.channel-luma .poster {
+  gap: 3.7vw;
+}
+
+.channel-luma .copy {
+  max-width: 100%;
+}
+
+.channel-luma h1 {
+  max-width: 92%;
+}
+
+.channel-luma .subtitle {
+  max-width: 78%;
+}
+
+/* The 1200 x 630 card has a dedicated time panel on the right. */
+.channel-og .poster {
+  gap: 2.4vw;
+  padding-top: 4.5vw;
+  padding-bottom: 4.5vw;
+  border-radius: 2.3vw;
+}
+
+.channel-og .copy {
+  align-self: flex-start;
+  max-width: 62%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.channel-og .top,
+.channel-youtube .top {
+  width: 66%;
+}
+
+.channel-og .copy h1 {
+  max-width: 100%;
+}
+
+.channel-og .subtitle {
+  max-width: 92%;
+}
+
+.channel-og .metadata {
+  position: absolute;
+  top: 4.5vw;
+  right: 4.5vw;
+  bottom: 4.5vw;
+  display: grid;
+  width: 27.5%;
+  align-content: center;
+  justify-items: center;
+  padding: 2vw;
+  border-radius: 1.8vw;
+  background: var(--lavender);
+  text-align: center;
+}
+
+.channel-og .metadata::before {
+  content: "";
+  position: absolute;
+  inset: 2.2vw;
+  border: 3px dashed rgba(30, 33, 54, 0.28);
+  border-radius: 1.2vw;
+}
+
+.channel-og .metadata > * {
+  position: relative;
+  z-index: 1;
+}
+
+.channel-og .metadata strong {
+  font-size: clamp(30px, 6.2vw, 74px);
+}
+
+.channel-og .metadata span {
+  font-size: clamp(14px, 1.7vw, 19px);
+}
+
+.channel-og .bottom {
+  position: static;
+  width: 62%;
+}
+
+.channel-og .avatar {
+  width: clamp(64px, 7.4vw, 88px);
+  height: clamp(64px, 7.4vw, 88px);
+  border-width: 4px;
+}
+
+.channel-og .avatar-initials {
+  font-size: clamp(15px, 2.2vw, 25px);
+}
+
+.channel-og .person-copy b {
+  max-width: 28vw;
+  font-size: clamp(18px, 2.1vw, 25px);
+}
+
+.channel-og .person-copy span {
+  font-size: clamp(14px, 1.5vw, 18px);
+}
+
+.channel-og .footer-brand {
+  font-size: clamp(18px, 2.2vw, 26px);
+}
+
+/* The evergreen 1280 x 720 thumbnail has no event date. */
+.channel-youtube .poster {
+  gap: 2.5vw;
+  padding: 4.5vw;
+  border-radius: 1.9vw;
+}
+
+.channel-youtube .copy {
+  align-self: flex-start;
+  max-width: 61%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.channel-youtube .subtitle,
+.channel-youtube .metadata {
+  display: none;
+}
+
+.channel-youtube .main-avatar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  width: 36.7%;
+  height: auto;
+  border: 0;
+  border-left: 6px solid var(--ink);
+  border-radius: 0;
+  background: var(--lavender);
+}
+
+.channel-youtube .main-avatar::before {
+  content: "";
+  position: absolute;
+  width: 19vw;
+  height: 19vw;
+  border: 6px solid var(--ink);
+  border-radius: 50%;
+}
+
+.channel-youtube .main-avatar img {
+  z-index: 1;
+  width: 19vw;
+  height: 19vw;
+  border: 6px solid var(--ink);
+  border-radius: 50%;
+}
+
+.channel-youtube .main-avatar .avatar-initials {
+  position: relative;
+  z-index: 2;
+  color: var(--indigo);
+  font-size: clamp(22px, 4vw, 42px);
+}
+
+.channel-youtube .bottom {
+  width: 61%;
+}
+
+.channel-youtube .bottom .avatar {
+  display: none;
+}
+
+.channel-youtube .person {
+  padding: 1.1vw 1.9vw;
+  border: 4px solid var(--ink);
+  border-radius: 1.3vw;
+  box-shadow: 0.55vw 0.55vw 0 var(--shadow);
+  background: white;
+}
+
+.channel-youtube .person-copy b {
+  max-width: none;
+  font-size: clamp(20px, 2.2vw, 28px);
+}
+
+.channel-youtube .person-copy span {
+  display: none;
+}
+
+.channel-youtube .footer-brand {
+  display: none;
+}
+
+/* Website-only content previews keep the same family but remove event cadence. */
+.channel-site .poster {
+  gap: 2.4vw;
+  padding-top: 4.5vw;
+  padding-bottom: 4.5vw;
+  border-radius: 2.3vw;
+}
+
+.channel-site .copy {
+  align-self: flex-start;
+  max-width: 86%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.channel-site .bottom {
+  width: 86%;
+}
+
+.channel-site .metadata {
+  display: none;
+}
+
+.channel-site .avatar {
+  width: clamp(60px, 6.4vw, 76px);
+  height: clamp(60px, 6.4vw, 76px);
+  border-width: 4px;
+}
+
+.channel-site .avatar-initials {
+  font-size: clamp(15px, 2vw, 24px);
+}
+
+.channel-site .person-copy b {
+  max-width: 35vw;
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.channel-site .person-copy span {
+  font-size: clamp(14px, 1.5vw, 18px);
+}
+
+/* Podcast square cards put the guest portrait beside the title. */
+.variant-podcast.channel-luma .copy {
+  display: grid;
+  grid-template-columns: minmax(150px, 22%) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 4vw;
+}
+
+.variant-podcast.channel-luma .copy .kicker {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.variant-podcast.channel-luma .copy h1,
+.variant-podcast.channel-luma .copy .subtitle {
+  grid-column: 2;
+}
+
+.variant-podcast.channel-luma .main-avatar {
+  position: absolute;
+  left: 7.3vw;
+  top: 43%;
+  display: grid;
+  width: 18vw;
+  height: 18vw;
+  border-width: 6px;
+  background: var(--cream);
+}
+
+.variant-podcast.channel-luma .copy .kicker {
+  margin-left: 26%;
+}
+
+.variant-podcast.channel-luma .copy h1,
+.variant-podcast.channel-luma .copy .subtitle {
+  margin-left: 26%;
+}
+
+.variant-podcast.channel-luma .bottom .avatar {
+  display: none;
+}
+
+@media (max-aspect-ratio: 3 / 2) {
+  .channel-luma .poster {
+    border-radius: 3.4vw;
+  }
+
+  .channel-luma .copy {
+    gap: 2.8vw;
+  }
+
+  .channel-luma h1 {
+    font-size: min(var(--title-size), 9.2vw);
+  }
+
+  .channel-luma .subtitle {
+    font-size: min(var(--subtitle-size), 3.1vw);
+  }
+
+  .channel-luma .bottom {
+    gap: 2vw;
+  }
+
+  .channel-luma .footer-brand {
+    display: none;
+  }
+
+  .channel-luma .person-copy b {
+    max-width: 40vw;
+  }
+}
+
+@media (min-aspect-ratio: 3 / 2) {
+  .channel-og h1,
+  .channel-site h1 {
+    font-size: min(var(--title-size), 5.3vw);
+  }
+
+  .channel-og .subtitle,
+  .channel-site .subtitle {
+    font-size: min(var(--subtitle-size), 2vw);
+  }
+}

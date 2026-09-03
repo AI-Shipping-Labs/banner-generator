@@ -14,6 +14,7 @@ SIZES = {
     "og": (1200, 630),
     "wide": (1600, 900),
     "square": (1080, 1080),
+    "luma": (1000, 1000),
     "linkedin": (1200, 627),
 }
 
@@ -86,6 +87,13 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("stat_label", "Format")
     values.setdefault("stat_value", f"{width}x{height}")
     values.setdefault("name", "Jane Doe")
+    values.setdefault("variant", "webinar")
+    values.setdefault("channel", "og")
+    values.setdefault("person", "")
+    values.setdefault("person_role", "DataTalks.Club")
+    values.setdefault("person_initials", "DTC")
+    values.setdefault("meta_tertiary", "Free · Online")
+    values.setdefault("image_url", "about:blank")
     values.setdefault("course_name", "7-Day AI Agents Crash-Course")
     values.setdefault("dates", "2026")
     values.setdefault("course_url", "https://aishippinglabs.com/courses/aihero")

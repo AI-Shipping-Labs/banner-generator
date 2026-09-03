@@ -108,3 +108,32 @@ output/content-variants/
 
 Use `title_size` and `subtitle_size` in a JSON spec when a title needs explicit fitting.
 The long-title example exists to keep that pressure visible during template work.
+
+## DataTalks.Club social kit
+
+The `dtc-social` template is the DataTalks.Club counterpart to the AI Shipping Labs
+templates. It is based on the supplied social banner canvas and supports the same data
+shape across event, podcast, workshop, article, book, and course artwork.
+
+Data slots:
+
+```text
+variant          webinar / podcast / workshop / article / book / course
+channel          luma / og / youtube / site
+kind             visible badge, e.g. "Workshop"
+kicker           cadence or editorial label
+title            primary title
+subtitle         supporting copy; hidden for YouTube thumbnails
+person            speaker, guest, author, or instructor
+person_initials  fallback avatar text when no image_url is supplied
+person_role      supporting person label
+meta_primary     date or primary metadata
+meta_secondary   time or secondary metadata
+meta_tertiary    small metadata line
+footer           small destination/brand line
+image_url        optional image URL; initials remain the deterministic fallback
+```
+
+The named `luma` size is deliberately 1000 x 1000. Event banners also have `og` (1200 x
+630) and explicit YouTube (1280 x 720) examples; YouTube omits event dates so thumbnails
+remain evergreen. Render the complete sample set with `make render-dtc-examples`.

@@ -1,4 +1,4 @@
-.PHONY: setup test lint render-example render-content-examples render-content-variants render-content-matrix render-source-banners render-certificate-example docker-build docker-smoke docker-benchmark-certificates install-browser
+.PHONY: setup test lint render-example render-content-examples render-dtc-examples render-content-variants render-content-matrix render-source-banners render-certificate-example docker-build docker-smoke docker-benchmark-certificates install-browser
 
 COUNT ?= 10
 MAX_KB ?= 100
@@ -28,6 +28,20 @@ render-content-examples:
 	uv run banner-generator render examples/content-project.json
 	uv run banner-generator render examples/content-resource.json
 	uv run banner-generator render examples/content-long-title.json
+
+render-dtc-examples:
+	uv run banner-generator render examples/dtc-event-webinar-luma.json
+	uv run banner-generator render examples/dtc-event-webinar-og.json
+	uv run banner-generator render examples/dtc-event-webinar-youtube.json
+	uv run banner-generator render examples/dtc-event-podcast-luma.json
+	uv run banner-generator render examples/dtc-event-podcast-og.json
+	uv run banner-generator render examples/dtc-event-podcast-youtube.json
+	uv run banner-generator render examples/dtc-event-workshop-luma.json
+	uv run banner-generator render examples/dtc-event-workshop-og.json
+	uv run banner-generator render examples/dtc-event-workshop-youtube.json
+	uv run banner-generator render examples/dtc-article-preview.json
+	uv run banner-generator render examples/dtc-book-preview.json
+	uv run banner-generator render examples/dtc-course-preview.json
 
 render-content-variants:
 	uv run banner-generator render examples/content-variants/blueprint-path-course.json

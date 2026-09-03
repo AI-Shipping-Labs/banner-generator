@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "luma",
+  "format": "png",
+  "output": "output/dtc/event-webinar-luma.png",
+  "variant": "webinar",
+  "channel": "luma",
+  "brand": "DataTalks.Club",
+  "kind": "Webinar",
+  "kicker": "Next session · live online",
+  "title": "AI Dev Tools Zoomcamp 2026 Course Launch",
+  "subtitle": "Start the cohort with a clear workflow for choosing, extending, and shipping with AI developer tools.",
+  "person": "Alexey Grigorev",
+  "person_initials": "AG",
+  "person_role": "Course creator · DataTalks.Club",
+  "meta_primary": "Mon 31 Aug",
+  "meta_secondary": "17:00 CEST",
+  "meta_tertiary": "Free · Online",
+  "footer": "datatalks.club/events",
+  "title_size": 76,
+  "subtitle_size": 29
+}

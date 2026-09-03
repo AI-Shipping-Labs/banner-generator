@@ -35,6 +35,17 @@ Render the content banner examples:
 make render-content-examples
 ```
 
+Render the DataTalks.Club social kit examples:
+
+```bash
+make render-dtc-examples
+```
+
+The `dtc-social` template follows the supplied DataTalks.Club canvas: Quicksand type,
+cream/lavender/mint surfaces, ink outlines, offset shadows, and separate cadence layouts
+for Luma/Meetup, Open Graph, YouTube, and website previews. Use `channel: "luma"` with
+the `luma` size for the 1000 x 1000 event artwork.
+
 You can also render with inline arguments:
 
 ```bash
@@ -105,6 +116,7 @@ Supported built-in sizes:
 | `linkedin` | 1200 x 627 |
 | `wide` | 1600 x 900 |
 | `square` | 1080 x 1080 |
+| `luma` | 1000 x 1000 |
 
 Use `width` and `height` in the spec, or `--width` and `--height`, for custom sizes.
 
