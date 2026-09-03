@@ -17,7 +17,7 @@ The AI Hero certificate uses:
 ```text
 banner_generator/templates/ai-hero-certificate/template.html
 banner_generator/templates/ai-hero-certificate/assets/
-examples/ai-hero-certificate.json
+examples/aisl/ai-hero-certificate.json
 ```
 
 Render it with:
@@ -46,25 +46,29 @@ banner_generator/templates/asl-content-card/content-card.css
 Current examples:
 
 ```text
-examples/content-event.json
-examples/content-event-jpeg.json
-examples/content-workshop.json
-examples/content-blog.json
-examples/content-course.json
-examples/content-project.json
-examples/content-resource.json
-examples/content-long-title.json
+examples/aisl/content-event.json
+examples/aisl/content-event-jpeg.json
+examples/aisl/content-workshop.json
+examples/aisl/content-blog.json
+examples/aisl/content-course.json
+examples/aisl/content-project.json
+examples/aisl/content-resource.json
+examples/aisl/content-long-title.json
 ```
+
+The DTC social kit has multiple card specs under `examples/dtc/`, including article,
+book, course, podcast, webinar, and workshop cards across Luma, Open Graph, YouTube,
+and website sizes.
 
 Alternate content banner variants:
 
 ```text
-examples/content-variants/blueprint-path-course.json
-examples/content-variants/editorial-pulse-blog.json
-examples/content-variants/event-stage-live.json
-examples/content-variants/event-series-long-title.json
-examples/content-variants/project-dossier-showcase.json
-examples/content-variants/resource-stack-download.json
+examples/aisl/content-variants/blueprint-path-course.json
+examples/aisl/content-variants/editorial-pulse-blog.json
+examples/aisl/content-variants/event-stage-live.json
+examples/aisl/content-variants/event-series-long-title.json
+examples/aisl/content-variants/project-dossier-showcase.json
+examples/aisl/content-variants/resource-stack-download.json
 ```
 
 ## Event Series
@@ -78,9 +82,9 @@ and concentric accent rings.
 ```text
 banner_generator/templates/asl-event-series/template.html
 banner_generator/templates/asl-event-series/style.css
-examples/content-event-series.json
-examples/lambda-content-event-series.json
-examples/content-variants/event-series-long-title.json
+examples/aisl/content-event-series.json
+examples/aisl/lambda-content-event-series.json
+examples/aisl/content-variants/event-series-long-title.json
 ```
 
 Data slots (the website auto-banner pipeline sends these `data` field names):

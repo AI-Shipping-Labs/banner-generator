@@ -48,7 +48,7 @@ The operator should be able to run a CLI command, inspect the generated file, an
 Example:
 
 ```bash
-uv run banner-generator render examples/workshop.json --output output/agent-workshop.png
+uv run banner-generator render examples/dtc/dtc-article-preview.json --output output/agent-article.png
 ```
 
 Then the generated file can be uploaded or committed separately, and the resulting public URL can be used as `cover_image_url` in the website.
@@ -76,8 +76,8 @@ If that happens, the Django app should call a separate rendering boundary rather
 - CLI entrypoint: `banner-generator`
 - Renderer: `banner_generator/renderer.py`
 - CLI: `banner_generator/cli.py`
-- Built-in template: `banner_generator/templates/lab-card/template.html`
-- Example spec: `examples/workshop.json`
+- Built-in template: `banner_generator/templates/dtc-social/template.html`
+- Example spec: `examples/dtc/dtc-article-preview.json`
 - Docs: `README.md` and `docs/architecture.md`
 - Supported outputs: `png`, `jpeg` with quality, and `pdf`
 - Rendering engine: Playwright/Chromium
@@ -99,7 +99,7 @@ uv run ruff check .
 Render the example:
 
 ```bash
-uv run banner-generator render examples/workshop.json
+uv run banner-generator render examples/dtc/dtc-article-preview.json
 ```
 
 ## Design Constraints

@@ -7,18 +7,18 @@ from banner_generator.renderer import load_spec, render
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DTC_EXAMPLE_SPECS = (
-    "examples/dtc-event-webinar-luma.json",
-    "examples/dtc-event-webinar-og.json",
-    "examples/dtc-event-webinar-youtube.json",
-    "examples/dtc-event-podcast-luma.json",
-    "examples/dtc-event-podcast-og.json",
-    "examples/dtc-event-podcast-youtube.json",
-    "examples/dtc-event-workshop-luma.json",
-    "examples/dtc-event-workshop-og.json",
-    "examples/dtc-event-workshop-youtube.json",
-    "examples/dtc-article-preview.json",
-    "examples/dtc-book-preview.json",
-    "examples/dtc-course-preview.json",
+    "examples/dtc/dtc-event-webinar-luma.json",
+    "examples/dtc/dtc-event-webinar-og.json",
+    "examples/dtc/dtc-event-webinar-youtube.json",
+    "examples/dtc/dtc-event-podcast-luma.json",
+    "examples/dtc/dtc-event-podcast-og.json",
+    "examples/dtc/dtc-event-podcast-youtube.json",
+    "examples/dtc/dtc-event-workshop-luma.json",
+    "examples/dtc/dtc-event-workshop-og.json",
+    "examples/dtc/dtc-event-workshop-youtube.json",
+    "examples/dtc/dtc-article-preview.json",
+    "examples/dtc/dtc-book-preview.json",
+    "examples/dtc/dtc-course-preview.json",
 )
 
 

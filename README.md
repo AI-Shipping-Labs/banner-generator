@@ -26,19 +26,19 @@ Playwright renderer used by the CLI; it does not call the Lambda service or uplo
 ## Render the Example
 
 ```bash
-uv run banner-generator render examples/workshop.json
+uv run banner-generator render examples/dtc/dtc-article-preview.json
 ```
 
 The example writes:
 
 ```text
-output/workshop.png
+output/dtc/article-preview.png
 ```
 
 Render the AI Hero certificate example:
 
 ```bash
-uv run banner-generator render examples/ai-hero-certificate.json
+uv run banner-generator render examples/aisl/ai-hero-certificate.json
 ```
 
 Render the content banner examples:
@@ -58,35 +58,11 @@ cream/lavender/mint surfaces, ink outlines, offset shadows, and separate cadence
 for Luma/Meetup, Open Graph, YouTube, and website previews. Use `channel: "luma"` with
 the `luma` size for the 1000 x 1000 event artwork.
 
-You can also render with inline arguments:
-
-```bash
-uv run banner-generator render \
-  --template lab-card \
-  --size og \
-  --label "Live Workshop" \
-  --title "Build Reliable AI Agents" \
-  --subtitle "A hands-on session for shipping agentic workflows people can actually use." \
-  --meta "May 28, 2026 / Online" \
-  --output output/reliable-ai-agents.png
-```
-
 ## Render Specs
 
-Specs are JSON files:
-
-```json
-{
-  "template": "lab-card",
-  "size": "og",
-  "format": "png",
-  "output": "output/workshop.png",
-  "label": "Live Workshop",
-  "title": "Build Reliable AI Agents",
-  "subtitle": "A hands-on session for shipping agentic workflows people can actually use.",
-  "meta": "May 28, 2026 / Online"
-}
-```
+Specs are JSON files. See `examples/dtc/dtc-article-preview.json` for a complete
+DataTalks.Club card spec and `examples/aisl/ai-hero-certificate.json` for the AI Hero
+certificate spec.
 
 ## Output Formats
 
@@ -99,8 +75,8 @@ The renderer supports:
 The format is inferred from the output extension unless `format` or `--format` is provided.
 
 ```bash
-uv run banner-generator render examples/workshop.json --output output/workshop.jpg --format jpeg --quality 90
-uv run banner-generator render examples/workshop.json --output output/workshop.pdf --format pdf
+uv run banner-generator render examples/dtc/dtc-article-preview.json --output output/dtc/article-preview.jpg --format jpeg --quality 90
+uv run banner-generator render examples/dtc/dtc-article-preview.json --output output/dtc/article-preview.pdf --format pdf
 ```
 
 For certificates, use a document-shaped viewport:
@@ -146,7 +122,7 @@ uv run banner-generator render \
 Or from a custom template directory:
 
 ```bash
-uv run banner-generator render examples/workshop.json --template-dir ./templates
+uv run banner-generator render examples/dtc/dtc-article-preview.json --template-dir ./templates
 ```
 
 Templates use Python `string.Template` placeholders:

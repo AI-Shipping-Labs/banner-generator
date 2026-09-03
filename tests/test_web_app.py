@@ -29,7 +29,7 @@ def test_template_catalog_exposes_spec_canvas_recommendations():
     assert certificate_canvas["width"] == 1536
     assert certificate_canvas["height"] == 1024
     assert certificate_canvas["format"] == "pdf"
-    assert certificate_canvas["source"] == "examples/ai-hero-certificate.json"
+    assert certificate_canvas["source"] == "examples/aisl/ai-hero-certificate.json"
 
 
 def test_example_catalog_only_includes_render_specs():
@@ -37,8 +37,12 @@ def test_example_catalog_only_includes_render_specs():
 
     assert examples
     assert all(not example["name"].startswith("lambda-") for example in examples)
-    assert {example["template"] for example in examples} >= {"dtc-social", "lab-card"}
+    assert {example["template"] for example in examples} >= {"dtc-social", "ai-hero-certificate"}
     assert "asl-blueprint-path" in {example["template"] for example in examples}
+
+    dtc_cards = [example for example in examples if example["path"].startswith("examples/dtc/")]
+    assert len(dtc_cards) == 12
+    assert {card["template"] for card in dtc_cards} == {"dtc-social"}
 
 
 def test_build_render_spec_accepts_custom_viewport(tmp_path: Path):

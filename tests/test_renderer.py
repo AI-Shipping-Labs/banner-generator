@@ -33,7 +33,7 @@ def test_load_spec_supports_inline_data(tmp_path: Path):
     spec_path.write_text(
         """
         {
-          "template": "lab-card",
+          "template": "dtc-social",
           "size": "og",
           "format": "jpeg",
           "quality": 90,
@@ -47,7 +47,7 @@ def test_load_spec_supports_inline_data(tmp_path: Path):
     spec = load_spec(spec_path)
 
     assert spec == RenderSpec(
-        template="lab-card",
+        template="dtc-social",
         output=Path("output/card.png"),
         size="og",
         format="jpeg",
@@ -59,21 +59,23 @@ def test_load_spec_supports_inline_data(tmp_path: Path):
 
 
 def test_resolve_template_finds_bundled_template():
-    path = resolve_template("lab-card")
+    path = resolve_template("dtc-social")
 
     assert path.name == "template.html"
-    assert path.parent.name == "lab-card"
+    assert path.parent.name == "dtc-social"
     assert path.exists()
 
 
 def test_luma_size_matches_the_public_event_artwork_contract():
-    spec = RenderSpec(template="lab-card", output=Path("card.png"), size="luma")
+    spec = RenderSpec(template="dtc-social", output=Path("card.png"), size="luma")
 
     assert spec.viewport == (1000, 1000)
 
 
 def test_certificate_size_matches_the_certificate_generator_contract():
-    spec = load_spec(Path(__file__).parents[1] / "examples/ai-hero-certificate.json")
+    spec = load_spec(
+        Path(__file__).parents[1] / "examples/aisl/ai-hero-certificate.json"
+    )
 
     assert spec.size == "certificate"
     assert spec.viewport == (1536, 1024)
@@ -131,18 +133,20 @@ def test_dtc_example_specs_cover_the_published_size_contracts():
     examples_dir = Path(__file__).parents[1] / "examples"
 
     for filename in DTC_EXAMPLE_SPECS:
-        spec = load_spec(examples_dir / filename)
+        spec = load_spec(examples_dir / "dtc" / filename)
 
         assert spec.template == "dtc-social"
         assert spec.data["brand"] == "DataTalks.Club"
 
     luma_specs = [
-        load_spec(examples_dir / filename) for filename in DTC_EXAMPLE_SPECS if "luma" in filename
+        load_spec(examples_dir / "dtc" / filename)
+        for filename in DTC_EXAMPLE_SPECS
+        if "luma" in filename
     ]
     assert luma_specs
     assert {spec.viewport for spec in luma_specs} == {(1000, 1000)}
-    assert load_spec(examples_dir / "dtc-event-webinar-og.json").viewport == (1200, 630)
-    assert load_spec(examples_dir / "dtc-event-webinar-youtube.json").viewport == (1280, 720)
+    assert load_spec(examples_dir / "dtc" / "dtc-event-webinar-og.json").viewport == (1200, 630)
+    assert load_spec(examples_dir / "dtc" / "dtc-event-webinar-youtube.json").viewport == (1280, 720)
 
 
 def test_render_html_escapes_user_content(tmp_path: Path):
@@ -174,12 +178,12 @@ def test_render_html_adds_base_url_for_relative_assets(tmp_path: Path):
     ],
 )
 def test_output_format_infers_from_extension(output: str, expected: str):
-    spec = RenderSpec(template="lab-card", output=Path(output))
+    spec = RenderSpec(template="dtc-social", output=Path(output))
 
     assert output_format(spec) == expected
 
 
 def test_output_format_prefers_explicit_format():
-    spec = RenderSpec(template="lab-card", output=Path("card.bin"), format="pdf")
+    spec = RenderSpec(template="dtc-social", output=Path("card.bin"), format="pdf")
 
     assert output_format(spec) == "pdf"

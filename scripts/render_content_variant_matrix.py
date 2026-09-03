@@ -9,12 +9,12 @@ from playwright.sync_api import sync_playwright
 from banner_generator.renderer import RenderSpec, load_spec, render, slugify
 
 CONTENT_SPECS = [
-    Path("examples/content-event.json"),
-    Path("examples/content-workshop.json"),
-    Path("examples/content-blog.json"),
-    Path("examples/content-course.json"),
-    Path("examples/content-project.json"),
-    Path("examples/content-resource.json"),
+    Path("examples/aisl/content-event.json"),
+    Path("examples/aisl/content-workshop.json"),
+    Path("examples/aisl/content-blog.json"),
+    Path("examples/aisl/content-course.json"),
+    Path("examples/aisl/content-project.json"),
+    Path("examples/aisl/content-resource.json"),
 ]
 
 VARIANTS = [

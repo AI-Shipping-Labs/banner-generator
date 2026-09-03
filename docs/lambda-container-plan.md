@@ -103,7 +103,7 @@ docker run --rm -p 9000:8080 \
   python -m awslambdaric banner_generator.lambda_handler.handler
 
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" \
-  -d @examples/lambda-content-event.json
+  -d @examples/aisl/lambda-content-event.json
 ```
 
 Certificate output modes:

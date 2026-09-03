@@ -3,8 +3,8 @@ from pathlib import Path
 
 from banner_generator.renderer import load_spec, render_html, resolve_template
 
-EXAMPLE = Path("examples/content-event-series.json")
-LAMBDA_EXAMPLE = Path("examples/lambda-content-event-series.json")
+EXAMPLE = Path("examples/aisl/content-event-series.json")
+LAMBDA_EXAMPLE = Path("examples/aisl/lambda-content-event-series.json")
 
 
 def test_event_series_template_is_resolvable():

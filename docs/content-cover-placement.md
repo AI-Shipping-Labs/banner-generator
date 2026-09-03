@@ -80,7 +80,7 @@ Notes:
    `output/content/`:
 
    ```bash
-   uv run banner-generator render examples/content-blog.json
+   uv run banner-generator render examples/aisl/content-blog.json
    # -> output/content/blog-ai-engineer-learning-path.png
    ```
 
