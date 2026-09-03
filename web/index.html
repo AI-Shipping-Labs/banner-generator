@@ -430,7 +430,12 @@
         </div>
 
         <div class="field">
-          <label for="template-select">Template</label>
+          <label for="category-select">Category</label>
+          <select id="category-select" required></select>
+        </div>
+
+        <div class="field">
+          <label for="template-select">Banner</label>
           <select id="template-select" required></select>
         </div>
 
@@ -487,6 +492,7 @@
   <script>
     const state = { catalog: null, activeExample: null };
     const elements = {
+      category: document.querySelector("#category-select"),
       template: document.querySelector("#template-select"),
       loadExample: document.querySelector("#load-example"),
       previewTab: document.querySelector("#preview-tab"),
@@ -512,6 +518,45 @@
 
     function templateDefinition(name) {
       return state.catalog.templates.find((template) => template.name === name);
+    }
+
+    function selectedCard() {
+      return state.catalog.examples.find((card) => card.path === elements.template.value);
+    }
+
+    function selectedTemplateName() {
+      const card = selectedCard();
+      return card ? card.template : elements.template.value;
+    }
+
+    function cardLabel(card) {
+      const category = card.path.split("/")[1];
+      const categoryLabel = { aisl: "AI SL", dtc: "DTC" }[category] || displayName(category || "Other");
+      const name = card.name
+        .replace(/\.json$/, "")
+        .replace(/^dtc-/, "");
+      return `${categoryLabel} · ${displayName(name)}`;
+    }
+
+    function categoryLabel(category) {
+      return { aisl: "AI SL", dtc: "DTC" }[category] || displayName(category || "Other");
+    }
+
+    function populateBanners(category) {
+      const cards = state.catalog.examples.filter(
+        (card) => card.path.split("/")[1] === category
+      );
+      elements.template.replaceChildren();
+      cards.forEach((card) => {
+        const option = document.createElement("option");
+        option.value = card.path;
+        option.textContent = cardLabel(card);
+        elements.template.append(option);
+      });
+      if (cards.length) elements.template.value = cards[0].path;
+      state.activeExample = null;
+      renderFields();
+      renderDefinition();
     }
 
     function displayName(value) {
@@ -549,13 +594,13 @@
 
     function renderFields(data = {}) {
       elements.fields.replaceChildren();
-      const definition = templateDefinition(elements.template.value);
+      const definition = templateDefinition(selectedTemplateName());
       if (!definition) return;
       definition.placeholders.forEach((name) => addField(name, data[name]));
     }
 
     function renderDefinition() {
-      const definition = templateDefinition(elements.template.value);
+      const definition = templateDefinition(selectedTemplateName());
       if (!definition) {
         elements.templateDefinitionMeta.textContent = "";
         elements.definitionSource.textContent = "";
@@ -566,12 +611,12 @@
       elements.templateDefinitionMeta.textContent =
         `${definition.path} · ${definition.placeholders.length} placeholders`;
       elements.definitionSource.textContent = definition.definition;
-      const activeExample = state.activeExample && state.activeExample.template === elements.template.value
-        ? state.activeExample
-        : null;
-      const specPath = activeExample ? activeExample.path : definition.recommended_canvas && definition.recommended_canvas.source;
-      const specDefinition = activeExample
-        ? activeExample.definition
+      const card = selectedCard();
+      const specPath = card
+        ? card.path
+        : definition.recommended_canvas && definition.recommended_canvas.source;
+      const specDefinition = card
+        ? card.definition
         : definition.recommended_canvas && definition.recommended_canvas.definition;
       elements.specDefinitionMeta.textContent = specPath || "No render spec available";
       elements.specDefinition.textContent = specDefinition || "";
@@ -602,9 +647,7 @@
     }
 
     function exampleForTemplate() {
-      return state.catalog.examples.find(
-        (example) => example.template === elements.template.value
-      );
+      return selectedCard();
     }
 
     function applyExample(example) {
@@ -613,26 +656,25 @@
         return;
       }
       state.activeExample = example;
-      elements.template.value = example.template;
+      elements.template.value = example.path;
       renderFields(example.data || {});
       renderDefinition();
       setStatus(`Loaded ${example.name}.`, "success");
     }
 
     function buildPayload() {
-      const definition = templateDefinition(elements.template.value);
-      const canvas = state.activeExample && state.activeExample.template === elements.template.value
-        ? state.activeExample
-        : definition && definition.recommended_canvas;
+      const card = selectedCard();
+      const templateName = selectedTemplateName();
+      const definition = templateDefinition(templateName);
+      const canvas = card || (definition && definition.recommended_canvas);
       if (!canvas) {
         throw new Error("No canvas is defined for this template.");
       }
-      const usingExample = state.activeExample && state.activeExample.template === elements.template.value;
-      const hasExplicitCanvas = usingExample
-        ? canvas.width != null && canvas.height != null
+      const hasExplicitCanvas = card
+        ? card.width != null && card.height != null
         : !canvas.size;
       return {
-        template: elements.template.value,
+        template: templateName,
         size: canvas.size || "og",
         width: hasExplicitCanvas ? canvas.width : null,
         height: hasExplicitCanvas ? canvas.height : null,
@@ -685,22 +727,27 @@
       if (!response.ok) throw new Error("Could not load the template catalog.");
       state.catalog = await response.json();
 
-      state.catalog.templates.forEach((template) => {
+      const categories = [...new Set(state.catalog.examples.map((card) => card.path.split("/")[1]))];
+      categories.forEach((category) => {
         const option = document.createElement("option");
-        option.value = template.name;
-        option.textContent = displayName(template.name);
-        elements.template.append(option);
+        option.value = category;
+        option.textContent = categoryLabel(category);
+        elements.category.append(option);
       });
 
-      elements.template.value = state.catalog.templates.some((item) => item.name === "asl-content-card")
-        ? "asl-content-card"
-        : state.catalog.templates[0].name;
-      elements.templateCount.textContent = `${state.catalog.templates.length} templates`;
-      state.activeExample = null;
-      renderFields();
-      renderDefinition();
+      const defaultCard = state.catalog.examples.find(
+        (card) => card.path === "examples/aisl/content-blog.json"
+      ) || state.catalog.examples[0];
+      elements.category.value = defaultCard.path.split("/")[1];
+      populateBanners(elements.category.value);
+
+      elements.templateCount.textContent = `${categories.length} categories · ${state.catalog.examples.length} banners`;
     }
 
+    elements.category.addEventListener("change", () => {
+      populateBanners(elements.category.value);
+      setStatus("");
+    });
     elements.template.addEventListener("change", () => {
       state.activeExample = null;
       renderFields();
