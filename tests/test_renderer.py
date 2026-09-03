@@ -74,11 +74,50 @@ def test_luma_size_matches_the_public_event_artwork_contract():
 
 def test_certificate_size_matches_the_certificate_generator_contract():
     spec = load_spec(
-        Path(__file__).parents[1] / "examples/aisl/ai-hero-certificate.json"
+        Path(__file__).parents[1] / "examples/certificates/ai-hero-certificate.json"
     )
 
     assert spec.size == "certificate"
     assert spec.viewport == (1536, 1024)
+
+
+def test_zoomcamp_certificate_uses_the_source_canvas_and_lead_signature():
+    examples_dir = Path(__file__).parents[1] / "examples/certificates"
+    spec = load_spec(examples_dir / "dtc-data-engineering-zoomcamp-certificate.json")
+
+    assert spec.template == "dtc-zoomcamp-certificate"
+    assert spec.size == "zoomcamp-certificate"
+    assert spec.viewport == (1920, 1080)
+
+    template = resolve_template(spec.template)
+    html = render_html(template, spec.data or {}, *spec.viewport)
+
+    assert "Data Engineering Zoomcamp" in html
+    assert "Lead instructor" in html
+    assert "assets/alexey-signature.svg" in html
+    assert "signature-ankush" not in html
+    assert "signature-sejal" not in html
+    assert "signature-victoria" not in html
+
+    css = template.with_name("style.css").read_text()
+    assert 'url("assets/background.png")' in css
+    assert 'url("assets/main-deco.svg")' in css
+    assert (template.parent / "assets/background.png").is_file()
+    assert (template.parent / "assets/main-deco.svg").is_file()
+
+
+def test_ai_buildcamp_certificate_is_resolvable_and_uses_buildcamp_copy():
+    example = Path(__file__).parents[1] / "examples/certificates/ai-buildcamp-certificate.json"
+    spec = load_spec(example)
+    template = resolve_template(spec.template)
+    html = render_html(template, spec.data or {}, *spec.viewport)
+
+    assert spec.template == "ai-buildcamp-certificate"
+    assert spec.viewport == (1536, 1024)
+    assert "AI Engineering Buildcamp" in html
+    assert "From RAG to Agents" in html
+    assert "Lead instructor" in html
+    assert "assets/alexey-signature-white.svg" in html
 
 
 def test_example_specs_declare_a_named_or_explicit_canvas():

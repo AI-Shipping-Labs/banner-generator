@@ -1,0 +1,12 @@
+{
+  "template": "dtc-zoomcamp-certificate",
+  "size": "zoomcamp-certificate",
+  "format": "pdf",
+  "output": "output/certificates/dtc-mlops-zoomcamp-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "MLOps Zoomcamp",
+  "dates": "12 August 2025",
+  "certificate_id": "example-mlops",
+  "certificate_url": "https://certificate.datatalks.club/mlops-zoomcamp/2025/example-mlops.pdf",
+  "qr": "assets/test-qr.svg"
+}

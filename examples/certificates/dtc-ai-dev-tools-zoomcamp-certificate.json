@@ -1,0 +1,12 @@
+{
+  "template": "dtc-zoomcamp-certificate",
+  "size": "zoomcamp-certificate",
+  "format": "pdf",
+  "output": "output/certificates/dtc-ai-dev-tools-zoomcamp-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "AI Dev Tools Zoomcamp",
+  "dates": "9 February 2026",
+  "certificate_id": "example-ai-dev-tools",
+  "certificate_url": "https://certificate.datatalks.club/ai-dev-tools/2025/example-ai-dev-tools.pdf",
+  "qr": "assets/test-qr.svg"
+}

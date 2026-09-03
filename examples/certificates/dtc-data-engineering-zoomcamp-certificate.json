@@ -1,0 +1,12 @@
+{
+  "template": "dtc-zoomcamp-certificate",
+  "size": "zoomcamp-certificate",
+  "format": "pdf",
+  "output": "output/certificates/dtc-data-engineering-zoomcamp-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "Data Engineering Zoomcamp",
+  "dates": "29 April 2026",
+  "certificate_id": "example-data-engineering",
+  "certificate_url": "https://certificate.datatalks.club/dezoomcamp/2026/example-data-engineering.pdf",
+  "qr": "assets/test-qr.svg"
+}

@@ -14,6 +14,7 @@ SIZES = {
     "og": (1200, 630),
     "meetup": (1200, 675),
     "certificate": (1536, 1024),
+    "zoomcamp-certificate": (1920, 1080),
     "wide": (1600, 900),
     "square": (1080, 1080),
     "luma": (1000, 1000),

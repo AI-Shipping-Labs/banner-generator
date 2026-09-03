@@ -1,0 +1,161 @@
+body {
+  background-image: url("assets/background.png");
+  margin: 0;
+}
+
+#certificate {
+  width: 1920px;
+  height: 1080px;
+  background-image: url("assets/main-deco.svg");
+
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #202121;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#certificate .logo {
+  width: 393px;
+  height: 137px;
+  margin-bottom: 64px;
+  margin-top: 70px;
+}
+
+#certificate .title {
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 67px;
+  margin-top: 0;
+  margin-bottom: 36px;
+}
+
+#certificate p {
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 52px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#certificate .student-name {
+  display: inline-flex;
+  align-items: center;
+}
+
+#certificate .student-name h2 {
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 94.76px;
+  line-height: 109px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #2056A2;
+
+  margin-left: 34px;
+  margin-right: 34px;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  max-width: 1300px;
+  white-space: nowrap;
+}
+
+#certificate .course-name {
+  margin-top: 36px;
+  margin-bottom: 50px;
+}
+
+#certificate .course-name h2 {
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 55px;
+  line-height: 63px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #2056A2;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 1500px;
+}
+
+#certificate .signature-container {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+#certificate .signature-box {
+  display: flex;
+  flex-direction: column;
+  margin-right: 200px;
+}
+
+#certificate .signature-box .signature-image {
+  width: 382px;
+  height: 61px;
+  object-fit: contain;
+}
+
+#certificate .date-box {
+  display: flex;
+  flex-direction: column;
+}
+
+#certificate .date-box .date {
+  height: 61px;
+
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 52px;
+
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #202121;
+}
+
+#certificate .certificate-id-box {
+  margin-bottom: 40px;
+}
+
+#certificate .certificate-id-box #certificate-id {
+  font-weight: 500;
+  color: #2056A2;
+  text-decoration: none;
+}
+
+.QR-box {
+  position: absolute;
+  left: 1694px;
+  top: 70px;
+}
+
+.QR-box .QR {
+  width: 150px;
+  height: 150px;
+}
+
+.QR-box .QR-overlay {
+  height: 60px;
+  position: absolute;
+  left: 45px;
+  top: 46.5px;
+}

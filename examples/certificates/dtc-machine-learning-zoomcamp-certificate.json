@@ -1,0 +1,12 @@
+{
+  "template": "dtc-zoomcamp-certificate",
+  "size": "zoomcamp-certificate",
+  "format": "pdf",
+  "output": "output/certificates/dtc-machine-learning-zoomcamp-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "Machine Learning Zoomcamp",
+  "dates": "4 February 2026",
+  "certificate_id": "example-machine-learning",
+  "certificate_url": "https://certificate.datatalks.club/ml-zoomcamp/2025/example-machine-learning.pdf",
+  "qr": "assets/test-qr.svg"
+}
