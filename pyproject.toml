@@ -19,6 +19,7 @@ dependencies = [
 
 [project.scripts]
 banner-generator = "banner_generator.cli:main"
+banner-generator-web = "banner_generator.web_app:main"
 
 [dependency-groups]
 dev = [

@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banner Generator Preview</title>
+  <style>
+    :root {
+      --ink: #1e2136;
+      --muted: #646980;
+      --cream: #fdfaf3;
+      --lavender: #eff1fc;
+      --lavender-strong: #c9cdf2;
+      --line: #d9dced;
+      --green: #2b7a35;
+      --danger: #a23d47;
+      --shadow: 0 20px 50px rgba(30, 33, 54, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      background: var(--lavender);
+      color: var(--ink);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    select {
+      cursor: pointer;
+    }
+
+    .app-header {
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid rgba(30, 33, 54, 0.12);
+      background: var(--cream);
+    }
+
+    .header-inner,
+    .workspace {
+      width: min(1480px, 100%);
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: -0.05em;
+      line-height: 0.98;
+    }
+
+    .header-copy {
+      max-width: 680px;
+    }
+
+    .header-copy p:last-child {
+      max-width: 560px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .local-badge {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: var(--lavender-strong);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(330px, 430px) minmax(0, 1fr);
+      align-items: start;
+      gap: 24px;
+      padding: 28px 32px 48px;
+    }
+
+    .panel {
+      border: 2px solid var(--ink);
+      border-radius: 20px;
+      background: rgba(253, 250, 243, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .controls-panel {
+      position: sticky;
+      top: 20px;
+      padding: 22px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 2px 0 14px;
+    }
+
+    .section-heading h2,
+    .preview-heading h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading span,
+    .field-help {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .field label,
+    .field > label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(201, 205, 242, 0.8);
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 8px;
+      margin: -4px 0 22px;
+    }
+
+    button,
+    .download-link {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid var(--ink);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    button:hover,
+    .download-link:hover {
+      background: var(--lavender);
+    }
+
+    button.primary {
+      width: 100%;
+      min-height: 48px;
+      border-width: 2px;
+      background: var(--ink);
+      color: white;
+      font-size: 15px;
+    }
+
+    button.primary:hover {
+      background: #303552;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    .placeholder-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 20px 0 9px;
+    }
+
+    .placeholder-heading h3 {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .placeholder-list {
+      display: grid;
+      gap: 8px;
+      max-height: 410px;
+      margin-bottom: 10px;
+      overflow: auto;
+      padding-right: 3px;
+    }
+
+    .placeholder-row {
+      display: grid;
+      grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1.3fr) 32px;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .placeholder-row input {
+      min-height: 36px;
+      padding: 7px 9px;
+      font-size: 12px;
+    }
+
+    .placeholder-row .placeholder-value {
+      font-size: 13px;
+    }
+
+    .remove-placeholder {
+      min-width: 32px;
+      min-height: 32px;
+      padding: 0;
+      border-color: var(--line);
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .add-placeholder {
+      width: 100%;
+      margin-bottom: 20px;
+      border-style: dashed;
+      border-color: var(--line);
+      color: var(--muted);
+    }
+
+    .status {
+      min-height: 20px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.success {
+      color: var(--green);
+    }
+
+    .preview-panel {
+      min-width: 0;
+      padding: 22px;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .preview-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .download-link[hidden],
+    #preview-image[hidden],
+    #empty-state[hidden] {
+      display: none;
+    }
+
+    .download-link {
+      flex: 0 0 auto;
+      background: var(--lavender-strong);
+    }
+
+    .preview-stage {
+      display: grid;
+      min-height: min(70vh, 760px);
+      place-items: center;
+      overflow: hidden;
+      padding: 28px;
+      border: 1px dashed #b5b9d0;
+      border-radius: 14px;
+      background: #e5e7f5;
+    }
+
+    #preview-image {
+      display: block;
+      max-width: 100%;
+      max-height: min(70vh, 720px);
+      border: 1px solid rgba(30, 33, 54, 0.25);
+      border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(30, 33, 54, 0.2);
+    }
+
+    .empty-state {
+      max-width: 360px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .empty-mark {
+      display: grid;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 18px;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 24px;
+      background: var(--lavender-strong);
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .empty-state h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .empty-state p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    details {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    pre {
+      max-height: 220px;
+      margin: 12px 0 0;
+      overflow: auto;
+      padding: 12px;
+      border-radius: 10px;
+      background: #272b43;
+      color: #f4f5ff;
+      font-size: 11px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 900px) {
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .controls-panel {
+        position: static;
+      }
+
+      .placeholder-list {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app-header,
+      .workspace {
+        padding-right: 16px;
+        padding-left: 16px;
+      }
+
+      .workspace {
+        padding-top: 16px;
+      }
+
+      .controls-panel,
+      .preview-panel {
+        padding: 16px;
+      }
+
+      .preview-stage {
+        min-height: 360px;
+        padding: 12px;
+      }
+
+      .preview-header {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .download-link {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-copy">
+        <p class="eyebrow">Banner Generator / Local Studio</p>
+        <h1>Make a banner, see it immediately.</h1>
+        <p>Choose a bundled template, edit its placeholders, and render a PNG without touching the Lambda service.</p>
+      </div>
+      <div class="local-badge">Local only · no upload</div>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="panel controls-panel" aria-labelledby="controls-title">
+      <form id="render-form">
+        <div class="section-heading">
+          <h2 id="controls-title">Build the input</h2>
+          <span id="template-count">Loading templates…</span>
+        </div>
+
+        <div class="field">
+          <label for="template-select">Template</label>
+          <select id="template-select" required></select>
+        </div>
+
+        <div class="field">
+          <label for="example-select">Start from an example</label>
+          <select id="example-select">
+            <option value="">Custom values</option>
+          </select>
+        </div>
+
+        <div class="button-row">
+          <button id="load-example" type="button">Load example</button>
+          <button id="reset-form" type="button">Reset fields</button>
+        </div>
+
+        <div class="section-heading">
+          <h2>Canvas</h2>
+          <span>PNG output</span>
+        </div>
+
+        <div class="field">
+          <label for="size-select">Named size</label>
+          <select id="size-select"></select>
+        </div>
+
+        <div class="two-columns">
+          <div class="field">
+            <label for="width-input">Width</label>
+            <input id="width-input" type="number" min="1" max="4000" placeholder="Auto">
+          </div>
+          <div class="field">
+            <label for="height-input">Height</label>
+            <input id="height-input" type="number" min="1" max="4000" placeholder="Auto">
+          </div>
+        </div>
+        <p class="field-help">Leave both blank to use the named size.</p>
+
+        <div class="placeholder-heading">
+          <h3>Template placeholders</h3>
+          <span class="field-help">Blank values use renderer defaults</span>
+        </div>
+        <div id="placeholder-fields" class="placeholder-list"></div>
+        <button id="add-placeholder" class="add-placeholder" type="button">+ Add placeholder</button>
+
+        <button id="generate-button" class="primary" type="submit">Generate preview</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel preview-panel" aria-labelledby="preview-title">
+      <div class="preview-header">
+        <div class="preview-heading">
+          <p class="eyebrow">Output</p>
+          <h2 id="preview-title">Generated image</h2>
+          <p id="preview-meta">Your preview will appear here.</p>
+        </div>
+        <a id="download-link" class="download-link" href="#" download="banner-preview.png" hidden>Download PNG</a>
+      </div>
+
+      <div class="preview-stage">
+        <div id="empty-state" class="empty-state">
+          <div class="empty-mark">↗</div>
+          <h3>Ready when you are</h3>
+          <p>Load an example or fill in the placeholders, then click Generate preview.</p>
+        </div>
+        <img id="preview-image" alt="Generated banner preview" hidden>
+      </div>
+
+      <details>
+        <summary>View request payload</summary>
+        <pre id="payload-preview">No render submitted yet.</pre>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const state = { catalog: null };
+    const elements = {
+      template: document.querySelector("#template-select"),
+      example: document.querySelector("#example-select"),
+      loadExample: document.querySelector("#load-example"),
+      reset: document.querySelector("#reset-form"),
+      size: document.querySelector("#size-select"),
+      width: document.querySelector("#width-input"),
+      height: document.querySelector("#height-input"),
+      fields: document.querySelector("#placeholder-fields"),
+      addField: document.querySelector("#add-placeholder"),
+      form: document.querySelector("#render-form"),
+      generate: document.querySelector("#generate-button"),
+      status: document.querySelector("#status"),
+      templateCount: document.querySelector("#template-count"),
+      preview: document.querySelector("#preview-image"),
+      empty: document.querySelector("#empty-state"),
+      meta: document.querySelector("#preview-meta"),
+      download: document.querySelector("#download-link"),
+      payload: document.querySelector("#payload-preview")
+    };
+
+    function templateDefinition(name) {
+      return state.catalog.templates.find((template) => template.name === name);
+    }
+
+    function displayName(value) {
+      return value
+        .replace(/[-_]/g, " ")
+        .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }
+
+    function setStatus(message, kind = "") {
+      elements.status.textContent = message;
+      elements.status.className = `status ${kind}`.trim();
+    }
+
+    function addPlaceholder(name = "", value = "") {
+      const row = document.createElement("div");
+      row.className = "placeholder-row";
+
+      const key = document.createElement("input");
+      key.className = "placeholder-key";
+      key.type = "text";
+      key.placeholder = "placeholder_name";
+      key.value = name;
+      key.setAttribute("aria-label", "Placeholder name");
+
+      const input = document.createElement("input");
+      input.className = "placeholder-value";
+      input.type = "text";
+      input.placeholder = "Value";
+      input.value = value == null ? "" : String(value);
+      input.setAttribute("aria-label", name ? `${name} value` : "Placeholder value");
+
+      const remove = document.createElement("button");
+      remove.className = "remove-placeholder";
+      remove.type = "button";
+      remove.title = "Remove placeholder";
+      remove.setAttribute("aria-label", "Remove placeholder");
+      remove.textContent = "×";
+      remove.addEventListener("click", () => row.remove());
+
+      row.append(key, input, remove);
+      elements.fields.append(row);
+    }
+
+    function renderFields(data = {}) {
+      elements.fields.replaceChildren();
+      const definition = templateDefinition(elements.template.value);
+      if (!definition) return;
+      definition.placeholders.forEach((name) => addPlaceholder(name, data[name]));
+    }
+
+    function collectData() {
+      const data = {};
+      for (const row of elements.fields.querySelectorAll(".placeholder-row")) {
+        const key = row.querySelector(".placeholder-key").value.trim();
+        const value = row.querySelector(".placeholder-value").value;
+        if (!key) continue;
+        if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(key)) {
+          throw new Error(`Invalid placeholder name: ${key}`);
+        }
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          throw new Error(`Duplicate placeholder: ${key}`);
+        }
+        if (value !== "") data[key] = value;
+      }
+      return data;
+    }
+
+    function selectedExample() {
+      return state.catalog.examples.find((example) => example.name === elements.example.value);
+    }
+
+    function applyExample(example) {
+      if (!example) {
+        renderFields();
+        return;
+      }
+      elements.template.value = example.template;
+      elements.size.value = example.size || "og";
+      elements.width.value = example.width == null ? "" : example.width;
+      elements.height.value = example.height == null ? "" : example.height;
+      renderFields(example.data || {});
+    }
+
+    function loadDefaultValues() {
+      const defaultExample = state.catalog.examples.find(
+        (example) => example.name === "dtc-event-webinar-og.json"
+      ) || state.catalog.examples[0];
+      if (defaultExample) {
+        elements.example.value = defaultExample.name;
+        applyExample(defaultExample);
+      } else {
+        renderFields();
+      }
+    }
+
+    function buildPayload() {
+      const width = elements.width.value ? Number(elements.width.value) : null;
+      const height = elements.height.value ? Number(elements.height.value) : null;
+      if ((width === null) !== (height === null)) {
+        throw new Error("Enter both width and height, or leave both blank.");
+      }
+      return {
+        template: elements.template.value,
+        size: elements.size.value,
+        width,
+        height,
+        data: collectData()
+      };
+    }
+
+    async function generate(event) {
+      event.preventDefault();
+      let payload;
+      try {
+        payload = buildPayload();
+      } catch (error) {
+        setStatus(error.message, "error");
+        return;
+      }
+
+      elements.generate.disabled = true;
+      elements.generate.textContent = "Rendering…";
+      setStatus("Launching the local renderer…");
+      elements.payload.textContent = JSON.stringify(payload, null, 2);
+
+      try {
+        const response = await fetch("/api/render", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || "Rendering failed.");
+
+        elements.preview.src = result.image;
+        elements.preview.hidden = false;
+        elements.empty.hidden = true;
+        elements.download.href = result.image;
+        elements.download.download = `${payload.template}-${result.width}x${result.height}.png`;
+        elements.download.hidden = false;
+        elements.meta.textContent = `${displayName(result.template)} · ${result.width} × ${result.height} px`;
+        setStatus("Preview generated.", "success");
+      } catch (error) {
+        setStatus(error.message || "Rendering failed.", "error");
+      } finally {
+        elements.generate.disabled = false;
+        elements.generate.textContent = "Generate preview";
+      }
+    }
+
+    async function loadCatalog() {
+      const response = await fetch("/api/catalog");
+      if (!response.ok) throw new Error("Could not load the template catalog.");
+      state.catalog = await response.json();
+
+      state.catalog.templates.forEach((template) => {
+        const option = document.createElement("option");
+        option.value = template.name;
+        option.textContent = displayName(template.name);
+        elements.template.append(option);
+      });
+      state.catalog.examples.forEach((example) => {
+        const option = document.createElement("option");
+        option.value = example.name;
+        option.textContent = displayName(example.name.replace(/\.json$/, ""));
+        elements.example.append(option);
+      });
+      state.catalog.sizes.forEach((size) => {
+        const option = document.createElement("option");
+        option.value = size.name;
+        option.textContent = `${displayName(size.name)} · ${size.width} × ${size.height}`;
+        elements.size.append(option);
+      });
+
+      elements.template.value = state.catalog.templates.some((item) => item.name === "dtc-social")
+        ? "dtc-social"
+        : state.catalog.templates[0].name;
+      elements.size.value = "og";
+      elements.templateCount.textContent = `${state.catalog.templates.length} templates`;
+      loadDefaultValues();
+    }
+
+    elements.template.addEventListener("change", () => {
+      let currentData = {};
+      try {
+        currentData = collectData();
+      } catch (error) {
+        setStatus(error.message, "error");
+      }
+      elements.example.value = "";
+      renderFields(currentData);
+    });
+    elements.example.addEventListener("change", () => applyExample(selectedExample()));
+    elements.loadExample.addEventListener("click", () => applyExample(selectedExample()));
+    elements.reset.addEventListener("click", loadDefaultValues);
+    elements.addField.addEventListener("click", () => {
+      addPlaceholder();
+      elements.fields.lastElementChild.querySelector(".placeholder-key").focus();
+    });
+    elements.form.addEventListener("submit", generate);
+
+    loadCatalog().catch((error) => {
+      setStatus(error.message, "error");
+      elements.templateCount.textContent = "Unavailable";
+    });
+  </script>
+</body>
+</html>

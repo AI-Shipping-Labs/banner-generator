@@ -11,6 +11,18 @@ uv sync --dev
 uv run playwright install chromium
 ```
 
+## Local Preview App
+
+Run the local browser-based studio:
+
+```bash
+uv run banner-generator-web
+```
+
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765), choose a bundled template, edit its
+placeholders, and click **Generate preview**. The app renders locally with the same
+Playwright renderer used by the CLI; it does not call the Lambda service or upload data.
+
 ## Render the Example
 
 ```bash
