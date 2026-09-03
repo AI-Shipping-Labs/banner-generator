@@ -108,8 +108,7 @@ For certificates, use a document-shaped viewport:
 ```json
 {
   "template": "ai-hero-certificate",
-  "width": 1536,
-  "height": 1024,
+  "size": "certificate",
   "format": "pdf",
   "output": "output/ai-hero-certificate.pdf",
   "name": "Jane Doe",
@@ -125,6 +124,7 @@ Supported built-in sizes:
 | Size | Dimensions |
 |---|---:|
 | `og` | 1200 x 630 |
+| `certificate` | 1536 x 1024 |
 | `linkedin` | 1200 x 627 |
 | `wide` | 1600 x 900 |
 | `square` | 1080 x 1080 |
