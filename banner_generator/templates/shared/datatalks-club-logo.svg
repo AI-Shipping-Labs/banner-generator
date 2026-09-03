@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 96" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">DataTalks.Club</title>
+  <g transform="translate(8 16) scale(1.18)" fill="#b9bff0" stroke="#1e2136" stroke-linejoin="round">
+    <path stroke-width="4" d="M17 3.2C27 1.6 39 1.8 48 3.6C55.5 5.2 60.8 9.4 61.4 16C62 22.6 61.8 30 60.6 36.4C59.4 42.8 56 47.2 49.6 48.6C46.6 49.2 43.4 49.4 40.2 49C39.4 53.4 38.8 57.4 37.6 61C36.4 57.2 34.4 53.4 31.8 50.2C27 49.6 22.2 48.8 18.2 47.4C11.4 45 6.4 40.6 4.6 34.2C2.8 27.8 2.6 20.6 3.8 14.6C5 8.6 10 4.6 17 3.2Z" />
+    <g fill="none" stroke-width="3.6" stroke-linecap="round">
+      <path d="M13.3 33.2C12.6 28.6 12.5 23.8 13.1 19.1C17.9 18.5 22.5 20.2 23.8 24.4C25.2 28.9 22.2 32.7 17.5 33.3C16.1 33.5 14.7 33.4 13.3 33.2Z" />
+      <path d="M25.8 19.4C29.3 18.8 32.9 18.9 36.1 19.3" />
+      <path d="M31 19.1C30.5 23.7 30.6 28.5 31.2 33.2" />
+      <path d="M51 22.3C49.7 19.8 46.8 18.4 43.9 19.2C40.2 20.2 38.1 24.2 39 28C39.9 31.6 43.6 33.7 47 32.6C48.7 32 50 30.8 50.8 29.2" />
+    </g>
+  </g>
+  <text x="94" y="65" fill="#1e2136" font-family="Quicksand, Trebuchet MS, Arial, sans-serif" font-size="43" font-weight="700" letter-spacing="-1.2">DataTalks.Club</text>
+</svg>

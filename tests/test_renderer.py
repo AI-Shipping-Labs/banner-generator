@@ -108,6 +108,9 @@ def test_dtc_social_template_contains_the_public_brand_and_data_slots():
     assert template.parent.name == "dtc-social"
     assert (template.parent / "style.css").is_file()
     assert (template.parent / "assets" / "quicksand-latin-var.woff2").is_file()
+    logo = template.parents[1] / "shared" / "datatalks-club-logo.svg"
+    assert logo.is_file()
+    assert '../shared/datatalks-club-logo.svg' in template.read_text()
 
     html = render_html(
         template,

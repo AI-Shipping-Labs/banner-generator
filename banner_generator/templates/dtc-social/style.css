@@ -107,36 +107,15 @@ body {
   display: inline-flex;
   align-items: center;
   min-width: 0;
-  gap: 0.8vw;
   color: var(--ink);
-  font-size: clamp(25px, 3.8vw, 41px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
   line-height: 1;
   white-space: nowrap;
 }
 
-.brand-mark {
-  width: clamp(42px, 6vw, 65px);
-  height: clamp(40px, 5.8vw, 62px);
-  flex: 0 0 auto;
-  overflow: visible;
-  color: var(--ink);
-}
-
-.brand-mark > path {
-  fill: #b9bff0;
-  stroke: currentColor;
-  stroke-width: 4;
-  stroke-linejoin: round;
-}
-
-.brand-letters {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.brand-logo {
+  display: block;
+  width: clamp(330px, 35.5vw, 425px);
+  height: auto;
 }
 
 .kind {
