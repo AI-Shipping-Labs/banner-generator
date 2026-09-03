@@ -17,8 +17,7 @@
 <body class="variant-${variant} channel-${channel}">
   <main class="canvas">
     <section class="poster" aria-label="${kind}: ${title}">
-      <div class="shape shape-top" aria-hidden="true"></div>
-      <div class="shape shape-bottom" aria-hidden="true"></div>
+      <div class="shape shape-accent" aria-hidden="true"></div>
 
       <header class="top">
         <div class="brand">
@@ -27,16 +26,25 @@
         <div class="kind">${kind}</div>
       </header>
 
-      <div class="main-avatar avatar" aria-hidden="true">
-        <span class="avatar-initials">${person_initials}</span>
-        <img src="${image_url}" alt="" onerror="this.remove()">
-      </div>
+      <div class="content">
+        <section class="copy">
+          <div class="kicker">${kicker}</div>
+          <h1>${title}</h1>
+          <p class="subtitle">${subtitle}</p>
+        </section>
 
-      <section class="copy">
-        <div class="kicker">${kicker}</div>
-        <h1>${title}</h1>
-        <p class="subtitle">${subtitle}</p>
-      </section>
+        <aside class="feature" aria-label="Banner details">
+          <div class="main-avatar avatar" aria-hidden="true">
+            <span class="avatar-initials">${person_initials}</span>
+            <img src="${image_url}" alt="" onerror="this.remove()">
+          </div>
+          <div class="metadata">
+            <b>${meta_primary}</b>
+            <strong>${meta_secondary}</strong>
+            <span>${meta_tertiary}</span>
+          </div>
+        </aside>
+      </div>
 
       <footer class="bottom">
         <div class="person">
@@ -48,11 +56,6 @@
             <b>${person}</b>
             <span>${person_role}</span>
           </div>
-        </div>
-        <div class="metadata">
-          <b>${meta_primary}</b>
-          <strong>${meta_secondary}</strong>
-          <span>${meta_tertiary}</span>
         </div>
         <div class="footer-brand">${footer}</div>
       </footer>
