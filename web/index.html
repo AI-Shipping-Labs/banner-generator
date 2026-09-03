@@ -508,7 +508,7 @@
         </div>
 
         <div class="field">
-          <label for="size-select">Named size</label>
+          <label id="size-label" for="size-select">Named size</label>
           <select id="size-select"></select>
         </div>
 
@@ -569,6 +569,7 @@
       example: document.querySelector("#example-select"),
       loadExample: document.querySelector("#load-example"),
       reset: document.querySelector("#reset-form"),
+      sizeLabel: document.querySelector("#size-label"),
       size: document.querySelector("#size-select"),
       width: document.querySelector("#width-input"),
       height: document.querySelector("#height-input"),
@@ -647,11 +648,18 @@
       const definition = templateDefinition(elements.template.value);
       const canvas = definition && definition.recommended_canvas;
       if (!canvas) {
+        elements.size.disabled = false;
+        elements.sizeLabel.textContent = "Named size";
         elements.canvasRecommendation.textContent = "PNG preview";
         elements.canvasHelp.textContent = "Leave both blank to use the named size.";
         return;
       }
 
+      const hasExplicitCanvas = !canvas.size;
+      elements.size.disabled = hasExplicitCanvas;
+      elements.sizeLabel.textContent = hasExplicitCanvas
+        ? "Named size (overridden)"
+        : "Named size";
       elements.canvasRecommendation.textContent = `Recommended · ${canvasLabel(canvas)}`;
       if (canvas.size) {
         elements.canvasHelp.textContent =
