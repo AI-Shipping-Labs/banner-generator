@@ -252,6 +252,10 @@
       overflow-wrap: anywhere;
     }
 
+    .preview-tabs {
+      margin-top: 0;
+    }
+
     .template-definition {
       max-height: 520px;
       margin: 0;
@@ -430,24 +434,12 @@
           <select id="template-select" required></select>
         </div>
 
-        <div class="tabs" role="tablist" aria-label="Template details">
-          <button id="fields-tab" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="fields-panel">Fields</button>
-          <button id="definition-tab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="definition-panel">Definition</button>
+        <div class="placeholder-heading">
+          <h3>Template fields</h3>
+          <span class="field-help">Fill in the values</span>
         </div>
-
-        <div id="fields-panel" class="tab-panel" role="tabpanel" aria-labelledby="fields-tab">
-          <div class="placeholder-heading">
-            <h3>Template fields</h3>
-            <span class="field-help">Fill in the values</span>
-          </div>
-          <div id="placeholder-fields" class="placeholder-list"></div>
-          <button id="load-example" class="load-example" type="button">Load example</button>
-        </div>
-
-        <div id="definition-panel" class="tab-panel" role="tabpanel" aria-labelledby="definition-tab" hidden>
-          <p id="definition-meta" class="field-help definition-meta"></p>
-          <pre id="template-definition" class="template-definition"></pre>
-        </div>
+        <div id="placeholder-fields" class="placeholder-list"></div>
+        <button id="load-example" class="load-example" type="button">Load example</button>
 
         <button id="generate-button" class="primary" type="submit">Generate preview</button>
         <p id="status" class="status" role="status" aria-live="polite"></p>
@@ -455,23 +447,40 @@
     </section>
 
     <section class="panel preview-panel" aria-labelledby="preview-title">
-      <div class="preview-header">
-        <div class="preview-heading">
-          <h2 id="preview-title">Generated image</h2>
-          <p id="preview-meta">Your preview will appear here.</p>
-        </div>
-        <a id="download-link" class="download-link" href="#" download="banner-preview.png" hidden>Download PNG</a>
+      <div class="tabs preview-tabs" role="tablist" aria-label="Template output">
+        <button id="preview-tab" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="preview-tab-panel">Preview</button>
+        <button id="template-tab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="template-tab-panel">Template</button>
+        <button id="spec-tab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="spec-tab-panel">Spec</button>
       </div>
 
-      <div class="preview-stage">
-        <div id="empty-state" class="empty-state">
-          <div class="empty-mark">↗</div>
-          <h3>Ready when you are</h3>
-          <p>Load an example or fill in the placeholders, then click Generate preview.</p>
+      <div id="preview-tab-panel" class="tab-panel" role="tabpanel" aria-labelledby="preview-tab">
+        <div class="preview-header">
+          <div class="preview-heading">
+            <h2 id="preview-title">Generated image</h2>
+            <p id="preview-meta">Your preview will appear here.</p>
+          </div>
+          <a id="download-link" class="download-link" href="#" download="banner-preview.png" hidden>Download PNG</a>
         </div>
-        <img id="preview-image" alt="Generated banner preview" hidden>
+
+        <div class="preview-stage">
+          <div id="empty-state" class="empty-state">
+            <div class="empty-mark">↗</div>
+            <h3>Ready when you are</h3>
+            <p>Fill in the fields or load an example, then click Generate preview.</p>
+          </div>
+          <img id="preview-image" alt="Generated banner preview" hidden>
+        </div>
       </div>
 
+      <div id="template-tab-panel" class="tab-panel" role="tabpanel" aria-labelledby="template-tab" hidden>
+        <p id="template-definition-meta" class="field-help definition-meta"></p>
+        <pre id="template-definition" class="template-definition"></pre>
+      </div>
+
+      <div id="spec-tab-panel" class="tab-panel" role="tabpanel" aria-labelledby="spec-tab" hidden>
+        <p id="spec-definition-meta" class="field-help definition-meta"></p>
+        <pre id="spec-definition" class="template-definition"></pre>
+      </div>
     </section>
   </main>
 
@@ -480,12 +489,16 @@
     const elements = {
       template: document.querySelector("#template-select"),
       loadExample: document.querySelector("#load-example"),
-      fieldsTab: document.querySelector("#fields-tab"),
-      definitionTab: document.querySelector("#definition-tab"),
-      fieldsPanel: document.querySelector("#fields-panel"),
-      definitionPanel: document.querySelector("#definition-panel"),
-      definitionMeta: document.querySelector("#definition-meta"),
+      previewTab: document.querySelector("#preview-tab"),
+      templateTab: document.querySelector("#template-tab"),
+      specTab: document.querySelector("#spec-tab"),
+      previewPanel: document.querySelector("#preview-tab-panel"),
+      templatePanel: document.querySelector("#template-tab-panel"),
+      specPanel: document.querySelector("#spec-tab-panel"),
+      templateDefinitionMeta: document.querySelector("#template-definition-meta"),
       definitionSource: document.querySelector("#template-definition"),
+      specDefinitionMeta: document.querySelector("#spec-definition-meta"),
+      specDefinition: document.querySelector("#spec-definition"),
       fields: document.querySelector("#placeholder-fields"),
       form: document.querySelector("#render-form"),
       generate: document.querySelector("#generate-button"),
@@ -544,23 +557,38 @@
     function renderDefinition() {
       const definition = templateDefinition(elements.template.value);
       if (!definition) {
-        elements.definitionMeta.textContent = "";
+        elements.templateDefinitionMeta.textContent = "";
         elements.definitionSource.textContent = "";
+        elements.specDefinitionMeta.textContent = "";
+        elements.specDefinition.textContent = "";
         return;
       }
-      elements.definitionMeta.textContent =
+      elements.templateDefinitionMeta.textContent =
         `${definition.path} · ${definition.placeholders.length} placeholders`;
       elements.definitionSource.textContent = definition.definition;
+      const activeExample = state.activeExample && state.activeExample.template === elements.template.value
+        ? state.activeExample
+        : null;
+      const specPath = activeExample ? activeExample.path : definition.recommended_canvas && definition.recommended_canvas.source;
+      const specDefinition = activeExample
+        ? activeExample.definition
+        : definition.recommended_canvas && definition.recommended_canvas.definition;
+      elements.specDefinitionMeta.textContent = specPath || "No render spec available";
+      elements.specDefinition.textContent = specDefinition || "";
     }
 
     function activateTab(tabName) {
-      const showDefinition = tabName === "definition";
-      elements.fieldsTab.classList.toggle("active", !showDefinition);
-      elements.definitionTab.classList.toggle("active", showDefinition);
-      elements.fieldsTab.setAttribute("aria-selected", String(!showDefinition));
-      elements.definitionTab.setAttribute("aria-selected", String(showDefinition));
-      elements.fieldsPanel.hidden = showDefinition;
-      elements.definitionPanel.hidden = !showDefinition;
+      const tabs = {
+        preview: [elements.previewTab, elements.previewPanel],
+        template: [elements.templateTab, elements.templatePanel],
+        spec: [elements.specTab, elements.specPanel]
+      };
+      Object.entries(tabs).forEach(([name, [tab, panel]]) => {
+        const active = name === tabName;
+        tab.classList.toggle("active", active);
+        tab.setAttribute("aria-selected", String(active));
+        panel.hidden = !active;
+      });
     }
 
     function collectData() {
@@ -638,8 +666,9 @@
         elements.preview.src = result.image;
         elements.preview.hidden = false;
         elements.empty.hidden = true;
-        elements.download.href = result.image;
-        elements.download.download = `${payload.template}-${result.width}x${result.height}.png`;
+        elements.download.href = result.download || result.image;
+        elements.download.download = result.download_name || `${payload.template}-${result.width}x${result.height}.png`;
+        elements.download.textContent = `Download ${(result.download_format || "png").toUpperCase()}`;
         elements.download.hidden = false;
         elements.meta.textContent = `${displayName(result.template)} · ${result.width} × ${result.height} px`;
         setStatus("Preview generated.", "success");
@@ -678,8 +707,9 @@
       renderDefinition();
       setStatus("");
     });
-    elements.fieldsTab.addEventListener("click", () => activateTab("fields"));
-    elements.definitionTab.addEventListener("click", () => activateTab("definition"));
+    elements.previewTab.addEventListener("click", () => activateTab("preview"));
+    elements.templateTab.addEventListener("click", () => activateTab("template"));
+    elements.specTab.addEventListener("click", () => activateTab("spec"));
     elements.loadExample.addEventListener("click", () => applyExample(exampleForTemplate()));
     elements.form.addEventListener("submit", generate);
 
