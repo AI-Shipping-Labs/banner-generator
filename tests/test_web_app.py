@@ -86,4 +86,36 @@ def test_render_preview_returns_data_url_and_cleans_scratch_file(tmp_path: Path,
     assert result["image"] == "data:image/png;base64,ZmFrZS1wbmc="
     assert result["width"] == 1200
     assert result["height"] == 630
+    assert result["download"] == result["image"]
+    assert result["download_format"] == "png"
+    assert result["download_name"] == "dtc-social-1200x630.png"
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_render_preview_returns_pdf_download_for_pdf_template(tmp_path: Path, monkeypatch):
+    monkeypatch.setattr(web_app, "PREVIEW_ROOT", tmp_path)
+    rendered_formats = []
+
+    def fake_render(spec):
+        rendered_formats.append(spec.format)
+        spec.output.write_bytes(
+            b"fake-pdf" if spec.format == "pdf" else b"fake-png"
+        )
+
+    monkeypatch.setattr(web_app, "render", fake_render)
+
+    result = web_app.render_preview(
+        {
+            "template": "ai-hero-certificate",
+            "size": "certificate",
+            "data": {"name": "Preview"},
+        }
+    )
+
+    assert rendered_formats == ["png", "pdf"]
+    assert result["width"] == 1536
+    assert result["height"] == 1024
+    assert result["download"] == "data:application/pdf;base64,ZmFrZS1wZGY="
+    assert result["download_format"] == "pdf"
+    assert result["download_name"] == "ai-hero-certificate-1536x1024.pdf"
     assert list(tmp_path.iterdir()) == []

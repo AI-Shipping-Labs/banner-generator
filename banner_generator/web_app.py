@@ -88,6 +88,7 @@ def recommended_canvas(
         ),
         "format": source_format,
         "source": str(source_path.relative_to(REPOSITORY_ROOT)),
+        "definition": source_path.read_text(encoding="utf-8"),
     }
 
 
@@ -118,6 +119,8 @@ def example_catalog() -> list[dict[str, Any]]:
                 "width": spec.width,
                 "height": spec.height,
                 "data": spec.data or {},
+                "path": str(example_path.relative_to(REPOSITORY_ROOT)),
+                "definition": example_path.read_text(encoding="utf-8"),
             }
         )
     return examples
@@ -145,7 +148,12 @@ def _viewport_value(payload: dict[str, Any], name: str) -> int | None:
     return value
 
 
-def build_render_spec(payload: dict[str, Any], output: Path) -> RenderSpec:
+def build_render_spec(
+    payload: dict[str, Any],
+    output: Path,
+    *,
+    format_name: str = "png",
+) -> RenderSpec:
     template = payload.get("template")
     template_names = {item["name"] for item in template_catalog()}
     if not isinstance(template, str) or template not in template_names:
@@ -173,7 +181,7 @@ def build_render_spec(payload: dict[str, Any], output: Path) -> RenderSpec:
         template=template,
         output=output,
         size=size,
-        format="png",
+        format=format_name,
         data=data,
         width=width,
         height=height,
@@ -182,20 +190,52 @@ def build_render_spec(payload: dict[str, Any], output: Path) -> RenderSpec:
 
 def render_preview(payload: dict[str, Any]) -> dict[str, Any]:
     PREVIEW_ROOT.mkdir(parents=True, exist_ok=True)
-    output = PREVIEW_ROOT / f"{uuid4().hex}.png"
-    spec = build_render_spec(payload, output)
+    preview_output = PREVIEW_ROOT / f"{uuid4().hex}.png"
+    spec = build_render_spec(payload, preview_output)
+    download_output: Path | None = None
     try:
         render(spec)
-        image = base64.b64encode(output.read_bytes()).decode("ascii")
+        image = base64.b64encode(preview_output.read_bytes()).decode("ascii")
         width, height = spec.viewport
-        return {
+        result = {
             "image": f"data:image/png;base64,{image}",
             "template": spec.template,
             "width": width,
             "height": height,
+            "download": f"data:image/png;base64,{image}",
+            "download_format": "png",
+            "download_name": f"{spec.template}-{width}x{height}.png",
         }
+        recommended = next(
+            (
+                item["recommended_canvas"]
+                for item in template_catalog()
+                if item["name"] == spec.template
+            ),
+            None,
+        )
+        download_format = recommended.get("format") if recommended else "png"
+        if download_format == "pdf":
+            download_output = PREVIEW_ROOT / f"{uuid4().hex}.pdf"
+            download_spec = build_render_spec(
+                payload,
+                download_output,
+                format_name="pdf",
+            )
+            render(download_spec)
+            encoded = base64.b64encode(download_output.read_bytes()).decode("ascii")
+            result.update(
+                {
+                    "download": f"data:application/pdf;base64,{encoded}",
+                    "download_format": "pdf",
+                    "download_name": f"{spec.template}-{width}x{height}.pdf",
+                }
+            )
+        return result
     finally:
-        output.unlink(missing_ok=True)
+        preview_output.unlink(missing_ok=True)
+        if download_output:
+            download_output.unlink(missing_ok=True)
 
 
 class PreviewServer(ThreadingHTTPServer):
