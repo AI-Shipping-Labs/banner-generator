@@ -10,26 +10,45 @@ Each template lives in its own directory:
 banner_generator/templates/<template-name>/template.html
 ```
 
-## Certificate
+## Certificates
 
-The AI Hero certificate uses:
+The AI Shipping Labs certificates use bundled dark certificate designs. All template
+files and assets needed to render them live in this repository:
 
 ```text
 banner_generator/templates/ai-hero-certificate/template.html
 banner_generator/templates/ai-hero-certificate/assets/
-examples/aisl/ai-hero-certificate.json
+examples/certificates/ai-hero-certificate.json
+
+banner_generator/templates/ai-buildcamp-certificate/template.html
+banner_generator/templates/ai-buildcamp-certificate/assets/
+examples/certificates/ai-buildcamp-certificate.json
 ```
 
-Render it with:
+Render an example with the CLI:
 
 ```bash
-make render-certificate-example
+uv run banner-generator render examples/certificates/ai-hero-certificate.json
 ```
 
 The certificate spec uses the named `certificate` size (1536 x 1024). The AI Shipping
 Labs content-banner specs use the named `og` size (1200 x 630). A CLI or Lambda caller
 can explicitly override a spec's size, but normal clients should preserve the size from
 the spec.
+
+The bundled DataTalks.Club Zoomcamp certificate uses the following template and assets:
+
+```text
+banner_generator/templates/dtc-zoomcamp-certificate/template.html
+banner_generator/templates/dtc-zoomcamp-certificate/assets/
+examples/certificates/dtc-data-engineering-zoomcamp-certificate.json
+```
+
+It uses the named `zoomcamp-certificate` size (1920 x 1080) and supports the same
+`name`, `course_name`, `dates`, `certificate_id`, `certificate_url`, and `qr` fields. All
+bundled Zoomcamp course examples use only the lead
+instructor signature so the Data Engineering and MLOps layouts do not accumulate the
+historical teaching-team signatures.
 
 ## Content Banners
 
@@ -101,11 +120,11 @@ title_size      optional explicit title fit (px)
 subtitle_size   optional explicit subtitle fit (px)
 ```
 
-Render them with:
+Render the example specs with the CLI:
 
 ```bash
-make render-content-examples
-make render-content-variants
+uv run banner-generator render examples/aisl/content-event.json
+uv run banner-generator render examples/aisl/content-variants/event-stage-live.json
 ```
 
 The generated images are written to:

@@ -23,14 +23,11 @@ Related local repositories:
 ```text
 /home/alexey/git/ai-shipping-labs
 /home/alexey/git/ai-shipping-labs-content
-/home/alexey/git/certificate-creator
 ```
 
 The main website lives in `/home/alexey/git/ai-shipping-labs`. It is a Django app for `aishippinglabs.com`. It has content models for articles, workshops, events, courses, projects, downloads, and certificates. Many of those models have a `cover_image_url` field that currently points to an external image URL.
 
 The content repository lives in `/home/alexey/git/ai-shipping-labs-content`. The website can sync content from there. Generated banners may eventually be referenced from content metadata or model fields, but this generator should not need to know the website database schema.
-
-The older certificate rendering project lives in `/home/alexey/git/certificate-creator`. It is useful as historical context: it renders HTML templates through a browser and outputs PDFs. This project should absorb the generic part of that idea, but avoid certificate-specific APIs or upload flows in the core renderer.
 
 ## Intended Use
 
@@ -76,7 +73,8 @@ If that happens, the Django app should call a separate rendering boundary rather
 - CLI entrypoint: `banner-generator`
 - Renderer: `banner_generator/renderer.py`
 - CLI: `banner_generator/cli.py`
-- Built-in template: `banner_generator/templates/dtc-social/template.html`
+- Built-in templates: `banner_generator/templates/`, including DTC social and
+  AI Shipping Labs/DataTalks.Club certificate templates
 - Example spec: `examples/dtc/dtc-article-preview.json`
 - Docs: `README.md` and `docs/architecture.md`
 - Supported outputs: `png`, `jpeg` with quality, and `pdf`
@@ -114,7 +112,7 @@ uv run banner-generator render examples/dtc/dtc-article-preview.json
 ## Good Next Tasks
 
 1. Add batch rendering from a directory or multiple JSON specs.
-2. Add a certificate-oriented example template and spec.
+2. Add certificate batch input helpers.
 3. Improve template variable handling and document available fields.
 4. Add `--list-sizes` or richer CLI help.
 5. Add `--html-output` examples for debugging templates.
