@@ -171,6 +171,27 @@ def test_render_html_adds_base_url_for_relative_assets(tmp_path: Path):
     assert f'<base href="{tmp_path.as_uri()}/">' in html
 
 
+def test_render_html_accepts_image_urls_and_raw_base64(tmp_path: Path):
+    template = tmp_path / "template.html"
+    template.write_text('<img src="${image_url}">')
+
+    url_html = render_html(
+        template,
+        {"image_url": "https://cdn.example.test/avatar.png"},
+        1200,
+        630,
+    )
+    base64_html = render_html(
+        template,
+        {"image_base64": "  ZmFrZQ==\n"},
+        1200,
+        630,
+    )
+
+    assert 'src="https://cdn.example.test/avatar.png"' in url_html
+    assert 'src="data:image/png;base64,ZmFrZQ=="' in base64_html
+
+
 @pytest.mark.parametrize(
     ("output", "expected"),
     [

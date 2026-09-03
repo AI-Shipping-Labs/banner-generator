@@ -57,6 +57,28 @@ def load_spec(path: Path) -> RenderSpec:
     )
 
 
+def _image_source(data: dict[str, Any]) -> str:
+    """Return an image source accepted by an HTML ``img`` element.
+
+    ``image_url`` remains the public template slot and accepts normal URLs or
+    complete data URLs. ``image_base64`` is an API-only convenience alias for
+    raw PNG base64; it is useful when the rendering boundary cannot access the
+    network.
+    """
+    image_url = data.get("image_url")
+    if image_url not in (None, ""):
+        return str(image_url).strip()
+
+    image_base64 = data.get("image_base64")
+    if image_base64 in (None, ""):
+        return "about:blank"
+
+    encoded = re.sub(r"\s+", "", str(image_base64))
+    if encoded.startswith("data:"):
+        return encoded
+    return f"data:image/png;base64,{encoded}"
+
+
 def render_html(template_path: Path, data: dict[str, Any], width: int, height: int) -> str:
     template = Template(template_path.read_text())
     values = {
@@ -94,7 +116,7 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("person_role", "DataTalks.Club")
     values.setdefault("person_initials", "DTC")
     values.setdefault("meta_tertiary", "Free · Online")
-    values.setdefault("image_url", "about:blank")
+    values["image_url"] = html.escape(_image_source(data), quote=True)
     values.setdefault("course_name", "7-Day AI Agents Crash-Course")
     values.setdefault("dates", "2026")
     values.setdefault("course_url", "https://aishippinglabs.com/courses/aihero")

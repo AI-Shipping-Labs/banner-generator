@@ -140,8 +140,14 @@ meta_primary     date or primary metadata
 meta_secondary   time or secondary metadata
 meta_tertiary    small metadata line
 footer           small destination/brand line
-image_url        optional image URL; initials remain the deterministic fallback
+image_url        optional URL or complete data URL; initials remain the fallback
+image_base64     API-only raw PNG base64 alias when image_url is omitted
 ```
+
+For image inputs, use `image_url` for an `https://` URL or a complete
+`data:image/...;base64,...` value. Callers that only have raw base64 can send it as
+`image_base64`; the renderer wraps it as a PNG data URL. The isolated HTML renderer
+accepts inline data URLs but blocks network requests, so use base64 there.
 
 The named `luma` size is deliberately 1000 x 1000. Event banners also have `og` (1200 x
 630) and explicit YouTube (1280 x 720) examples; YouTube omits event dates so thumbnails
