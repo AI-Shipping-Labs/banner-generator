@@ -504,7 +504,7 @@
 
         <div class="section-heading">
           <h2>Canvas</h2>
-          <span>PNG output</span>
+          <span id="canvas-recommendation">PNG preview</span>
         </div>
 
         <div class="field">
@@ -522,7 +522,7 @@
             <input id="height-input" type="number" min="1" max="4000" placeholder="Auto">
           </div>
         </div>
-        <p class="field-help">Leave both blank to use the named size.</p>
+        <p id="canvas-help" class="field-help">Leave both blank to use the named size.</p>
 
         <div class="placeholder-heading">
           <h3>Template placeholders</h3>
@@ -578,6 +578,8 @@
       generate: document.querySelector("#generate-button"),
       status: document.querySelector("#status"),
       templateCount: document.querySelector("#template-count"),
+      canvasRecommendation: document.querySelector("#canvas-recommendation"),
+      canvasHelp: document.querySelector("#canvas-help"),
       preview: document.querySelector("#preview-image"),
       empty: document.querySelector("#empty-state"),
       meta: document.querySelector("#preview-meta"),
@@ -587,6 +589,10 @@
 
     function templateDefinition(name) {
       return state.catalog.templates.find((template) => template.name === name);
+    }
+
+    function canvasLabel(canvas) {
+      return `${canvas.width} × ${canvas.height}`;
     }
 
     function displayName(value) {
@@ -637,6 +643,46 @@
       definition.placeholders.forEach((name) => addPlaceholder(name, data[name]));
     }
 
+    function updateCanvasRecommendation() {
+      const definition = templateDefinition(elements.template.value);
+      const canvas = definition && definition.recommended_canvas;
+      if (!canvas) {
+        elements.canvasRecommendation.textContent = "PNG preview";
+        elements.canvasHelp.textContent = "Leave both blank to use the named size.";
+        return;
+      }
+
+      elements.canvasRecommendation.textContent = `Recommended · ${canvasLabel(canvas)}`;
+      if (canvas.size) {
+        elements.canvasHelp.textContent =
+          `The render specs use ${canvasLabel(canvas)} via the ${displayName(canvas.size)} named size. ` +
+          "Leave both dimensions blank unless you need an override.";
+        return;
+      }
+
+      const format = canvas.format ? canvas.format.toUpperCase() : "source";
+      elements.canvasHelp.textContent =
+        `The render spec uses ${canvasLabel(canvas)} (${format}). ` +
+        "The studio renders a PNG preview, so keep the explicit dimensions below.";
+    }
+
+    function applyTemplateRecommendation() {
+      const definition = templateDefinition(elements.template.value);
+      const canvas = definition && definition.recommended_canvas;
+      if (!canvas) {
+        elements.size.value = elements.size.value || "og";
+        elements.width.value = "";
+        elements.height.value = "";
+        updateCanvasRecommendation();
+        return;
+      }
+
+      elements.size.value = canvas.size || "og";
+      elements.width.value = canvas.size ? "" : canvas.width;
+      elements.height.value = canvas.size ? "" : canvas.height;
+      updateCanvasRecommendation();
+    }
+
     function collectData() {
       const data = {};
       for (const row of elements.fields.querySelectorAll(".placeholder-row")) {
@@ -660,6 +706,7 @@
 
     function applyExample(example) {
       if (!example) {
+        applyTemplateRecommendation();
         renderFields();
         return;
       }
@@ -668,6 +715,7 @@
       elements.width.value = example.width == null ? "" : example.width;
       elements.height.value = example.height == null ? "" : example.height;
       renderFields(example.data || {});
+      updateCanvasRecommendation();
     }
 
     function loadDefaultValues() {
@@ -745,7 +793,10 @@
       state.catalog.templates.forEach((template) => {
         const option = document.createElement("option");
         option.value = template.name;
-        option.textContent = displayName(template.name);
+        const canvas = template.recommended_canvas;
+        option.textContent = canvas
+          ? `${displayName(template.name)} · ${canvasLabel(canvas)}`
+          : displayName(template.name);
         elements.template.append(option);
       });
       state.catalog.examples.forEach((example) => {
@@ -777,6 +828,7 @@
         setStatus(error.message, "error");
       }
       elements.example.value = "";
+      applyTemplateRecommendation();
       renderFields(currentData);
     });
     elements.example.addEventListener("change", () => applyExample(selectedExample()));
