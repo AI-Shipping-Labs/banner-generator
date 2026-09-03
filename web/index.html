@@ -41,70 +41,14 @@
       cursor: pointer;
     }
 
-    .app-header {
-      padding: 28px 32px 24px;
-      border-bottom: 1px solid rgba(30, 33, 54, 0.12);
-      background: var(--cream);
-    }
-
-    .header-inner,
     .workspace {
       width: min(1480px, 100%);
       margin: 0 auto;
     }
 
-    .header-inner {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .eyebrow {
-      margin: 0 0 8px;
-      color: var(--green);
-      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    h1,
     h2,
     p {
       margin-top: 0;
-    }
-
-    h1 {
-      margin-bottom: 8px;
-      font-size: clamp(28px, 4vw, 48px);
-      letter-spacing: -0.05em;
-      line-height: 0.98;
-    }
-
-    .header-copy {
-      max-width: 680px;
-    }
-
-    .header-copy p:last-child {
-      max-width: 560px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.45;
-    }
-
-    .local-badge {
-      flex: 0 0 auto;
-      padding: 10px 14px;
-      border: 2px solid var(--ink);
-      border-radius: 999px;
-      background: var(--lavender-strong);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
     .workspace {
@@ -143,7 +87,11 @@
       letter-spacing: -0.03em;
     }
 
-    .section-heading span,
+    .template-count {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
     .field-help {
       color: var(--muted);
       font-size: 12px;
@@ -178,18 +126,6 @@
     select:focus {
       border-color: var(--ink);
       box-shadow: 0 0 0 3px rgba(201, 205, 242, 0.8);
-    }
-
-    .two-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .button-row {
-      display: flex;
-      gap: 8px;
-      margin: -4px 0 22px;
     }
 
     button,
@@ -256,9 +192,17 @@
 
     .placeholder-row {
       display: grid;
-      grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1.3fr) 32px;
+      grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1.3fr);
       gap: 6px;
       align-items: center;
+    }
+
+    .placeholder-name {
+      overflow-wrap: anywhere;
+      color: var(--ink);
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .placeholder-row input {
@@ -271,22 +215,62 @@
       font-size: 13px;
     }
 
-    .remove-placeholder {
-      min-width: 32px;
-      min-height: 32px;
-      padding: 0;
-      border-color: var(--line);
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1;
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin: 20px 0 14px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .add-placeholder {
-      width: 100%;
-      margin-bottom: 20px;
-      border-style: dashed;
-      border-color: var(--line);
+    .tab {
+      min-height: 34px;
+      margin-bottom: -1px;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      padding: 6px 10px;
       color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tab:hover,
+    .tab.active {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .tab.active {
+      border-bottom-color: var(--ink);
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .definition-meta {
+      margin: 0 0 9px;
+      overflow-wrap: anywhere;
+    }
+
+    .template-definition {
+      max-height: 520px;
+      margin: 0;
+      overflow: auto;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #272b43;
+      color: #f4f5ff;
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 11px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .load-example {
+      width: 100%;
+      margin: 6px 0 10px;
     }
 
     .status {
@@ -386,39 +370,7 @@
       line-height: 1.5;
     }
 
-    details {
-      margin-top: 16px;
-      border-top: 1px solid var(--line);
-      padding-top: 14px;
-    }
-
-    summary {
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    pre {
-      max-height: 220px;
-      margin: 12px 0 0;
-      overflow: auto;
-      padding: 12px;
-      border-radius: 10px;
-      background: #272b43;
-      color: #f4f5ff;
-      font-size: 11px;
-      line-height: 1.45;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
     @media (max-width: 900px) {
-      .header-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
       .workspace {
         grid-template-columns: 1fr;
       }
@@ -433,7 +385,6 @@
     }
 
     @media (max-width: 560px) {
-      .app-header,
       .workspace {
         padding-right: 16px;
         padding-left: 16px;
@@ -466,23 +417,12 @@
   </style>
 </head>
 <body>
-  <header class="app-header">
-    <div class="header-inner">
-      <div class="header-copy">
-        <p class="eyebrow">Banner Generator / Local Studio</p>
-        <h1>Make a banner, see it immediately.</h1>
-        <p>Choose a bundled template, edit its placeholders, and render a PNG without touching the Lambda service.</p>
-      </div>
-      <div class="local-badge">Local only · no upload</div>
-    </div>
-  </header>
-
   <main class="workspace">
     <section class="panel controls-panel" aria-labelledby="controls-title">
       <form id="render-form">
         <div class="section-heading">
           <h2 id="controls-title">Build the input</h2>
-          <span id="template-count">Loading templates…</span>
+          <span id="template-count" class="template-count">Loading templates…</span>
         </div>
 
         <div class="field">
@@ -490,46 +430,24 @@
           <select id="template-select" required></select>
         </div>
 
-        <div class="field">
-          <label for="example-select">Start from an example</label>
-          <select id="example-select">
-            <option value="">Custom values</option>
-          </select>
+        <div class="tabs" role="tablist" aria-label="Template details">
+          <button id="fields-tab" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="fields-panel">Fields</button>
+          <button id="definition-tab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="definition-panel">Definition</button>
         </div>
 
-        <div class="button-row">
-          <button id="load-example" type="button">Load example</button>
-          <button id="reset-form" type="button">Reset fields</button>
-        </div>
-
-        <div class="section-heading">
-          <h2>Canvas</h2>
-          <span id="canvas-recommendation">PNG preview</span>
-        </div>
-
-        <div class="field">
-          <label id="size-label" for="size-select">Named size</label>
-          <select id="size-select"></select>
-        </div>
-
-        <div class="two-columns">
-          <div class="field">
-            <label for="width-input">Width</label>
-            <input id="width-input" type="number" min="1" max="4000" placeholder="Auto">
+        <div id="fields-panel" class="tab-panel" role="tabpanel" aria-labelledby="fields-tab">
+          <div class="placeholder-heading">
+            <h3>Template fields</h3>
+            <span class="field-help">Fill in the values</span>
           </div>
-          <div class="field">
-            <label for="height-input">Height</label>
-            <input id="height-input" type="number" min="1" max="4000" placeholder="Auto">
-          </div>
+          <div id="placeholder-fields" class="placeholder-list"></div>
+          <button id="load-example" class="load-example" type="button">Load example</button>
         </div>
-        <p id="canvas-help" class="field-help">Leave both blank to use the named size.</p>
 
-        <div class="placeholder-heading">
-          <h3>Template placeholders</h3>
-          <span class="field-help">Blank values use renderer defaults</span>
+        <div id="definition-panel" class="tab-panel" role="tabpanel" aria-labelledby="definition-tab" hidden>
+          <p id="definition-meta" class="field-help definition-meta"></p>
+          <pre id="template-definition" class="template-definition"></pre>
         </div>
-        <div id="placeholder-fields" class="placeholder-list"></div>
-        <button id="add-placeholder" class="add-placeholder" type="button">+ Add placeholder</button>
 
         <button id="generate-button" class="primary" type="submit">Generate preview</button>
         <p id="status" class="status" role="status" aria-live="polite"></p>
@@ -539,7 +457,6 @@
     <section class="panel preview-panel" aria-labelledby="preview-title">
       <div class="preview-header">
         <div class="preview-heading">
-          <p class="eyebrow">Output</p>
           <h2 id="preview-title">Generated image</h2>
           <p id="preview-meta">Your preview will appear here.</p>
         </div>
@@ -555,45 +472,33 @@
         <img id="preview-image" alt="Generated banner preview" hidden>
       </div>
 
-      <details>
-        <summary>View request payload</summary>
-        <pre id="payload-preview">No render submitted yet.</pre>
-      </details>
     </section>
   </main>
 
   <script>
-    const state = { catalog: null };
+    const state = { catalog: null, activeExample: null };
     const elements = {
       template: document.querySelector("#template-select"),
-      example: document.querySelector("#example-select"),
       loadExample: document.querySelector("#load-example"),
-      reset: document.querySelector("#reset-form"),
-      sizeLabel: document.querySelector("#size-label"),
-      size: document.querySelector("#size-select"),
-      width: document.querySelector("#width-input"),
-      height: document.querySelector("#height-input"),
+      fieldsTab: document.querySelector("#fields-tab"),
+      definitionTab: document.querySelector("#definition-tab"),
+      fieldsPanel: document.querySelector("#fields-panel"),
+      definitionPanel: document.querySelector("#definition-panel"),
+      definitionMeta: document.querySelector("#definition-meta"),
+      definitionSource: document.querySelector("#template-definition"),
       fields: document.querySelector("#placeholder-fields"),
-      addField: document.querySelector("#add-placeholder"),
       form: document.querySelector("#render-form"),
       generate: document.querySelector("#generate-button"),
       status: document.querySelector("#status"),
       templateCount: document.querySelector("#template-count"),
-      canvasRecommendation: document.querySelector("#canvas-recommendation"),
-      canvasHelp: document.querySelector("#canvas-help"),
       preview: document.querySelector("#preview-image"),
       empty: document.querySelector("#empty-state"),
       meta: document.querySelector("#preview-meta"),
-      download: document.querySelector("#download-link"),
-      payload: document.querySelector("#payload-preview")
+      download: document.querySelector("#download-link")
     };
 
     function templateDefinition(name) {
       return state.catalog.templates.find((template) => template.name === name);
-    }
-
-    function canvasLabel(canvas) {
-      return `${canvas.width} × ${canvas.height}`;
     }
 
     function displayName(value) {
@@ -607,33 +512,25 @@
       elements.status.className = `status ${kind}`.trim();
     }
 
-    function addPlaceholder(name = "", value = "") {
+    function addField(name, value = "") {
       const row = document.createElement("div");
       row.className = "placeholder-row";
+      row.dataset.placeholder = name;
 
-      const key = document.createElement("input");
-      key.className = "placeholder-key";
-      key.type = "text";
-      key.placeholder = "placeholder_name";
-      key.value = name;
-      key.setAttribute("aria-label", "Placeholder name");
+      const label = document.createElement("label");
+      label.className = "placeholder-name";
+      label.textContent = name;
 
       const input = document.createElement("input");
       input.className = "placeholder-value";
       input.type = "text";
       input.placeholder = "Value";
       input.value = value == null ? "" : String(value);
-      input.setAttribute("aria-label", name ? `${name} value` : "Placeholder value");
+      input.id = `placeholder-${name}`;
+      input.setAttribute("aria-label", `${name} value`);
+      label.htmlFor = input.id;
 
-      const remove = document.createElement("button");
-      remove.className = "remove-placeholder";
-      remove.type = "button";
-      remove.title = "Remove placeholder";
-      remove.setAttribute("aria-label", "Remove placeholder");
-      remove.textContent = "×";
-      remove.addEventListener("click", () => row.remove());
-
-      row.append(key, input, remove);
+      row.append(label, input);
       elements.fields.append(row);
     }
 
@@ -641,114 +538,76 @@
       elements.fields.replaceChildren();
       const definition = templateDefinition(elements.template.value);
       if (!definition) return;
-      definition.placeholders.forEach((name) => addPlaceholder(name, data[name]));
+      definition.placeholders.forEach((name) => addField(name, data[name]));
     }
 
-    function updateCanvasRecommendation() {
+    function renderDefinition() {
       const definition = templateDefinition(elements.template.value);
-      const canvas = definition && definition.recommended_canvas;
-      if (!canvas) {
-        elements.size.disabled = false;
-        elements.sizeLabel.textContent = "Named size";
-        elements.canvasRecommendation.textContent = "PNG preview";
-        elements.canvasHelp.textContent = "Leave both blank to use the named size.";
+      if (!definition) {
+        elements.definitionMeta.textContent = "";
+        elements.definitionSource.textContent = "";
         return;
       }
-
-      const hasExplicitCanvas = !canvas.size;
-      elements.size.disabled = hasExplicitCanvas;
-      elements.sizeLabel.textContent = hasExplicitCanvas
-        ? "Named size (overridden)"
-        : "Named size";
-      elements.canvasRecommendation.textContent = `Recommended · ${canvasLabel(canvas)}`;
-      if (canvas.size) {
-        elements.canvasHelp.textContent =
-          `The render specs use ${canvasLabel(canvas)} via the ${displayName(canvas.size)} named size. ` +
-          "Leave both dimensions blank unless you need an override.";
-        return;
-      }
-
-      const format = canvas.format ? canvas.format.toUpperCase() : "source";
-      elements.canvasHelp.textContent =
-        `The render spec uses ${canvasLabel(canvas)} (${format}). ` +
-        "The studio renders a PNG preview, so keep the explicit dimensions below.";
+      elements.definitionMeta.textContent =
+        `${definition.path} · ${definition.placeholders.length} placeholders`;
+      elements.definitionSource.textContent = definition.definition;
     }
 
-    function applyTemplateRecommendation() {
-      const definition = templateDefinition(elements.template.value);
-      const canvas = definition && definition.recommended_canvas;
-      if (!canvas) {
-        elements.size.value = elements.size.value || "og";
-        elements.width.value = "";
-        elements.height.value = "";
-        updateCanvasRecommendation();
-        return;
-      }
-
-      elements.size.value = canvas.size || "og";
-      elements.width.value = canvas.size ? "" : canvas.width;
-      elements.height.value = canvas.size ? "" : canvas.height;
-      updateCanvasRecommendation();
+    function activateTab(tabName) {
+      const showDefinition = tabName === "definition";
+      elements.fieldsTab.classList.toggle("active", !showDefinition);
+      elements.definitionTab.classList.toggle("active", showDefinition);
+      elements.fieldsTab.setAttribute("aria-selected", String(!showDefinition));
+      elements.definitionTab.setAttribute("aria-selected", String(showDefinition));
+      elements.fieldsPanel.hidden = showDefinition;
+      elements.definitionPanel.hidden = !showDefinition;
     }
 
     function collectData() {
       const data = {};
       for (const row of elements.fields.querySelectorAll(".placeholder-row")) {
-        const key = row.querySelector(".placeholder-key").value.trim();
+        const key = row.dataset.placeholder;
         const value = row.querySelector(".placeholder-value").value;
-        if (!key) continue;
-        if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(key)) {
-          throw new Error(`Invalid placeholder name: ${key}`);
-        }
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
-          throw new Error(`Duplicate placeholder: ${key}`);
-        }
         if (value !== "") data[key] = value;
       }
       return data;
     }
 
-    function selectedExample() {
-      return state.catalog.examples.find((example) => example.name === elements.example.value);
+    function exampleForTemplate() {
+      return state.catalog.examples.find(
+        (example) => example.template === elements.template.value
+      );
     }
 
     function applyExample(example) {
       if (!example) {
-        applyTemplateRecommendation();
-        renderFields();
+        setStatus("No example is available for this template.", "error");
         return;
       }
+      state.activeExample = example;
       elements.template.value = example.template;
-      elements.size.value = example.size || "og";
-      elements.width.value = example.width == null ? "" : example.width;
-      elements.height.value = example.height == null ? "" : example.height;
       renderFields(example.data || {});
-      updateCanvasRecommendation();
-    }
-
-    function loadDefaultValues() {
-      const defaultExample = state.catalog.examples.find(
-        (example) => example.name === "dtc-event-webinar-og.json"
-      ) || state.catalog.examples[0];
-      if (defaultExample) {
-        elements.example.value = defaultExample.name;
-        applyExample(defaultExample);
-      } else {
-        renderFields();
-      }
+      renderDefinition();
+      setStatus(`Loaded ${example.name}.`, "success");
     }
 
     function buildPayload() {
-      const width = elements.width.value ? Number(elements.width.value) : null;
-      const height = elements.height.value ? Number(elements.height.value) : null;
-      if ((width === null) !== (height === null)) {
-        throw new Error("Enter both width and height, or leave both blank.");
+      const definition = templateDefinition(elements.template.value);
+      const canvas = state.activeExample && state.activeExample.template === elements.template.value
+        ? state.activeExample
+        : definition && definition.recommended_canvas;
+      if (!canvas) {
+        throw new Error("No canvas is defined for this template.");
       }
+      const usingExample = state.activeExample && state.activeExample.template === elements.template.value;
+      const hasExplicitCanvas = usingExample
+        ? canvas.width != null && canvas.height != null
+        : !canvas.size;
       return {
         template: elements.template.value,
-        size: elements.size.value,
-        width,
-        height,
+        size: canvas.size || "og",
+        width: hasExplicitCanvas ? canvas.width : null,
+        height: hasExplicitCanvas ? canvas.height : null,
         data: collectData()
       };
     }
@@ -766,7 +625,6 @@
       elements.generate.disabled = true;
       elements.generate.textContent = "Rendering…";
       setStatus("Launching the local renderer…");
-      elements.payload.textContent = JSON.stringify(payload, null, 2);
 
       try {
         const response = await fetch("/api/render", {
@@ -801,51 +659,28 @@
       state.catalog.templates.forEach((template) => {
         const option = document.createElement("option");
         option.value = template.name;
-        const canvas = template.recommended_canvas;
-        option.textContent = canvas
-          ? `${displayName(template.name)} · ${canvasLabel(canvas)}`
-          : displayName(template.name);
+        option.textContent = displayName(template.name);
         elements.template.append(option);
       });
-      state.catalog.examples.forEach((example) => {
-        const option = document.createElement("option");
-        option.value = example.name;
-        option.textContent = displayName(example.name.replace(/\.json$/, ""));
-        elements.example.append(option);
-      });
-      state.catalog.sizes.forEach((size) => {
-        const option = document.createElement("option");
-        option.value = size.name;
-        option.textContent = `${displayName(size.name)} · ${size.width} × ${size.height}`;
-        elements.size.append(option);
-      });
 
-      elements.template.value = state.catalog.templates.some((item) => item.name === "dtc-social")
-        ? "dtc-social"
+      elements.template.value = state.catalog.templates.some((item) => item.name === "asl-content-card")
+        ? "asl-content-card"
         : state.catalog.templates[0].name;
-      elements.size.value = "og";
       elements.templateCount.textContent = `${state.catalog.templates.length} templates`;
-      loadDefaultValues();
+      state.activeExample = null;
+      renderFields();
+      renderDefinition();
     }
 
     elements.template.addEventListener("change", () => {
-      let currentData = {};
-      try {
-        currentData = collectData();
-      } catch (error) {
-        setStatus(error.message, "error");
-      }
-      elements.example.value = "";
-      applyTemplateRecommendation();
-      renderFields(currentData);
+      state.activeExample = null;
+      renderFields();
+      renderDefinition();
+      setStatus("");
     });
-    elements.example.addEventListener("change", () => applyExample(selectedExample()));
-    elements.loadExample.addEventListener("click", () => applyExample(selectedExample()));
-    elements.reset.addEventListener("click", loadDefaultValues);
-    elements.addField.addEventListener("click", () => {
-      addPlaceholder();
-      elements.fields.lastElementChild.querySelector(".placeholder-key").focus();
-    });
+    elements.fieldsTab.addEventListener("click", () => activateTab("fields"));
+    elements.definitionTab.addEventListener("click", () => activateTab("definition"));
+    elements.loadExample.addEventListener("click", () => applyExample(exampleForTemplate()));
     elements.form.addEventListener("submit", generate);
 
     loadCatalog().catch((error) => {
