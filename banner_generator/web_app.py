@@ -4,6 +4,7 @@ import argparse
 import base64
 import json
 import re
+from collections import Counter
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -32,13 +33,73 @@ def template_placeholders(template_path: Path) -> list[str]:
     return placeholders
 
 
+def canonical_template_name(template: str) -> str:
+    path = Path(template)
+    if path.name == "template.html":
+        return path.parent.name
+    return path.name
+
+
+def render_example_specs() -> list[tuple[Path, RenderSpec]]:
+    specs = []
+    for example_path in sorted(EXAMPLE_ROOT.rglob("*.json")):
+        payload = json.loads(example_path.read_text(encoding="utf-8"))
+        if (
+            not isinstance(payload, dict)
+            or not payload.get("template")
+            or not payload.get("output")
+        ):
+            continue
+        specs.append((example_path, load_spec(example_path)))
+    return specs
+
+
+def recommended_canvas(
+    template: str,
+    examples: list[tuple[Path, RenderSpec]],
+) -> dict[str, Any] | None:
+    matching = [
+        (path, spec)
+        for path, spec in examples
+        if canonical_template_name(spec.template) == template
+    ]
+    if not matching:
+        return None
+
+    viewport_counts = Counter(spec.viewport for _, spec in matching)
+    recommended_viewport, _ = viewport_counts.most_common(1)[0]
+    source_path, source_spec = next(
+        (path, spec)
+        for path, spec in matching
+        if spec.viewport == recommended_viewport
+    )
+    source_format = source_spec.format
+    if source_format is None:
+        suffix = source_spec.output.suffix.lower().lstrip(".")
+        source_format = "jpeg" if suffix in {"jpg", "jpeg"} else suffix
+
+    return {
+        "width": recommended_viewport[0],
+        "height": recommended_viewport[1],
+        "size": (
+            source_spec.size
+            if source_spec.width is None and source_spec.height is None
+            else None
+        ),
+        "format": source_format,
+        "source": str(source_path.relative_to(REPOSITORY_ROOT)),
+    }
+
+
 def template_catalog() -> list[dict[str, Any]]:
+    examples = render_example_specs()
     templates = []
     for template_path in sorted(TEMPLATE_ROOT.glob("*/template.html")):
         templates.append(
             {
                 "name": template_path.parent.name,
                 "placeholders": template_placeholders(template_path),
+                "recommended_canvas": recommended_canvas(template_path.parent.name, examples),
             }
         )
     return templates
@@ -46,15 +107,11 @@ def template_catalog() -> list[dict[str, Any]]:
 
 def example_catalog() -> list[dict[str, Any]]:
     examples = []
-    for example_path in sorted(EXAMPLE_ROOT.glob("*.json")):
-        payload = json.loads(example_path.read_text(encoding="utf-8"))
-        if not isinstance(payload, dict) or "template" not in payload or "output" not in payload:
-            continue
-        spec = load_spec(example_path)
+    for example_path, spec in render_example_specs():
         examples.append(
             {
                 "name": example_path.name,
-                "template": spec.template,
+                "template": canonical_template_name(spec.template),
                 "size": spec.size,
                 "width": spec.width,
                 "height": spec.height,

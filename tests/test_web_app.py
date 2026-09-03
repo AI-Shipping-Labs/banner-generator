@@ -14,12 +14,29 @@ def test_template_catalog_discovers_placeholders_without_viewport_fields():
     assert "height" not in templates["dtc-social"]["placeholders"]
 
 
+def test_template_catalog_exposes_spec_canvas_recommendations():
+    templates = {item["name"]: item for item in web_app.template_catalog()}
+
+    content_canvas = templates["asl-content-card"]["recommended_canvas"]
+    assert content_canvas["size"] == "og"
+    assert content_canvas["width"] == 1200
+    assert content_canvas["height"] == 630
+
+    certificate_canvas = templates["ai-hero-certificate"]["recommended_canvas"]
+    assert certificate_canvas["size"] is None
+    assert certificate_canvas["width"] == 1536
+    assert certificate_canvas["height"] == 1024
+    assert certificate_canvas["format"] == "pdf"
+    assert certificate_canvas["source"] == "examples/ai-hero-certificate.json"
+
+
 def test_example_catalog_only_includes_render_specs():
     examples = web_app.example_catalog()
 
     assert examples
     assert all(not example["name"].startswith("lambda-") for example in examples)
     assert {example["template"] for example in examples} >= {"dtc-social", "lab-card"}
+    assert "asl-blueprint-path" in {example["template"] for example in examples}
 
 
 def test_build_render_spec_accepts_custom_viewport(tmp_path: Path):
