@@ -150,6 +150,24 @@
       background: var(--lavender);
     }
 
+    .banner-id-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .banner-id-row input {
+      min-width: 0;
+      flex: 1;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+    }
+
+    .copy-id {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
     button.primary {
       width: 100%;
       min-height: 48px;
@@ -439,6 +457,14 @@
           <select id="template-select" required></select>
         </div>
 
+        <div class="field">
+          <label for="banner-id">Banner ID</label>
+          <div class="banner-id-row">
+            <input id="banner-id" type="text" readonly aria-label="Banner ID">
+            <button id="copy-banner-id" class="copy-id" type="button">Copy ID</button>
+          </div>
+        </div>
+
         <div class="placeholder-heading">
           <h3>Template fields</h3>
           <span class="field-help">Fill in the values</span>
@@ -494,6 +520,8 @@
     const elements = {
       category: document.querySelector("#category-select"),
       template: document.querySelector("#template-select"),
+      bannerId: document.querySelector("#banner-id"),
+      copyBannerId: document.querySelector("#copy-banner-id"),
       loadExample: document.querySelector("#load-example"),
       previewTab: document.querySelector("#preview-tab"),
       templateTab: document.querySelector("#template-tab"),
@@ -555,6 +583,7 @@
       });
       if (cards.length) elements.template.value = cards[0].path;
       state.activeExample = null;
+      renderBannerId();
       renderFields();
       renderDefinition();
     }
@@ -563,6 +592,11 @@
       return value
         .replace(/[-_]/g, " ")
         .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }
+
+    function renderBannerId() {
+      const card = selectedCard();
+      elements.bannerId.value = card ? card.path : "";
     }
 
     function setStatus(message, kind = "") {
@@ -736,7 +770,7 @@
       });
 
       const defaultCard = state.catalog.examples.find(
-        (card) => card.path === "examples/aisl/content-blog.json"
+        (card) => card.path === "examples/dtc/dtc-article-preview.json"
       ) || state.catalog.examples[0];
       elements.category.value = defaultCard.path.split("/")[1];
       populateBanners(elements.category.value);
@@ -750,6 +784,7 @@
     });
     elements.template.addEventListener("change", () => {
       state.activeExample = null;
+      renderBannerId();
       renderFields();
       renderDefinition();
       setStatus("");
@@ -758,6 +793,17 @@
     elements.templateTab.addEventListener("click", () => activateTab("template"));
     elements.specTab.addEventListener("click", () => activateTab("spec"));
     elements.loadExample.addEventListener("click", () => applyExample(exampleForTemplate()));
+    elements.copyBannerId.addEventListener("click", async () => {
+      if (!elements.bannerId.value) return;
+      try {
+        await navigator.clipboard.writeText(elements.bannerId.value);
+        setStatus("Banner ID copied.", "success");
+      } catch (error) {
+        elements.bannerId.focus();
+        elements.bannerId.select();
+        setStatus("Banner ID selected. Press Ctrl+C to copy.");
+      }
+    });
     elements.form.addEventListener("submit", generate);
 
     loadCatalog().catch((error) => {
