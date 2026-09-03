@@ -370,6 +370,11 @@ h1 {
   margin-bottom: auto;
 }
 
+.channel-og .top,
+.channel-youtube .top {
+  width: 66%;
+}
+
 .channel-og .copy h1 {
   max-width: 100%;
 }

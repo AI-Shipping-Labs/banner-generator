@@ -34,7 +34,11 @@ render-dtc-examples:
 	uv run banner-generator render examples/dtc-event-webinar-og.json
 	uv run banner-generator render examples/dtc-event-webinar-youtube.json
 	uv run banner-generator render examples/dtc-event-podcast-luma.json
+	uv run banner-generator render examples/dtc-event-podcast-og.json
+	uv run banner-generator render examples/dtc-event-podcast-youtube.json
 	uv run banner-generator render examples/dtc-event-workshop-luma.json
+	uv run banner-generator render examples/dtc-event-workshop-og.json
+	uv run banner-generator render examples/dtc-event-workshop-youtube.json
 	uv run banner-generator render examples/dtc-article-preview.json
 	uv run banner-generator render examples/dtc-book-preview.json
 	uv run banner-generator render examples/dtc-course-preview.json

@@ -1,0 +1,23 @@
+{
+  "template": "dtc-social",
+  "width": 1280,
+  "height": 720,
+  "format": "png",
+  "output": "output/dtc/event-workshop-youtube.png",
+  "variant": "workshop",
+  "channel": "youtube",
+  "brand": "DataTalks.Club",
+  "kind": "Workshop",
+  "kicker": "Hands-on workshop",
+  "title": "Build a RAG pipeline in 90 minutes",
+  "subtitle": "",
+  "person": "Alena Astrakhantseva",
+  "person_initials": "AA",
+  "person_role": "DataTalks.Club",
+  "meta_primary": "",
+  "meta_secondary": "",
+  "meta_tertiary": "",
+  "footer": "DataTalks.Club",
+  "title_size": 70,
+  "subtitle_size": 24
+}

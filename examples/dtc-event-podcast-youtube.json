@@ -1,0 +1,23 @@
+{
+  "template": "dtc-social",
+  "width": 1280,
+  "height": 720,
+  "format": "png",
+  "output": "output/dtc/event-podcast-youtube.png",
+  "variant": "podcast",
+  "channel": "youtube",
+  "brand": "DataTalks.Club",
+  "kind": "Podcast · #214",
+  "kicker": "Live podcast episode",
+  "title": "Breaking into analytics engineering",
+  "subtitle": "",
+  "person": "Alena Astrakhantseva",
+  "person_initials": "AA",
+  "person_role": "DataTalks.Club",
+  "meta_primary": "",
+  "meta_secondary": "",
+  "meta_tertiary": "",
+  "footer": "DataTalks.Club",
+  "title_size": 70,
+  "subtitle_size": 24
+}

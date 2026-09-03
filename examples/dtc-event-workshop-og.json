@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "og",
+  "format": "png",
+  "output": "output/dtc/event-workshop-og.png",
+  "variant": "workshop",
+  "channel": "og",
+  "brand": "DataTalks.Club",
+  "kind": "Workshop",
+  "kicker": "Wed 20 May · 16:00 CET · 90 min",
+  "title": "Build a RAG pipeline in 90 minutes",
+  "subtitle": "Bring a laptop. You leave with a working retrieval pipeline and a way to measure it.",
+  "person": "Alena Astrakhantseva",
+  "person_initials": "AA",
+  "person_role": "DataTalks.Club",
+  "meta_primary": "16:00",
+  "meta_secondary": "CET",
+  "meta_tertiary": "90 min · Online",
+  "footer": "DataTalks.Club",
+  "title_size": 60,
+  "subtitle_size": 23
+}
