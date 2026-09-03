@@ -100,6 +100,8 @@ def template_catalog() -> list[dict[str, Any]]:
                 "name": template_path.parent.name,
                 "placeholders": template_placeholders(template_path),
                 "recommended_canvas": recommended_canvas(template_path.parent.name, examples),
+                "path": str(template_path.relative_to(REPOSITORY_ROOT)),
+                "definition": template_path.read_text(encoding="utf-8"),
             }
         )
     return templates

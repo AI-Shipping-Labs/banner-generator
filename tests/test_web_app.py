@@ -12,6 +12,8 @@ def test_template_catalog_discovers_placeholders_without_viewport_fields():
     assert "title" in templates["dtc-social"]["placeholders"]
     assert "width" not in templates["dtc-social"]["placeholders"]
     assert "height" not in templates["dtc-social"]["placeholders"]
+    assert templates["dtc-social"]["path"] == "banner_generator/templates/dtc-social/template.html"
+    assert "${title}" in templates["dtc-social"]["definition"]
 
 
 def test_template_catalog_exposes_spec_canvas_recommendations():
