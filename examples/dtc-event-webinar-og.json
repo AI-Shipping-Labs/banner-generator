@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "og",
+  "format": "png",
+  "output": "output/dtc/event-webinar-og.png",
+  "variant": "webinar",
+  "channel": "og",
+  "brand": "DataTalks.Club",
+  "kind": "Webinar",
+  "kicker": "Mon 31 Aug · 17:00 CEST",
+  "title": "AI Dev Tools Zoomcamp 2026 Course Launch",
+  "subtitle": "A practical start to using AI developer tools with control, context, and a safe shipping loop.",
+  "person": "Alexey Grigorev",
+  "person_initials": "AG",
+  "person_role": "DataTalks.Club",
+  "meta_primary": "17:00",
+  "meta_secondary": "CEST",
+  "meta_tertiary": "Free · Online",
+  "footer": "DataTalks.Club",
+  "title_size": 60,
+  "subtitle_size": 23
+}

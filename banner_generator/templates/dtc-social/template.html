@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=${width}, initial-scale=1">
+  <title>${title}</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --width: ${width}px;
+      --height: ${height}px;
+      --title-size: ${title_size}px;
+      --subtitle-size: ${subtitle_size}px;
+    }
+  </style>
+</head>
+<body class="variant-${variant} channel-${channel}">
+  <main class="canvas">
+    <section class="poster" aria-label="${kind}: ${title}">
+      <div class="shape shape-top" aria-hidden="true"></div>
+      <div class="shape shape-bottom" aria-hidden="true"></div>
+
+      <header class="top">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 64 61" aria-hidden="true" focusable="false">
+            <path d="M17 3.2C27 1.6 39 1.8 48 3.6C55.5 5.2 60.8 9.4 61.4 16C62 22.6 61.8 30 60.6 36.4C59.4 42.8 56 47.2 49.6 48.6C46.6 49.2 43.4 49.4 40.2 49C39.4 53.4 38.8 57.4 37.6 61C36.4 57.2 34.4 53.4 31.8 50.2C27 49.6 22.2 48.8 18.2 47.4C11.4 45 6.4 40.6 4.6 34.2C2.8 27.8 2.6 20.6 3.8 14.6C5 8.6 10 4.6 17 3.2Z" />
+            <g class="brand-letters">
+              <path d="M13.3 33.2C12.6 28.6 12.5 23.8 13.1 19.1C17.9 18.5 22.5 20.2 23.8 24.4C25.2 28.9 22.2 32.7 17.5 33.3C16.1 33.5 14.7 33.4 13.3 33.2Z" />
+              <path d="M25.8 19.4C29.3 18.8 32.9 18.9 36.1 19.3" />
+              <path d="M31 19.1C30.5 23.7 30.6 28.5 31.2 33.2" />
+              <path d="M51 22.3C49.7 19.8 46.8 18.4 43.9 19.2C40.2 20.2 38.1 24.2 39 28C39.9 31.6 43.6 33.7 47 32.6C48.7 32 50 30.8 50.8 29.2" />
+            </g>
+          </svg>
+          <span>${brand}</span>
+        </div>
+        <div class="kind">${kind}</div>
+      </header>
+
+      <div class="main-avatar avatar" aria-hidden="true">
+        <span class="avatar-initials">${person_initials}</span>
+        <img src="${image_url}" alt="" onerror="this.remove()">
+      </div>
+
+      <section class="copy">
+        <div class="kicker">${kicker}</div>
+        <h1>${title}</h1>
+        <p class="subtitle">${subtitle}</p>
+      </section>
+
+      <footer class="bottom">
+        <div class="person">
+          <div class="avatar">
+            <span class="avatar-initials">${person_initials}</span>
+            <img src="${image_url}" alt="" onerror="this.remove()">
+          </div>
+          <div class="person-copy">
+            <b>${person}</b>
+            <span>${person_role}</span>
+          </div>
+        </div>
+        <div class="metadata">
+          <b>${meta_primary}</b>
+          <strong>${meta_secondary}</strong>
+          <span>${meta_tertiary}</span>
+        </div>
+        <div class="footer-brand">${footer}</div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

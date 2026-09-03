@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "og",
+  "format": "png",
+  "output": "output/dtc/course-preview.png",
+  "variant": "course",
+  "channel": "site",
+  "brand": "DataTalks.Club",
+  "kind": "Course",
+  "kicker": "Free · 9 weeks",
+  "title": "Data Engineering Zoomcamp",
+  "subtitle": "Hands-on work across ingestion, warehousing, orchestration, dbt, and streaming.",
+  "person": "DataTalks.Club",
+  "person_initials": "DTC",
+  "person_role": "Community course",
+  "meta_primary": "",
+  "meta_secondary": "",
+  "meta_tertiary": "",
+  "footer": "datatalks.club/courses",
+  "title_size": 64,
+  "subtitle_size": 23
+}

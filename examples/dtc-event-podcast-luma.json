@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "luma",
+  "format": "png",
+  "output": "output/dtc/event-podcast-luma.png",
+  "variant": "podcast",
+  "channel": "luma",
+  "brand": "DataTalks.Club",
+  "kind": "Podcast · #214",
+  "kicker": "Live conversation · no slides",
+  "title": "Engineering Your Own AI Assistant",
+  "subtitle": "A live conversation about the systems, trade-offs, and practical lessons behind a useful AI assistant.",
+  "person": "Paul Iusztin",
+  "person_initials": "PI",
+  "person_role": "Guest · DataTalks.Club",
+  "meta_primary": "Tue 21 Jul",
+  "meta_secondary": "17:00 CEST",
+  "meta_tertiary": "Live · Free",
+  "footer": "datatalks.club/podcast",
+  "title_size": 78,
+  "subtitle_size": 29
+}

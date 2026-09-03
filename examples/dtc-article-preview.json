@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "og",
+  "format": "png",
+  "output": "output/dtc/article-preview.png",
+  "variant": "article",
+  "channel": "site",
+  "brand": "DataTalks.Club",
+  "kind": "Article",
+  "kicker": "Field notes · 9 min read",
+  "title": "Why your feature store keeps drifting",
+  "subtitle": "Four failure modes we kept hitting in production, and the checks that caught them.",
+  "person": "Alena Astrakhantseva",
+  "person_initials": "AA",
+  "person_role": "DataTalks.Club",
+  "meta_primary": "",
+  "meta_secondary": "",
+  "meta_tertiary": "",
+  "footer": "datatalks.club/blog",
+  "title_size": 62,
+  "subtitle_size": 23
+}

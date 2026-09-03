@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "og",
+  "format": "png",
+  "output": "output/dtc/book-preview.png",
+  "variant": "book",
+  "channel": "site",
+  "brand": "DataTalks.Club",
+  "kind": "Book of the week",
+  "kicker": "14 – 18 September",
+  "title": "MLOps with Databricks",
+  "subtitle": "Machine learning and GenAI applications end to end.",
+  "person": "Maria Vechtomova",
+  "person_initials": "MV",
+  "person_role": "Author",
+  "meta_primary": "",
+  "meta_secondary": "",
+  "meta_tertiary": "",
+  "footer": "datatalks.club/books",
+  "title_size": 64,
+  "subtitle_size": 23
+}

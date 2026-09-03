@@ -1,0 +1,22 @@
+{
+  "template": "dtc-social",
+  "size": "luma",
+  "format": "png",
+  "output": "output/dtc/event-workshop-luma.png",
+  "variant": "workshop",
+  "channel": "luma",
+  "brand": "DataTalks.Club",
+  "kind": "Workshop",
+  "kicker": "Hands-on · bring a laptop",
+  "title": "Running Durable Agents in Production",
+  "subtitle": "A practical workshop on building agent workflows that can be observed, recovered, and shipped safely.",
+  "person": "Nicholas Lotz",
+  "person_initials": "NL",
+  "person_role": "Instructor · DataTalks.Club",
+  "meta_primary": "Tue 18 Aug",
+  "meta_secondary": "17:00 CEST",
+  "meta_tertiary": "Online workshop",
+  "footer": "datatalks.club/workshops",
+  "title_size": 82,
+  "subtitle_size": 29
+}
