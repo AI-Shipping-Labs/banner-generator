@@ -21,10 +21,8 @@ Package the same renderer for two execution paths:
 7. Add Dockerfile with Chromium/Playwright support.
 8. Add local Docker invocation docs.
 9. Verify:
-   - `make test`
-   - `make lint`
-   - `make render-content-examples`
-   - `make render-certificate-example`
+   - `uv run pytest`
+   - `uv run ruff check .`
    - package build contains templates/assets
    - Docker image builds
    - Docker image can render a sample event locally
