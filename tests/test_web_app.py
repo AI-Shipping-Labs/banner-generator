@@ -14,6 +14,14 @@ def test_template_catalog_discovers_placeholders_without_viewport_fields():
     assert "height" not in templates["dtc-social"]["placeholders"]
 
 
+def test_example_catalog_only_includes_render_specs():
+    examples = web_app.example_catalog()
+
+    assert examples
+    assert all(not example["name"].startswith("lambda-") for example in examples)
+    assert {example["template"] for example in examples} >= {"dtc-social", "lab-card"}
+
+
 def test_build_render_spec_accepts_custom_viewport(tmp_path: Path):
     spec = web_app.build_render_spec(
         {

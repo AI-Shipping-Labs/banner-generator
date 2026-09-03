@@ -47,6 +47,9 @@ def template_catalog() -> list[dict[str, Any]]:
 def example_catalog() -> list[dict[str, Any]]:
     examples = []
     for example_path in sorted(EXAMPLE_ROOT.glob("*.json")):
+        payload = json.loads(example_path.read_text(encoding="utf-8"))
+        if not isinstance(payload, dict) or "template" not in payload or "output" not in payload:
+            continue
         spec = load_spec(example_path)
         examples.append(
             {
