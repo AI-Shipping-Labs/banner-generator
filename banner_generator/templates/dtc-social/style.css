@@ -13,6 +13,7 @@
   --lavender-strong: #c9cdf2;
   --mint: #eff5ea;
   --green: #2b7a35;
+  --green-text: var(--green);
   --gold: #e2c67a;
   --sand: #f3f0e8;
   --indigo: #5a62c4;
@@ -25,15 +26,16 @@
 }
 
 body.theme-dark {
-  --ink: #f2f1ec;
-  --muted: #c6cad9;
-  --cream: #14172a;
-  --lavender: #191d33;
-  --lavender-strong: #3b4270;
-  --mint: #15251d;
-  --green: #4cb85a;
-  --indigo: #a6adf0;
-  --line: #454b6b;
+  --ink: #eaeaf7;
+  --muted: #aeb2d2;
+  --cream: #13162a;
+  --lavender: #232a52;
+  --lavender-strong: #3e4778;
+  --mint: #19382c;
+  --green: #2f6d59;
+  --green-text: #9bc9ad;
+  --indigo: #b0b7f5;
+  --line: rgba(174, 181, 244, 0.36);
   --sand: #2a2740;
 }
 
@@ -54,7 +56,7 @@ body {
 }
 
 .variant-podcast { --panel: var(--sand); --accent-fill: var(--gold); --accent-ink: #796022; }
-.variant-workshop { --panel: var(--mint); --accent-fill: var(--green); --accent-ink: var(--green); }
+.variant-workshop { --panel: var(--mint); --accent-fill: var(--green); --accent-ink: var(--green-text); }
 .variant-article { --accent-fill: var(--gold); --accent-ink: #796022; }
 .variant-book { --panel: var(--sand); --accent-fill: var(--gold); --accent-ink: #796022; }
 .theme-dark:is(.variant-podcast, .variant-article, .variant-book) { --accent-ink: var(--gold); }
