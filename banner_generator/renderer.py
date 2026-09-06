@@ -128,6 +128,9 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("date_label", "")
     values.setdefault("time_label", "")
     values.setdefault("theme", "light")
+    cover_image = str(data.get("cover_image_url") or "").strip()
+    values["cover_image_url"] = html.escape(cover_image, quote=True)
+    values["cover_image_class"] = "has-book-cover" if cover_image else ""
     course_image = str(data.get("course_image_url") or "").strip()
     dark_course_image = str(data.get("course_image_dark_url") or course_image).strip()
     values["course_image_url"] = html.escape(course_image, quote=True)

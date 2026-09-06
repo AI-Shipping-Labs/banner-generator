@@ -14,14 +14,15 @@
     }
   </style>
 </head>
-<body class="variant-${variant} channel-${channel} theme-${theme} ${course_image_class}">
+<body class="variant-${variant} channel-${channel} theme-${theme} ${course_image_class} ${cover_image_class}">
   <main class="canvas">
     <section class="poster" aria-label="${kind}: ${title}">
       <div class="shape shape-accent" aria-hidden="true"></div>
 
       <header class="top">
         <div class="brand">
-          <img class="brand-logo" src="../shared/logo_main.svg" alt="${brand}">
+          <img class="brand-logo brand-logo-light" src="../shared/logo_main.svg" alt="${brand}">
+          <img class="brand-logo brand-logo-dark" src="../shared/logo_white.svg" alt="${brand}">
         </div>
         <div class="kind">${kind}</div>
       </header>
@@ -32,6 +33,10 @@
           <h1>${title}</h1>
           <p class="subtitle">${subtitle}</p>
         </section>
+
+        <aside class="book-art" aria-hidden="true">
+          <img src="${cover_image_url}" alt="" decoding="sync">
+        </aside>
 
         <aside class="course-art" aria-hidden="true">
           <img class="course-art-light" src="${course_image_url}" alt="" decoding="sync">

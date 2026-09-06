@@ -18,5 +18,6 @@
   "meta_tertiary": "Online workshop",
   "footer": "datatalks.club/workshops",
   "title_size": 82,
-  "subtitle_size": 29
+  "subtitle_size": 29,
+  "image_url": "../../../examples/dtc/assets/nicholaslotz.jpg"
 }
