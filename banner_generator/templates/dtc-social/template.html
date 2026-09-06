@@ -14,7 +14,7 @@
     }
   </style>
 </head>
-<body class="variant-${variant} channel-${channel}">
+<body class="variant-${variant} channel-${channel} theme-${theme} ${course_image_class}">
   <main class="canvas">
     <section class="poster" aria-label="${kind}: ${title}">
       <div class="shape shape-accent" aria-hidden="true"></div>
@@ -32,6 +32,11 @@
           <h1>${title}</h1>
           <p class="subtitle">${subtitle}</p>
         </section>
+
+        <aside class="course-art" aria-hidden="true">
+          <img class="course-art-light" src="${course_image_url}" alt="" decoding="sync">
+          <img class="course-art-dark" src="${course_image_dark_url}" alt="" decoding="sync">
+        </aside>
 
         <aside class="feature" aria-label="Banner details">
           <div class="main-avatar avatar" aria-hidden="true">
