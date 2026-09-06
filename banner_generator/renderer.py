@@ -127,6 +127,12 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("headline", "")
     values.setdefault("date_label", "")
     values.setdefault("time_label", "")
+    values.setdefault("theme", "light")
+    course_image = str(data.get("course_image_url") or "").strip()
+    dark_course_image = str(data.get("course_image_dark_url") or course_image).strip()
+    values["course_image_url"] = html.escape(course_image, quote=True)
+    values["course_image_dark_url"] = html.escape(dark_course_image, quote=True)
+    values["course_image_class"] = "has-course-image" if course_image else ""
     values.setdefault("person", "")
     values.setdefault("person_role", "DataTalks.Club")
     values.setdefault("person_initials", "DTC")
