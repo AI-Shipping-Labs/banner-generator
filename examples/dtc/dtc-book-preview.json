@@ -18,5 +18,7 @@
   "meta_tertiary": "",
   "footer": "datatalks.club/books",
   "title_size": 64,
-  "subtitle_size": 23
+  "subtitle_size": 23,
+  "image_url": "../../../examples/dtc/assets/mariavechtomova.jpg",
+  "cover_image_url": "../../../examples/dtc/assets/mlops-with-databricks.jpg"
 }

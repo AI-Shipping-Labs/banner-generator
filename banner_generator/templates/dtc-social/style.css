@@ -14,6 +14,7 @@
   --mint: #eff5ea;
   --green: #2b7a35;
   --gold: #e2c67a;
+  --sand: #f3f0e8;
   --indigo: #5a62c4;
   --line: #d6d9e8;
   --surface: var(--cream);
@@ -33,11 +34,16 @@ body.theme-dark {
   --green: #4cb85a;
   --indigo: #a6adf0;
   --line: #454b6b;
+  --sand: #2a2740;
 }
 
 * { box-sizing: border-box; }
 
 body {
+  --surface: var(--cream);
+  --panel: var(--lavender);
+  --accent-fill: var(--lavender-strong);
+  --accent-ink: var(--indigo);
   width: var(--width);
   height: var(--height);
   margin: 0;
@@ -47,10 +53,10 @@ body {
   font-family: "Quicksand", "Trebuchet MS", Arial, sans-serif;
 }
 
-.variant-podcast { --accent-fill: var(--gold); --accent-ink: #796022; }
+.variant-podcast { --panel: var(--sand); --accent-fill: var(--gold); --accent-ink: #796022; }
 .variant-workshop { --panel: var(--mint); --accent-fill: var(--green); --accent-ink: var(--green); }
 .variant-article { --accent-fill: var(--gold); --accent-ink: #796022; }
-.variant-book { --accent-fill: var(--gold); --accent-ink: #796022; }
+.variant-book { --panel: var(--sand); --accent-fill: var(--gold); --accent-ink: #796022; }
 .theme-dark:is(.variant-podcast, .variant-article, .variant-book) { --accent-ink: var(--gold); }
 
 .canvas { width: 100%; height: 100%; }
@@ -84,7 +90,8 @@ body {
 .top, .content, .bottom { position: relative; z-index: 1; }
 .top, .bottom { display: flex; align-items: center; justify-content: space-between; gap: 28px; min-width: 0; }
 .brand-logo { display: block; width: 264px; height: auto; }
-.theme-dark .brand-logo { filter: grayscale(1) brightness(0) invert(.94); }
+.brand-logo-dark, .theme-dark .brand-logo-light { display: none; }
+.theme-dark .brand-logo-dark { display: block; }
 
 .kind {
   flex: 0 0 auto;
@@ -108,7 +115,7 @@ body {
 h1 { margin: 0; font-size: var(--title-size); font-weight: 700; letter-spacing: -.045em; line-height: 1.02; overflow-wrap: anywhere; text-wrap: balance; }
 .subtitle { max-width: 940px; margin: 0; color: var(--muted); font-size: var(--subtitle-size); font-weight: 500; line-height: 1.35; text-wrap: pretty; }
 .kicker:empty, .subtitle:empty { display: none; }
-.feature, .course-art { display: none; }
+.feature, .course-art, .book-art { display: none; }
 
 .bottom { min-height: 70px; padding-top: 22px; border-top: 1px solid var(--line); }
 .person { display: flex; align-items: center; min-width: 0; gap: 14px; }
@@ -188,3 +195,9 @@ h1 { margin: 0; font-size: var(--title-size); font-weight: 700; letter-spacing: 
 @media (max-height: 650px) {
   .poster { gap: 18px; padding-top: 28px; }
 }
+
+/* The real cover supplies a book's visual identity; it is never cropped. */
+.variant-book.has-book-cover .content { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; }
+.variant-book.has-book-cover h1 { max-width: 660px; font-size: max(var(--title-size), 76px); }
+.variant-book.has-book-cover .book-art { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 0; }
+.book-art img { display: block; max-width: 92%; max-height: 340px; object-fit: contain; transform: rotate(3deg); box-shadow: 12px 14px 0 var(--accent-fill); }

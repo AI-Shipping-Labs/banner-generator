@@ -14,6 +14,8 @@ layout gives more room to the headline and separates supporting details with rul
 - **Square events:** large editorial headline and a shared speaker/timing footer.
 - **YouTube:** a short headline and large speaker photograph. The subtitle is
   omitted because it does not survive thumbnail scale. Initials remain a fallback.
+- **Books:** the real book cover occupies a contained field, with the title and
+  author kept readable outside the artwork. Set `cover_image_url` to supply it.
 - **Articles:** full-width typography. A decorative course robot would compete
   with the article topic, so it is reserved for courses.
 - **Courses:** a dedicated illustration field alongside the title. The footer
@@ -39,3 +41,9 @@ reviewed on navy. Otherwise supply the dedicated companion.
 
 Render the sample family with `uv run python scripts/render_dtc_examples.py`.
 Outputs are written to `output/dtc/`; these generated review files are not committed.
+
+For a browser-rendered matrix in both themes, run
+`uv run python scripts/review_dtc_examples.py`. It writes a gallery to
+`output/dtc-review/index.html`, screenshots, and `checks.json`, and fails if text
+leaves the canvas, overlaps the header/footer, or a supplied content image fails
+to load. Inspect the gallery at social-preview scale as well as full resolution.

@@ -18,5 +18,6 @@
   "meta_tertiary": "Live · Free",
   "footer": "datatalks.club/podcast",
   "title_size": 78,
-  "subtitle_size": 29
+  "subtitle_size": 29,
+  "image_url": "../../../examples/dtc/assets/pauliusztin.jpg"
 }
