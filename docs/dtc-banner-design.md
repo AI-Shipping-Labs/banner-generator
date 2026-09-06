@@ -4,6 +4,11 @@ The DTC family shares Quicksand, cream/navy surfaces, lavender, mint and gold
 accents with the website design system. A thin accent band identifies the family;
 headline scale and content determine the composition.
 
+Palette values follow the website's actual `templates/core/_design_system.html`
+stylesheet. Its dark token values differ from the prose token table; use the
+stylesheet when synchronizing the two projects. Dark workshop text uses the pale
+green text token separately from the deeper green decorative fill.
+
 The earlier cards used a heavy perimeter, several competing outlined containers,
 and a tall time panel that reduced headline width. Website previews had no course
 artwork, and repeated the community identity as initials in an avatar. The revised
