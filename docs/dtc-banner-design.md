@@ -40,6 +40,18 @@ intentional internal fills, comfortable edge clearance, and similar composition
 in both themes. Never filter a light illustration to manufacture a dark companion.
 The website's `_docs/design/illustration-assets.md` defines asset production.
 
+The bundled `assets/course-learning.webp` and `assets/course-learning-dark.webp`
+are the website's accepted 1024 × 1024 pair, copied without changes. The course
+example uses both files. Their watercolor cloud supplies the decorative field,
+so the course layout omits the additional geometric background circle.
+
+Both drawings were produced with built-in imagegen and actual reference inputs:
+the light drawing first, then a dark adaptation anchored to that accepted light.
+Only the outer magenta backdrop was removed locally; the lilac/indigo cloud and
+the drawing's opaque white fills remain. The website's
+`_docs/design/course-illustrations.md` records the prompts and repeatable finishing
+command. Use that workflow when replacing the pair.
+
 If no course image is supplied, the title uses the full width. If no dark companion
 is supplied, the light asset is reused: only rely on this for artwork already
 reviewed on navy. Otherwise supply the dedicated companion.

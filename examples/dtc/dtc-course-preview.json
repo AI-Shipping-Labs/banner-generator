@@ -13,6 +13,8 @@
   "person": "DataTalks.Club",
   "person_initials": "DTC",
   "person_role": "Community course",
+  "course_image_url": "assets/course-learning.webp",
+  "course_image_dark_url": "assets/course-learning-dark.webp",
   "meta_primary": "",
   "meta_secondary": "",
   "meta_tertiary": "",
