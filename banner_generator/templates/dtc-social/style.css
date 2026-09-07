@@ -176,8 +176,7 @@ h1 { margin: 0; font-size: var(--title-size); font-weight: 700; letter-spacing: 
 .course-art .course-art-dark { display: none; }
 .theme-dark .course-art .course-art-light { display: none; }
 .theme-dark .course-art .course-art-dark { display: block; }
-.variant-course .shape-accent { top: 35px; right: -130px; width: 540px; height: 540px; border: 0; }
-.variant-course:not(.has-course-image) .shape-accent { display: none; }
+.variant-course .shape-accent { display: none; }
 
 /* Video: a quiet speaker field and headline that survives thumbnail scale. */
 .channel-youtube .poster { padding: 38px 430px 38px 44px; gap: 28px; }
