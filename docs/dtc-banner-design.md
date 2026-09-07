@@ -45,6 +45,11 @@ are the website's accepted 1024 × 1024 pair, copied without changes. The course
 example uses both files. Their watercolor cloud supplies the decorative field,
 so the course layout omits the additional geometric background circle.
 
+Asset source: `DataTalksClub/website` commit
+`c9679061e6f446c65c8e4e29ada6044375f1aa4d`, under
+`core/static/core/illustrations/`. Both bundled files match that commit byte for
+byte. Update this reference whenever the accepted pair is replaced.
+
 Both drawings were produced with built-in imagegen and actual reference inputs:
 the light drawing first, then a dark adaptation anchored to that accepted light.
 Only the outer magenta backdrop was removed locally; the lilac/indigo cloud and
