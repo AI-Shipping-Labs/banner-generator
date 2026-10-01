@@ -46,7 +46,7 @@ def _header(event: dict[str, Any], name: str) -> str | None:
 def _is_authorized(event: dict[str, Any]) -> bool:
     expected = os.environ.get("BANNER_GENERATOR_AUTH_TOKEN")
     if not expected:
-        return True
+        return False
 
     authorization = _header(event, "authorization") or ""
     token = authorization.removeprefix("Bearer ").strip()
