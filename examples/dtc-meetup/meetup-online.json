@@ -1,0 +1,11 @@
+{
+  "template": "dtc-meetup",
+  "size": "meetup",
+  "output": "output/dtc/meetup-online.png",
+  "data": {
+    "title": "AI engineering vs agentic engineering",
+    "datetime": "Mon, 23 Nov 2026 | 17:00 Berlin",
+    "speaker": "Alexey Grigorev",
+    "format": "ONLINE"
+  }
+}

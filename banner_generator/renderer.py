@@ -12,6 +12,7 @@ from typing import Any
 DEFAULT_SIZE = "og"
 SIZES = {
     "og": (1200, 630),
+    "meetup": (1200, 675),
     "certificate": (1536, 1024),
     "wide": (1600, 900),
     "square": (1080, 1080),
@@ -92,6 +93,9 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("title", "")
     values.setdefault("subtitle", "")
     values.setdefault("meta", "")
+    values.setdefault("datetime", "")
+    values.setdefault("speaker", "")
+    values.setdefault("format", "ONLINE")
     values.setdefault("brand", "AI Shipping Labs")
     values.setdefault("accent", "Ship real things with AI")
     values.setdefault("kind", "Content")

@@ -1,0 +1,149 @@
+:root {
+  --bg: #f6f7f9;
+  --ink: #0f1419;
+  --blue: #295698;
+  --orange: #f37021;
+  --muted: #4b5563;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: var(--width, 1200px);
+  height: var(--height, 675px);
+  overflow: hidden;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23e7eaef' stroke-width='2'%3E%3Crect x='10' y='10' width='28' height='28' rx='7'/%3E%3Crect x='54' y='10' width='28' height='28' rx='7'/%3E%3Crect x='10' y='54' width='28' height='28' rx='7'/%3E%3Crect x='54' y='54' width='28' height='28' rx='7'/%3E%3Ccircle cx='24' cy='24' r='4'/%3E%3Ccircle cx='68' cy='68' r='4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  padding: 46px 68px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.badge-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wrench-icon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  transform: scaleX(-1);
+}
+
+.pill-badge {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.pill-left {
+  background: var(--blue);
+  color: #ffffff;
+  padding: 12px 18px 12px 20px;
+}
+
+.pill-right {
+  background: var(--orange);
+  color: #ffffff;
+  padding: 12px 20px 12px 18px;
+}
+
+.main-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1060px;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  word-wrap: break-word;
+}
+
+.datetime {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--blue);
+}
+
+.datetime:empty {
+  display: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.dtc-brand {
+  display: flex;
+  align-items: center;
+}
+
+.dtc-logo {
+  height: 82px;
+  width: auto;
+  display: block;
+}
+
+.speaker-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  text-align: right;
+  padding-right: 16px;
+  border-right: 5px solid var(--orange);
+}
+
+.speaker-name:empty {
+  display: none;
+}
+
+.speaker-name:not(:empty)::before {
+  content: "SPEAKER";
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+  text-transform: uppercase;
+}
