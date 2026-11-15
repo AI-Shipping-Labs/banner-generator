@@ -4,9 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=${width}, initial-scale=1">
   <title>${title}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     :root {
@@ -18,27 +15,23 @@
 <body>
   <main class="canvas">
     <section class="poster" aria-label="Meetup: ${title}">
-      <header class="badge-row">
-        <svg class="wrench-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M47.6 10.4a13.5 13.5 0 0 0-16.8 16.8L12.6 45.4a5.2 5.2 0 0 0 7.4 7.4l18.2-18.2a13.5 13.5 0 0 0 16.8-16.8l-7.2 7.2-6.6-1.8-1.8-6.6 8.2-6.2z" fill="#295698"/>
-        </svg>
-        <div class="pill-badge">
-          <span class="pill-left">MEETUP</span>
-          <span class="pill-right">${format}</span>
+      <div class="shape" aria-hidden="true"></div>
+
+      <header class="top">
+        <img class="dtc-logo" src="../shared/logo_main.svg" alt="DataTalks.Club">
+        <div class="badge-row">
+          <span class="badge badge-kind">MEETUP</span>
+          <span class="badge badge-format">${format}</span>
         </div>
       </header>
 
       <div class="main-copy">
         <h1>${title}</h1>
-        <p class="datetime">${datetime}</p>
       </div>
 
       <footer class="footer">
-        <div class="dtc-brand" aria-label="DataTalks.Club">
-          <img class="dtc-logo" src="assets/logo_main.svg" alt="DataTalks.Club">
-        </div>
-
         <div class="speaker-name">${speaker}</div>
+        <p class="datetime">${datetime}</p>
       </footer>
     </section>
   </main>

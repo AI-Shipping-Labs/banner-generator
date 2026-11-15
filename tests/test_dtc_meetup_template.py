@@ -12,7 +12,8 @@ def test_dtc_meetup_template_is_resolvable():
     assert path.name == "template.html"
     assert path.parent.name == "dtc-meetup"
     assert (path.parent / "style.css").exists()
-    assert (path.parent / "assets" / "logo_main.svg").is_file()
+    assert (path.parents[1] / "shared" / "logo_main.svg").is_file()
+    assert (path.parents[1] / "dtc-social" / "assets" / "quicksand-latin-var.woff2").is_file()
 
 
 def test_meetup_size_preset_is_16_by_9():
@@ -32,7 +33,7 @@ def test_dtc_meetup_example_renders_all_fields():
     assert "AI engineering vs agentic engineering" in html
     assert "Mon, 23 Nov 2026 | 17:00 Berlin" in html
     assert "Alexey Grigorev" in html
-    assert 'src="assets/logo_main.svg"' in html
+    assert 'src="../shared/logo_main.svg"' in html
     assert '<svg class="dtc-logo"' not in html
 
 
