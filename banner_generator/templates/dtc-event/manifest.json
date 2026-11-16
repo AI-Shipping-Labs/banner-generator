@@ -1,0 +1,611 @@
+[
+  {
+    "template": "podcast-1-speaker-luma",
+    "sourceFrame": "Podcast - 1 speaker (Luma)",
+    "figmaNode": "3613:146",
+    "eventType": "podcast",
+    "layout": "square",
+    "width": 2000,
+    "height": 2000,
+    "speakerCount": 1,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "PODCAST",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 150.0,
+      "align": "center",
+      "widestExampleLine": 1624
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name_line_1",
+          "speaker1_name_line_2"
+        ],
+        "fontSize": 85.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "podcast-2-speakers",
+    "sourceFrame": "Podcast - 2 speakers",
+    "figmaNode": "3613:146",
+    "eventType": "podcast",
+    "layout": "square",
+    "width": 2000,
+    "height": 2000,
+    "speakerCount": 2,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "PODCAST",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 140.0,
+      "align": "center",
+      "widestExampleLine": 1748
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker1_portrait"
+      },
+      {
+        "nameKeys": [
+          "speaker2_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker2_portrait"
+      }
+    ]
+  },
+  {
+    "template": "webinar-1-speaker",
+    "sourceFrame": "Webinar - 1 speaker",
+    "figmaNode": "3613:146",
+    "eventType": "webinar",
+    "layout": "square",
+    "width": 2000,
+    "height": 2000,
+    "speakerCount": 1,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "WEBINAR",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2"
+      ],
+      "fontSize": 160.0,
+      "align": "center",
+      "widestExampleLine": 1666
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 100.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "webinar-2-speakers",
+    "sourceFrame": "Webinar - 2 speakers",
+    "figmaNode": "3613:146",
+    "eventType": "webinar",
+    "layout": "square",
+    "width": 2000,
+    "height": 2000,
+    "speakerCount": 2,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "WEBINAR",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 145.0,
+      "align": "left",
+      "widestExampleLine": 1401
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker1_portrait"
+      },
+      {
+        "nameKeys": [
+          "speaker2_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker2_portrait"
+      }
+    ]
+  },
+  {
+    "template": "webinar-2-speakers-2",
+    "sourceFrame": "Webinar - 2 speakers_2",
+    "figmaNode": "3613:146",
+    "eventType": "workshop",
+    "layout": "square",
+    "width": 2000,
+    "height": 2000,
+    "speakerCount": 2,
+    "sponsorLogo": true,
+    "label": {
+      "key": "label",
+      "default": "WORKSHOP",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 125.0,
+      "align": "left",
+      "widestExampleLine": 1562
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker1_portrait"
+      },
+      {
+        "nameKeys": [
+          "speaker2_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker2_portrait"
+      }
+    ]
+  },
+  {
+    "template": "workshop-1-speaker",
+    "sourceFrame": "Workshop - 1 speaker",
+    "figmaNode": "3613:146",
+    "eventType": "workshop",
+    "layout": "square",
+    "width": 2000,
+    "height": 2000,
+    "speakerCount": 1,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "WORKSHOP",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 130.0,
+      "align": "center",
+      "widestExampleLine": 1831
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 85.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "workshop-1-speaker-sponsored",
+    "sourceFrame": "Workshop - 1 speaker - sponsored",
+    "figmaNode": "3613:146",
+    "eventType": "workshop",
+    "layout": "square",
+    "width": 2000,
+    "height": 2000,
+    "speakerCount": 1,
+    "sponsorLogo": true,
+    "label": {
+      "key": "label",
+      "default": "WORKSHOP",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2"
+      ],
+      "fontSize": 150.0,
+      "align": "center",
+      "widestExampleLine": 1606
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 85.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-oss",
+    "sourceFrame": "YouTube OSS",
+    "figmaNode": "3613:146",
+    "eventType": "oss",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 1,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "OPEN SOURCE SPOTLIGHT",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title"
+      ],
+      "fontSize": 250.0,
+      "align": "center",
+      "widestExampleLine": 1105
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 80.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-oss-2",
+    "sourceFrame": "YouTube OSS_2",
+    "figmaNode": "3613:146",
+    "eventType": "oss",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 2,
+    "sponsorLogo": true,
+    "label": {
+      "key": "label",
+      "default": "OPEN SOURCE SPOTLIGHT",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title"
+      ],
+      "fontSize": 200.0,
+      "align": "center",
+      "widestExampleLine": 712
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 80.0,
+        "portrait": "speaker1_portrait"
+      },
+      {
+        "nameKeys": [
+          "speaker2_name"
+        ],
+        "fontSize": 80.0,
+        "portrait": "speaker2_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-podcast",
+    "sourceFrame": "YouTube Podcast",
+    "figmaNode": "3613:146",
+    "eventType": "podcast",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 1,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "PODCAST",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 140.0,
+      "align": "left",
+      "widestExampleLine": 1186
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name_line_1",
+          "speaker1_name_line_2"
+        ],
+        "fontSize": 85.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-podcast-2",
+    "sourceFrame": "YouTube Podcast_2",
+    "figmaNode": "3613:146",
+    "eventType": "podcast",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 2,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "PODCAST",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3",
+        "title_line_4"
+      ],
+      "fontSize": 140.0,
+      "align": "left",
+      "widestExampleLine": 1067
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker1_portrait"
+      },
+      {
+        "nameKeys": [
+          "speaker2_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker2_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-webinar",
+    "sourceFrame": "YouTube Webinar",
+    "figmaNode": "3613:146",
+    "eventType": "webinar",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 1,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "WEBINAR",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 170.0,
+      "align": "left",
+      "widestExampleLine": 1051
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 85.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-webinar-2",
+    "sourceFrame": "YouTube Webinar_2",
+    "figmaNode": "3613:146",
+    "eventType": "webinar",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 2,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "WEBINAR",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3",
+        "title_line_4"
+      ],
+      "fontSize": 145.0,
+      "align": "left",
+      "widestExampleLine": 1059
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker1_portrait"
+      },
+      {
+        "nameKeys": [
+          "speaker2_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker2_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-wokshop-sponsored",
+    "sourceFrame": "YouTube Wokshop - Sponsored",
+    "figmaNode": "3613:146",
+    "eventType": "workshop",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 1,
+    "sponsorLogo": true,
+    "label": {
+      "key": "label",
+      "default": "WORKSHOP",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 150.0,
+      "align": "left",
+      "widestExampleLine": 1235
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 85.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-workshop",
+    "sourceFrame": "YouTube Workshop",
+    "figmaNode": "3613:146",
+    "eventType": "workshop",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 1,
+    "sponsorLogo": false,
+    "label": {
+      "key": "label",
+      "default": "WORKSHOP",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3"
+      ],
+      "fontSize": 150.0,
+      "align": "left",
+      "widestExampleLine": 1235
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 85.0,
+        "portrait": "speaker1_portrait"
+      }
+    ]
+  },
+  {
+    "template": "youtube-workshop-sponsored",
+    "sourceFrame": "YouTube Workshop-sponsored",
+    "figmaNode": "3613:146",
+    "eventType": "workshop",
+    "layout": "landscape",
+    "width": 2400,
+    "height": 1350,
+    "speakerCount": 2,
+    "sponsorLogo": true,
+    "label": {
+      "key": "label",
+      "default": "WORKSHOP",
+      "fontSize": 80.0
+    },
+    "title": {
+      "keys": [
+        "title_line_1",
+        "title_line_2",
+        "title_line_3",
+        "title_line_4",
+        "title_line_5"
+      ],
+      "fontSize": 125.0,
+      "align": "left",
+      "widestExampleLine": 1074
+    },
+    "speakers": [
+      {
+        "nameKeys": [
+          "speaker1_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker1_portrait"
+      },
+      {
+        "nameKeys": [
+          "speaker2_name"
+        ],
+        "fontSize": 70.0,
+        "portrait": "speaker2_portrait"
+      }
+    ]
+  }
+]

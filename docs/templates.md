@@ -153,3 +153,28 @@ The named `luma` size is deliberately 1000 x 1000. Event banners also have `og` 
 630) and explicit YouTube (1280 x 720) examples; YouTube omits event dates so thumbnails
 remain evergreen. Render the complete sample set with
 `uv run python scripts/render_dtc_examples.py`.
+
+## `dtc-event`: DataTalks.Club event covers (Figma node 3613:146)
+
+The single source for DTC event covers (podcast, webinar, workshop, open-source spotlight;
+square 2000x2000 for Luma, landscape 2400x1350 for LinkedIn/Meetup/YouTube). The 16 templates
+under `banner_generator/templates/dtc-event/<frame>/template.html` are the exported Figma
+frames of *Templates -> Event Banners* in the
+[DataTalks.Club event banners Figma file](https://www.figma.com/design/Q0752C6PS1AbIdY4bmRAFA/DataTalks.Club-event-banners?node-id=3613-146):
+same shapes, colours, font sizes and baselines. There is **no date line and no logo** in
+these designs; do not add them.
+
+`manifest.json` lists each frame's event type, layout, speaker count and slots. Slots:
+`label`, `title_line_N`, `speakerN_name[_line_N]`, `speakerN_portrait`, `sponsor_logo`.
+Title lines are broken by the caller (Figma fixes the line count per frame); `font-metrics.json`
+holds Ubuntu Bold advance widths for measuring. Guest portraits, names and sponsor logos are
+not stored in this public repo.
+
+```bash
+uv run python scripts/render_dtc_event_templates.py output/dtc-event   # sample render of all 16
+uv run --with pillow python scripts/import_figma_event_banners.py PATH/TO/dataops-knowledge/banner-generator   # re-import from the Figma export
+```
+
+`webinar-2-speakers-2` and `youtube-workshop-sponsored` are labelled WORKSHOP in Figma, and
+`youtube-podcast`-style frames break titles differently from the square ones; the catalogue in
+the import script records the event type of each frame.
