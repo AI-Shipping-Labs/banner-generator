@@ -87,6 +87,15 @@ def main(kit: Path) -> None:
         defs = root.find(Q + "defs")
         byid = {e.get("id"): e for e in defs.iter() if e.get("id")}
         order = {id(e): i for i, e in enumerate(root.iter())}
+        parent = {id(c): p for p in root.iter() for c in p}
+
+        def pill(t: ET.Element):
+            """The filled rounded rect drawn behind a label/name text, if any: its width and the text's left padding."""
+            for r in parent[id(t)].findall(Q + "rect"):
+                if r.get("rx") and r.get("fill", "").startswith("#"):
+                    rx, rw = float(r.get("x")), float(r.get("width"))
+                    return r, {"pillWidth": round(rw, 2), "pillX": round(rx, 2), "textPad": round(float(list(t)[0].get("x")) - rx, 2)}
+            return None, None
 
         # Portrait slots: every #Photo group fills an ellipse with a pattern; give each slot its own image.
         photos = sorted((g for g in root.iter(Q + "g") if (g.get("id") or "").startswith("#Photo")), key=lambda g: order[id(g)])
@@ -152,11 +161,22 @@ def main(kit: Path) -> None:
             return {"keys": keys, "fontSize": size, "align": "center" if centred else "left", "defaultText": lines[0].rstrip(),
                     "widestExampleLine": round(max(widths))}
 
+        label_rect, label_pill = pill(label)
         label_info = retarget(label, "label", False)
+        label_rect.set("width", "${label_pill_width}")  # hugs the label text (Figma: text width + 2 x padding)
         title_info = retarget(title, "title", True)
+        title.set("font-size", "${title_font_size}")  # Figma size unless a long title needs shrinking
         speakers = []
         for n, t in enumerate(names, 1):
+            rect, name_pill = pill(t)
             info = retarget(t, f"speaker{n}_name", True)
+            # Name pills that hug a single line (padding ~20) are resized to the name; fixed pills keep their size.
+            name_pill["hug"] = name_pill["textPad"] < 40
+            if name_pill["hug"]:
+                rect.set("x", "${speaker%d_pill_x}" % n)
+                rect.set("width", "${speaker%d_pill_width}" % n)
+            name_pill["centerX"] = float(list(t)[0].get("x"))
+            info["pill"] = name_pill
             info["portrait"] = portraits[n - 1] if n - 1 < len(portraits) else None
             speakers.append(info)
         label_default = label_info["defaultText"]
@@ -173,9 +193,9 @@ def main(kit: Path) -> None:
         out_manifest.append({
             "template": name, "sourceFrame": meta["sourceFrame"], "figmaNode": "3613:146", "eventType": event_type, "layout": layout,
             "width": meta["width"], "height": meta["height"], "speakerCount": len(speakers), "sponsorLogo": logo_slot,
-            "label": {"key": label_info["keys"][0], "default": label_default, "fontSize": label_info["fontSize"]},
+            "label": {"key": label_info["keys"][0], "default": label_default, "fontSize": label_info["fontSize"], "pill": label_pill},
             "title": {k: title_info[k] for k in ("keys", "fontSize", "align", "widestExampleLine")},
-            "speakers": [{"nameKeys": s["keys"], "fontSize": s["fontSize"], "portrait": s["portrait"]} for s in speakers],
+            "speakers": [{"nameKeys": s["keys"], "fontSize": s["fontSize"], "portrait": s["portrait"], "pill": s["pill"]} for s in speakers],
         })
     (OUT / "manifest.json").write_text(json.dumps(out_manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Imported {len(out_manifest)} Figma frames into {OUT}")

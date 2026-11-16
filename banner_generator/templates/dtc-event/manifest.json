@@ -12,7 +12,12 @@
     "label": {
       "key": "label",
       "default": "PODCAST",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 422.0,
+        "pillX": 1272.0,
+        "textPad": 20.45
+      }
     },
     "title": {
       "keys": [
@@ -31,7 +36,14 @@
           "speaker1_name_line_2"
         ],
         "fontSize": 85.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 960.0,
+          "pillX": 1483.0,
+          "textPad": 189.35,
+          "hug": false,
+          "centerX": 1959.09
+        }
       }
     ]
   },
@@ -48,7 +60,12 @@
     "label": {
       "key": "label",
       "default": "PODCAST",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 422.0,
+        "pillX": 3364.0,
+        "textPad": 20.45
+      }
     },
     "title": {
       "keys": [
@@ -66,14 +83,28 @@
           "speaker1_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 515.0,
+          "pillX": 3440.6,
+          "textPad": 20.46,
+          "hug": true,
+          "centerX": 3693.48
+        }
       },
       {
         "nameKeys": [
           "speaker2_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker2_portrait"
+        "portrait": "speaker2_portrait",
+        "pill": {
+          "pillWidth": 741.0,
+          "pillX": 4098.6,
+          "textPad": 20.43,
+          "hug": true,
+          "centerX": 4464.09
+        }
       }
     ]
   },
@@ -90,7 +121,12 @@
     "label": {
       "key": "label",
       "default": "WEBINAR",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 415.0,
+        "pillX": 1287.0,
+        "textPad": 20.04
+      }
     },
     "title": {
       "keys": [
@@ -107,7 +143,14 @@
           "speaker1_name"
         ],
         "fontSize": 100.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 684.0,
+          "pillX": 1639.75,
+          "textPad": 20.42,
+          "hug": true,
+          "centerX": 1976.22
+        }
       }
     ]
   },
@@ -124,7 +167,12 @@
     "label": {
       "key": "label",
       "default": "WEBINAR",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 415.0,
+        "pillX": 3513.0,
+        "textPad": 20.04
+      }
     },
     "title": {
       "keys": [
@@ -142,14 +190,28 @@
           "speaker1_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 524.0,
+          "pillX": 3460.1,
+          "textPad": 20.21,
+          "hug": true,
+          "centerX": 3718.02
+        }
       },
       {
         "nameKeys": [
           "speaker2_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker2_portrait"
+        "portrait": "speaker2_portrait",
+        "pill": {
+          "pillWidth": 524.0,
+          "pillX": 4280.1,
+          "textPad": 20.21,
+          "hug": true,
+          "centerX": 4538.02
+        }
       }
     ]
   },
@@ -166,7 +228,12 @@
     "label": {
       "key": "label",
       "default": "WORKSHOP",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 507.0,
+        "pillX": 6673.0,
+        "textPad": 20.34
+      }
     },
     "title": {
       "keys": [
@@ -184,14 +251,28 @@
           "speaker1_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 524.0,
+          "pillX": 7405.1,
+          "textPad": 20.21,
+          "hug": true,
+          "centerX": 7663.02
+        }
       },
       {
         "nameKeys": [
           "speaker2_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker2_portrait"
+        "portrait": "speaker2_portrait",
+        "pill": {
+          "pillWidth": 448.0,
+          "pillX": 6749.0,
+          "textPad": 20.08,
+          "hug": true,
+          "centerX": 6969.73
+        }
       }
     ]
   },
@@ -208,7 +289,12 @@
     "label": {
       "key": "label",
       "default": "WORKSHOP",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 507.0,
+        "pillX": 3549.0,
+        "textPad": 20.34
+      }
     },
     "title": {
       "keys": [
@@ -226,7 +312,14 @@
           "speaker1_name"
         ],
         "fontSize": 85.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 960.0,
+          "pillX": 3826.0,
+          "textPad": 153.53,
+          "hug": false,
+          "centerX": 4299.64
+        }
       }
     ]
   },
@@ -243,7 +336,12 @@
     "label": {
       "key": "label",
       "default": "WORKSHOP",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 507.0,
+        "pillX": 1260.0,
+        "textPad": 20.34
+      }
     },
     "title": {
       "keys": [
@@ -260,7 +358,14 @@
           "speaker1_name"
         ],
         "fontSize": 85.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 960.0,
+          "pillX": 1467.0,
+          "textPad": 156.44,
+          "hug": false,
+          "centerX": 1942.21
+        }
       }
     ]
   },
@@ -277,7 +382,12 @@
     "label": {
       "key": "label",
       "default": "OPEN SOURCE SPOTLIGHT",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 1064.0,
+        "pillX": 1277.85,
+        "textPad": 20.12
+      }
     },
     "title": {
       "keys": [
@@ -293,7 +403,14 @@
           "speaker1_name"
         ],
         "fontSize": 80.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 692.0,
+          "pillX": 2488.0,
+          "textPad": 149.32,
+          "hug": false,
+          "centerX": 2830.46
+        }
       }
     ]
   },
@@ -310,7 +427,12 @@
     "label": {
       "key": "label",
       "default": "OPEN SOURCE SPOTLIGHT",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 1064.0,
+        "pillX": 3847.85,
+        "textPad": 20.12
+      }
     },
     "title": {
       "keys": [
@@ -326,14 +448,28 @@
           "speaker1_name"
         ],
         "fontSize": 80.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 650.0,
+          "pillX": 5251.1,
+          "textPad": 20.46,
+          "hug": true,
+          "centerX": 5573.69
+        }
       },
       {
         "nameKeys": [
           "speaker2_name"
         ],
         "fontSize": 80.0,
-        "portrait": "speaker2_portrait"
+        "portrait": "speaker2_portrait",
+        "pill": {
+          "pillWidth": 650.0,
+          "pillX": 4825.1,
+          "textPad": 20.46,
+          "hug": true,
+          "centerX": 5147.69
+        }
       }
     ]
   },
@@ -350,7 +486,12 @@
     "label": {
       "key": "label",
       "default": "PODCAST",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 422.0,
+        "pillX": 5505.0,
+        "textPad": 20.45
+      }
     },
     "title": {
       "keys": [
@@ -369,7 +510,14 @@
           "speaker1_name_line_2"
         ],
         "fontSize": 85.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 642.0,
+          "pillX": 6732.0,
+          "textPad": 20.14,
+          "hug": true,
+          "centerX": 7043.98
+        }
       }
     ]
   },
@@ -386,7 +534,12 @@
     "label": {
       "key": "label",
       "default": "PODCAST",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 422.0,
+        "pillX": 8153.0,
+        "textPad": 20.45
+      }
     },
     "title": {
       "keys": [
@@ -405,14 +558,28 @@
           "speaker1_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 515.0,
+          "pillX": 9642.6,
+          "textPad": 20.46,
+          "hug": true,
+          "centerX": 9895.48
+        }
       },
       {
         "nameKeys": [
           "speaker2_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker2_portrait"
+        "portrait": "speaker2_portrait",
+        "pill": {
+          "pillWidth": 741.0,
+          "pillX": 9107.6,
+          "textPad": 20.43,
+          "hug": true,
+          "centerX": 9473.1
+        }
       }
     ]
   },
@@ -429,7 +596,12 @@
     "label": {
       "key": "label",
       "default": "WEBINAR",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 415.0,
+        "pillX": 5702.0,
+        "textPad": 20.04
+      }
     },
     "title": {
       "keys": [
@@ -447,7 +619,14 @@
           "speaker1_name"
         ],
         "fontSize": 85.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 587.0,
+          "pillX": 6849.5,
+          "textPad": 20.16,
+          "hug": true,
+          "centerX": 7138.3
+        }
       }
     ]
   },
@@ -464,7 +643,12 @@
     "label": {
       "key": "label",
       "default": "WEBINAR",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 415.0,
+        "pillX": 8166.0,
+        "textPad": 20.04
+      }
     },
     "title": {
       "keys": [
@@ -483,14 +667,28 @@
           "speaker1_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 474.0,
+          "pillX": 9631.1,
+          "textPad": 20.02,
+          "hug": true,
+          "centerX": 9864.47
+        }
       },
       {
         "nameKeys": [
           "speaker2_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker2_portrait"
+        "portrait": "speaker2_portrait",
+        "pill": {
+          "pillWidth": 691.0,
+          "pillX": 9096.6,
+          "textPad": 20.48,
+          "hug": true,
+          "centerX": 9437.24
+        }
       }
     ]
   },
@@ -507,7 +705,12 @@
     "label": {
       "key": "label",
       "default": "WORKSHOP",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 507.0,
+        "pillX": 8813.0,
+        "textPad": 20.34
+      }
     },
     "title": {
       "keys": [
@@ -525,7 +728,14 @@
           "speaker1_name"
         ],
         "fontSize": 85.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 688.0,
+          "pillX": 10036.0,
+          "textPad": 20.4,
+          "hug": true,
+          "centerX": 10375.17
+        }
       }
     ]
   },
@@ -542,7 +752,12 @@
     "label": {
       "key": "label",
       "default": "WORKSHOP",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 507.0,
+        "pillX": 5967.0,
+        "textPad": 20.34
+      }
     },
     "title": {
       "keys": [
@@ -560,7 +775,14 @@
           "speaker1_name"
         ],
         "fontSize": 85.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 688.0,
+          "pillX": 7167.5,
+          "textPad": 20.44,
+          "hug": true,
+          "centerX": 7506.71
+        }
       }
     ]
   },
@@ -577,7 +799,12 @@
     "label": {
       "key": "label",
       "default": "WORKSHOP",
-      "fontSize": 80.0
+      "fontSize": 80.0,
+      "pill": {
+        "pillWidth": 507.0,
+        "pillX": 11463.0,
+        "textPad": 20.3
+      }
     },
     "title": {
       "keys": [
@@ -597,14 +824,28 @@
           "speaker1_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker1_portrait"
+        "portrait": "speaker1_portrait",
+        "pill": {
+          "pillWidth": 448.0,
+          "pillX": 12550.1,
+          "textPad": 20.1,
+          "hug": true,
+          "centerX": 12770.85
+        }
       },
       {
         "nameKeys": [
           "speaker2_name"
         ],
         "fontSize": 70.0,
-        "portrait": "speaker2_portrait"
+        "portrait": "speaker2_portrait",
+        "pill": {
+          "pillWidth": 524.0,
+          "pillX": 12881.1,
+          "textPad": 20.2,
+          "hug": true,
+          "centerX": 13139.01
+        }
       }
     ]
   }

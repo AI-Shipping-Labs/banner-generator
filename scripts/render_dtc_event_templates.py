@@ -8,20 +8,18 @@ import json
 import sys
 from pathlib import Path
 
+from banner_generator.event_cover import fit_cover
 from banner_generator.renderer import RenderSpec, render
 
 ROOT = Path(__file__).resolve().parents[1] / "banner_generator" / "templates" / "dtc-event"
-SAMPLE_TITLE = ["Sample event title", "that fills the lines", "of the Figma design", "as the title block", "of the template"]
+SAMPLE_TITLE = "Sample event title that fills the lines of the Figma design"
 
 
 def sample_data(entry: dict, portrait: str, logo: str) -> dict:
-    data = {entry["label"]["key"]: entry["label"]["default"]}
-    keys = entry["title"]["keys"]
-    for key, line in zip(keys, SAMPLE_TITLE):
-        data[key] = line
-    for n, speaker in enumerate(entry["speakers"], 1):
-        for key, part in zip(speaker["nameKeys"], ["Speaker", f"Number{n}"]):
-            data[key] = part
+    names = [f"Speaker {n}" for n in range(1, entry["speakerCount"] + 1)]
+    title = SAMPLE_TITLE if len(entry["title"]["keys"]) > 1 else "Sample"
+    data = fit_cover(entry, title, names)
+    for speaker in entry["speakers"]:
         data[speaker["portrait"]] = portrait
     if entry["sponsorLogo"]:
         data["sponsor_logo"] = logo
