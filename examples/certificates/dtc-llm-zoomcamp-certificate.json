@@ -1,0 +1,12 @@
+{
+  "template": "dtc-zoomcamp-certificate",
+  "size": "zoomcamp-certificate",
+  "format": "pdf",
+  "output": "output/certificates/dtc-llm-zoomcamp-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "LLM Zoomcamp 2026",
+  "dates": "27 August 2026",
+  "certificate_id": "example-llm",
+  "certificate_url": "https://certificate.datatalks.club/llm-zoomcamp/2026/example-llm.pdf",
+  "qr": "assets/test-qr.svg"
+}

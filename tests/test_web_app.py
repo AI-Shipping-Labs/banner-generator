@@ -29,7 +29,19 @@ def test_template_catalog_exposes_spec_canvas_recommendations():
     assert certificate_canvas["width"] == 1536
     assert certificate_canvas["height"] == 1024
     assert certificate_canvas["format"] == "pdf"
-    assert certificate_canvas["source"] == "examples/aisl/ai-hero-certificate.json"
+    assert certificate_canvas["source"] == "examples/certificates/ai-hero-certificate.json"
+
+    zoomcamp_canvas = templates["dtc-zoomcamp-certificate"]["recommended_canvas"]
+    assert zoomcamp_canvas["size"] == "zoomcamp-certificate"
+    assert zoomcamp_canvas["width"] == 1920
+    assert zoomcamp_canvas["height"] == 1080
+    assert zoomcamp_canvas["format"] == "pdf"
+
+    buildcamp_canvas = templates["ai-buildcamp-certificate"]["recommended_canvas"]
+    assert buildcamp_canvas["size"] == "certificate"
+    assert buildcamp_canvas["width"] == 1536
+    assert buildcamp_canvas["height"] == 1024
+    assert buildcamp_canvas["format"] == "pdf"
 
 
 def test_example_catalog_only_includes_render_specs():
@@ -38,6 +50,10 @@ def test_example_catalog_only_includes_render_specs():
     assert examples
     assert all(not example["name"].startswith("lambda-") for example in examples)
     assert {example["template"] for example in examples} >= {"dtc-social", "ai-hero-certificate"}
+    assert {example["template"] for example in examples} >= {
+        "ai-buildcamp-certificate",
+        "dtc-zoomcamp-certificate",
+    }
     assert "asl-blueprint-path" in {example["template"] for example in examples}
 
     dtc_cards = [example for example in examples if example["path"].startswith("examples/dtc/")]

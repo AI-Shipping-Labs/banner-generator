@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataTalks.Club Certificate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Ubuntu">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="certificate">
+    <div class="sticky-top">
+      <img src="assets/logo_main.svg" class="logo" alt="DataTalks.Club logo" />
+      <h1 class="title">Statement of Accomplishment</h1>
+    </div>
+
+    <div class="middle">
+      <div class="student-name-box">
+        <p>has been awarded to</p>
+        <div class="student-name">
+          <img src="assets/name-deco-left.svg" alt="" />
+          <h2 id="name">${name}</h2>
+          <img src="assets/name-deco-right.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="sticky-bottom">
+      <div class="course-name">
+        <p>for successfully completing</p>
+        <h2>${course_name}</h2>
+      </div>
+
+      <div class="signature-container">
+        <div class="signature-box">
+          <img src="assets/alexey-signature.svg" class="signature-image" alt="Alexey Grigorev signature" />
+
+          <svg width="400" height="2" viewBox="0 0 400 2" fill="none"
+            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="400" height="2" fill="#A8A8A8"/>
+          </svg>
+
+          <p>Lead instructor</p>
+        </div>
+        <div class="date-box">
+          <p class="date">${dates}</p>
+
+          <svg width="400" height="2" viewBox="0 0 400 2" fill="none"
+            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="400" height="2" fill="#A8A8A8"/>
+          </svg>
+
+          <p>date</p>
+        </div>
+      </div>
+
+      <div class="certificate-id-box">
+        <p>Certificate number
+          <a href="${certificate_url}" target="_blank" id="certificate-id">${certificate_id}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="QR-box">
+    <img id="qr" src="${qr}" class="QR" alt="Certificate verification QR code" />
+    <img src="assets/favicon_main-outline.svg" class="QR-overlay" alt="" />
+  </div>
+
+  <script>
+    const studentName = document.getElementById("name");
+
+    function fitStudentName() {
+      const maxWidth = 1300;
+      const maxFontSize = 94.76;
+      const minFontSize = 45;
+
+      studentName.style.whiteSpace = "nowrap";
+      studentName.style.fontSize = maxFontSize + "px";
+
+      let low = minFontSize;
+      let high = maxFontSize;
+
+      while (high - low > 0.1) {
+        const middle = (low + high) / 2;
+        studentName.style.fontSize = middle + "px";
+
+        if (studentName.scrollWidth > maxWidth) {
+          high = middle;
+        } else {
+          low = middle;
+        }
+      }
+
+      studentName.style.fontSize = low + "px";
+    }
+
+    new MutationObserver(fitStudentName).observe(studentName, {
+      childList: true,
+      characterData: true,
+      subtree: true
+    });
+
+    fitStudentName();
+    document.fonts.ready.then(fitStudentName);
+  </script>
+</body>
+</html>

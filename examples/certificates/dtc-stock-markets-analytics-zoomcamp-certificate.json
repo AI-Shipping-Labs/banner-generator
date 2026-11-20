@@ -1,0 +1,12 @@
+{
+  "template": "dtc-zoomcamp-certificate",
+  "size": "zoomcamp-certificate",
+  "format": "pdf",
+  "output": "output/certificates/dtc-stock-markets-analytics-zoomcamp-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "Stock Markets Analytics Zoomcamp",
+  "dates": "3 October 2025",
+  "certificate_id": "example-stock-markets",
+  "certificate_url": "https://certificate.datatalks.club/smazoomcamp/2025/example-stock-markets.pdf",
+  "qr": "assets/test-qr.svg"
+}

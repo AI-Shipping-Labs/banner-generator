@@ -1,0 +1,13 @@
+{
+  "template": "ai-buildcamp-certificate",
+  "size": "certificate",
+  "format": "pdf",
+  "output": "output/certificates/ai-buildcamp-certificate.pdf",
+  "name": "Jane Doe",
+  "course_name": "AI Engineering Buildcamp",
+  "dates": "24 June 2026",
+  "course_url": "https://maven.com/alexey-grigorev/from-rag-to-agents",
+  "certificate_id": "example-buildcamp",
+  "certificate_url": "https://certificates.aishippinglabs.com/ai-buildcamp/3/example-buildcamp.pdf",
+  "qr": "assets/test-qr.svg"
+}
