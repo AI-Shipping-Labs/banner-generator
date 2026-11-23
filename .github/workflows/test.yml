@@ -6,7 +6,8 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, contabo]
     steps:
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
