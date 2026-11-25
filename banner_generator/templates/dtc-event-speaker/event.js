@@ -11,6 +11,11 @@
   const n = shown.length;
   const landscape = window.innerWidth > window.innerHeight * 1.2;
   body.classList.add(landscape ? "landscape" : "square", "t-" + (KINDS.includes(kind) ? kind : "webinar"));
+  // A 16:9 canvas (YouTube thumbnail / video poster, 1280x720) gets larger portraits.
+  if (landscape && window.innerHeight >= 700) body.classList.add("tall");
+  // Optional series line under the speaker names, e.g. "DataTalks.Club Podcast · S15 E6".
+  const series = (d.series || "").trim();
+  if (series) body.classList.add("has-series");
 
   // A title that fits at a large size is kept whole (sibling events such as
   // "Course: Launch" and "Course: Live Q&A" must not share one headline). Only a
@@ -112,7 +117,7 @@
       const b = el("b", "", `${speakers.length} speakers`); b.style.fontSize = "52px"; who.append(b);
     }
     const meta = el("div", "meta");
-    meta.append(who); if (n) meta.append(when);
+    meta.append(who); if (series) meta.append(el("div", "series", series)); if (n) meta.append(when);
     const copy = el("div", "copy");
     copy.append(pill, titleBox, meta);
     if (sponsor) copy.append(sponsorRow());
@@ -127,6 +132,7 @@
     }
     const side = el("div", "side");
     side.append(pill, who);
+    if (series) side.append(el("div", "series", series));
     if (n) side.append(when);
     const top = el("div", "top");
     top.append(faces, side);

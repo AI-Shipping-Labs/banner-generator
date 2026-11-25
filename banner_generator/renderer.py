@@ -12,6 +12,7 @@ from typing import Any
 DEFAULT_SIZE = "og"
 SIZES = {
     "og": (1200, 630),
+    "youtube": (1280, 720),
     "meetup": (1200, 675),
     "certificate": (1536, 1024),
     "zoomcamp-certificate": (1920, 1080),
@@ -126,6 +127,7 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("speakers", "[]")
     values.setdefault("headline", "")
     values.setdefault("sponsor", "")
+    values.setdefault("series", "")
     values.setdefault("date_label", "")
     values.setdefault("time_label", "")
     values.setdefault("theme", "light")
