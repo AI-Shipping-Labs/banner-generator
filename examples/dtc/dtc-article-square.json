@@ -1,0 +1,17 @@
+{
+  "template": "dtc-article",
+  "format": "png",
+  "size": "luma",
+  "output": "output/dtc/article-square.png",
+  "kind": "Article",
+  "title": "Benefits of Learning in Public and Why It Works",
+  "date_label": "25 Jan 2026",
+  "reading_time": "8 min read",
+  "authors": [
+    {
+      "name": "Alexey Grigorev",
+      "image_url": "../../../examples/dtc/assets/alexeygrigorev.jpg",
+      "crop": {"zoom": 1.5, "x": 65, "y": 20}
+    }
+  ]
+}

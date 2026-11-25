@@ -94,6 +94,34 @@ More examples: `examples/dtc/dtc-event-speaker-two-speakers-luma.json`,
 `examples/dtc/dtc-event-speaker-no-speakers-luma.json`, and the sponsored
 `examples/dtc/dtc-event-speaker-sponsor-luma.json` / `-sponsor-og.json`.
 
+### DataTalks.Club article previews (`dtc-article`)
+
+`dtc-article` is the blog counterpart of `dtc-event-speaker`: the author portrait(s),
+name(s), a type pill, the date, the reading time and the title, in the same outlined,
+offset-shadow style but with its own palettes, so an article never reads as an event.
+It replaces a cropped cover image as the thumbnail of a blog list card (about 290px
+wide, the square canvas) and as the article's social card (the og canvas). As with
+the event picture, no text is smaller than 40px and there is no logo or edge strip.
+
+```bash
+uv run banner-generator render examples/dtc/dtc-article-square.json
+uv run banner-generator render examples/dtc/dtc-article-og.json
+```
+
+Spec fields:
+
+| Field | Meaning |
+|---|---|
+| `kind` | The pill text, as written: `Article` (default), `Guide`, `Survey`, `Case study`, ... |
+| `tone` | Optional palette: `coral`, `teal` or `plum`. Without it the kind decides: guides, courses and tutorials are teal; surveys, research and case studies plum; everything else coral |
+| `title` | Article title. A title that does not fit at 72px (60px on og) with a colon (or a spaced dash) keeps only the part before it; set `headline` to override |
+| `date_label` | For example `25 Jan 2026` |
+| `reading_time` | For example `8 min read` |
+| `authors` | List of `{"name", "image_url", "crop"}`, same as the event `speakers`. Up to four portraits; four or more show "N authors". An empty list shows the reading time in the disc |
+
+More examples: `examples/dtc/dtc-article-two-authors-square.json` and
+`examples/dtc/dtc-article-survey-og.json`.
+
 ## Render Specs
 
 Specs are JSON files. See `examples/dtc/dtc-article-preview.json` for a complete

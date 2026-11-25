@@ -1,0 +1,14 @@
+{
+  "template": "dtc-article",
+  "format": "png",
+  "size": "luma",
+  "output": "output/dtc/article-two-authors-square.png",
+  "kind": "Case study",
+  "title": "How to Build a Waste Classifier: A Case Study from ML Zoomcamp",
+  "date_label": "5 Aug 2025",
+  "reading_time": "12 min read",
+  "authors": [
+    {"name": "Maria Vechtomova", "image_url": "../../../examples/dtc/assets/mariavechtomova.jpg"},
+    {"name": "Alena Astrakhantseva", "image_url": "../../../examples/dtc/assets/alenaastrakhantseva.jpg"}
+  ]
+}
