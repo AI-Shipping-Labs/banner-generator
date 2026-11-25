@@ -1,0 +1,13 @@
+{
+  "template": "dtc-article",
+  "format": "png",
+  "size": "og",
+  "output": "output/dtc/article-survey-og.png",
+  "kind": "Survey",
+  "title": "How Do Professionals Use AI Tools for Personal Productivity?",
+  "date_label": "10 Apr 2025",
+  "reading_time": "6 min read",
+  "authors": [
+    {"name": "Paul Iusztin", "image_url": "../../../examples/dtc/assets/pauliusztin.jpg"}
+  ]
+}

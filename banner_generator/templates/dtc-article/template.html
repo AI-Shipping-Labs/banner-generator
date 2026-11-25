@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=${width}, initial-scale=1">
+  <title>${title}</title>
+  <link rel="stylesheet" href="style.css">
+  <style>:root { --width: ${width}px; --height: ${height}px; }</style>
+</head>
+<!-- Author-led DataTalks.Club article preview, the blog counterpart of
+     dtc-event-speaker. article.js builds the layout from the data attributes, so one
+     template serves 1-4+ authors, the square 1000x1000 list thumbnail and the
+     1200x630 (og) social card. -->
+<body data-kind="${kind}" data-tone="${tone}" data-title="${title}" data-headline="${headline}"
+      data-date="${date_label}" data-reading="${reading_time}" data-authors="${authors}">
+  <div class="blob" aria-hidden="true"></div>
+  <script src="article.js"></script>
+</body>
+</html>
