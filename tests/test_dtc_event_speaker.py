@@ -88,3 +88,21 @@ def test_dtc_event_speaker_text_fits_at_a_readable_size(name, tmp_path):
         manager.stop()
     assert report and all(item["ok"] for item in report), report
     assert smallest >= 40
+
+
+def test_series_episode_headline_keeps_the_series_and_topic(tmp_path):
+    title = "Hireable With AI #2: Agentic Engineering: How I Build Software with Coding Agents"
+    page_file = tmp_path / "page.html"
+    page_file.write_text(render_html(resolve_template("dtc-event-speaker"),
+                                     {"kind": "webinar", "title": title, "date_label": "Mon 30 Nov 2026",
+                                      "time_label": "17:00 CET", "speakers": [{"name": "Alexey Grigorev"}]}, 1000, 1000))
+    manager, browser = _browser()
+    try:
+        page = browser.new_page(viewport={"width": 1000, "height": 1000})
+        page.goto(page_file.as_uri())
+        page.evaluate("() => window.bannerReady")
+        headline = page.evaluate("() => document.querySelector('h1').textContent")
+    finally:
+        browser.close()
+        manager.stop()
+    assert headline == "Hireable With AI #2: Agentic Engineering"

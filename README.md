@@ -81,7 +81,7 @@ Spec fields:
 | Field | Meaning |
 |---|---|
 | `kind` | `webinar`, `workshop`, `podcast`, or `conference` (sets the colours and the pill) |
-| `title` | Event title. A title over 60 characters with a colon keeps only the part before the colon; set `headline` to override |
+| `title` | Event title. A title over 60 characters with a colon keeps only the part before the colon (a series episode, `Series #2: Topic: details`, keeps `Series #2: Topic`); set `headline` to override |
 | `date_label` | For example `Tue 19 Jan 2021`, in the event's own timezone |
 | `time_label` | For example `17:00 CET` |
 | `speakers` | List of `{"name", "image_url", "crop"}`. Up to four portraits are shown; four or more show "N speakers". An empty list shows the date in a large disc |

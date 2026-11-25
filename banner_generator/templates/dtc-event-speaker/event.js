@@ -13,10 +13,12 @@
   body.classList.add(landscape ? "landscape" : "square", "t-" + (KINDS.includes(kind) ? kind : "webinar"));
 
   // A long "Main part: details" title keeps only the main part as the headline.
+  // A series episode ("Series #2: Topic: details") keeps the series and the topic.
   const headlineOf = (t) => {
     if (t.length > 60 && t.includes(":")) {
-      const head = t.split(":")[0].trim();
-      if (head.length >= 12) return head;
+      const parts = t.split(":").map((p) => p.trim());
+      if (/#\d+$/.test(parts[0])) return parts.length > 2 ? `${parts[0]}: ${parts[1]}` : t;
+      if (parts[0].length >= 12) return parts[0];
     }
     return t;
   };
