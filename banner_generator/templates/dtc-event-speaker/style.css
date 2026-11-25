@@ -38,6 +38,7 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .who { display: flex; flex-direction: column; gap: 14px; }
 .who b { display: block; line-height: 1.05; letter-spacing: -.02em; }
 .when { color: var(--accent); line-height: 1.05; white-space: nowrap; display: flex; flex-direction: column; gap: 6px; }
+.series { color: var(--ink); font-size: 40px; line-height: 1.05; letter-spacing: -.01em; white-space: nowrap; }
 .when b { letter-spacing: -.02em; } .when span { color: var(--ink); }
 /* Sponsor: the label in ink, the logo on a white plate drawn like the pill. */
 .sponsor { flex: 0 0 auto; display: flex; align-items: center; min-width: 0; }
@@ -78,6 +79,16 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .landscape .meta { flex: 0 0 auto; display: flex; flex-direction: column; gap: 8px; line-height: 1.08; }
 .landscape .when { flex-direction: row; gap: 0; }
 .landscape .when b, .landscape .when span { font-size: 42px; color: var(--accent); }
+/* A series line ("DataTalks.Club Podcast · S15 E6") needs a ~600px text column. */
+.landscape.has-series .faces { width: 440px; height: 470px; }
+.landscape.has-series .n1 .avatar { width: 440px; height: 440px; font-size: 170px; }
+.landscape.has-series .n2 .avatar { width: 300px; height: 300px; font-size: 106px; }
+/* 16:9 (YouTube thumbnail / video poster, 1280x720): the extra height goes to the portraits. */
+.landscape.tall { padding: 60px; gap: 52px; }
+.landscape.tall .blob { left: -160px; top: -180px; width: 880px; height: 880px; }
+.landscape.tall .faces { width: 500px; height: 560px; }
+.landscape.tall .n1 .avatar { top: 30px; width: 500px; height: 500px; }
+.landscape.tall .n2 .avatar { width: 360px; height: 360px; font-size: 126px; }
 .landscape .when span::before { content: " · "; white-space: pre; }
 
 /* With a sponsor the portraits give up 40px and the sponsor row sits under the title. */

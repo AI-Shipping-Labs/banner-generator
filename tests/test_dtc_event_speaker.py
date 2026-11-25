@@ -13,6 +13,8 @@ EVENT_SPECS = (
     "dtc-event-speaker-no-speakers-luma.json",
     "dtc-event-speaker-sponsor-luma.json",
     "dtc-event-speaker-sponsor-og.json",
+    "dtc-event-speaker-podcast-youtube.json",
+    "dtc-event-speaker-podcast-og.json",
 )
 
 
@@ -56,7 +58,7 @@ def test_dtc_event_speaker_examples_cover_square_and_social_sizes():
         assert spec.template == "dtc-event-speaker"
         assert spec.data["title"] and spec.data["date_label"]
         sizes.add(spec.viewport)
-    assert sizes == {(1000, 1000), (1200, 630)}
+    assert sizes == {(1000, 1000), (1200, 630), (1280, 720)}
 
 
 def _browser():
@@ -146,3 +148,32 @@ def test_sponsor_reaches_the_template_and_is_drawn(tmp_path):
                                      sponsor={"name": "Acme Corp"})
         assert headline == "Building AI Agent Workflows"
         assert all(item["ok"] for item in report), report
+
+
+@pytest.mark.parametrize("name", ("dtc-event-speaker-podcast-youtube.json", "dtc-event-speaker-podcast-og.json"))
+def test_series_line_is_drawn_on_one_line_inside_the_canvas(name, tmp_path):
+    spec = load_spec(EXAMPLES / name)
+    width, height = spec.viewport
+    page_file = tmp_path / "page.html"
+    page_file.write_text(render_html(resolve_template("dtc-event-speaker"), spec.data, width, height))
+    manager, browser = _browser()
+    try:
+        page = browser.new_page(viewport={"width": width, "height": height})
+        page.goto(page_file.as_uri())
+        page.evaluate("() => window.bannerReady")
+        box = page.evaluate(
+            "() => { const r = document.querySelector('.series').getBoundingClientRect();"
+            " return {right: r.right, height: r.height, text: document.querySelector('.series').textContent}; }"
+        )
+    finally:
+        browser.close()
+        manager.stop()
+    assert box["text"] == spec.data["series"]
+    assert box["right"] <= width - 40
+    assert box["height"] < 60  # one line
+
+
+def test_youtube_size_is_16_by_9():
+    from banner_generator.renderer import SIZES
+
+    assert SIZES["youtube"] == (1280, 720)

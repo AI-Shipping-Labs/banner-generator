@@ -1,0 +1,22 @@
+{
+  "template": "dtc-event-speaker",
+  "format": "png",
+  "size": "youtube",
+  "output": "output/dtc/event-speaker-podcast-youtube.png",
+  "kind": "podcast",
+  "title": "Building AI Evaluations You Can Actually Trust",
+  "date_label": "Tue 13 Oct 2026",
+  "time_label": "",
+  "speakers": [
+    {
+      "name": "Alexey Grigorev",
+      "image_url": "../../../examples/dtc/assets/alexeygrigorev.jpg",
+      "crop": {
+        "zoom": 1.5,
+        "x": 65,
+        "y": 20
+      }
+    }
+  ],
+  "series": "DataTalks.Club Podcast · S25 E9"
+}

@@ -65,6 +65,7 @@ One template serves both canvases. The layout is chosen by aspect ratio:
 
 - `size: "luma"` (1000 x 1000): the event page and Luma/Meetup artwork.
 - `size: "og"` (1200 x 630): Open Graph, LinkedIn, X, and Slack previews.
+- `size: "youtube"` (1280 x 720): YouTube thumbnail and video poster; the extra height goes to larger portraits.
 
 ```bash
 uv run banner-generator render examples/dtc/dtc-event-speaker-luma.json
@@ -81,6 +82,7 @@ Spec fields:
 | `time_label` | For example `17:00 CET` |
 | `speakers` | List of `{"name", "image_url", "crop"}`. Up to four portraits are shown; four or more show "N speakers". An empty list shows the date in a large disc |
 | `sponsor` | Optional `{"name", "logo_url", "label"}`: draws "Sponsored by" (or `label`) and the logo on a white plate under the title (the name in bold when there is no logo). `logo_url` is any image URL, a `file://` URL, or a data URL |
+| `series` | Optional line under the speaker names, e.g. `DataTalks.Club Podcast · S15 E6`, kept on one line (landscape sizes shrink the portraits to make room) |
 
 `crop` is optional, `{"zoom": 1.5, "x": 65, "y": 20}`: it zooms a portrait and sets
 the focus point (in percent) to hide stray edge content in the source photo. Title
