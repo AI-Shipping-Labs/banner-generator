@@ -1,0 +1,25 @@
+{
+  "template": "dtc-event-speaker",
+  "format": "png",
+  "size": "og",
+  "output": "output/dtc/event-speaker-sponsor-og.png",
+  "kind": "workshop",
+  "title": "Building AI Agent Workflows with Shared Rooms",
+  "date_label": "Wed 22 Jul 2026",
+  "time_label": "09:00 CEST",
+  "speakers": [
+    {
+      "name": "Alexey Grigorev",
+      "image_url": "../../../examples/dtc/assets/alexeygrigorev.jpg",
+      "crop": {
+        "zoom": 1.5,
+        "x": 65,
+        "y": 20
+      }
+    }
+  ],
+  "sponsor": {
+    "name": "Examplely",
+    "logo_url": "../../../examples/dtc/assets/example-sponsor.svg"
+  }
+}

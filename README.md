@@ -57,8 +57,9 @@ the `luma` size for the 1000 x 1000 event artwork.
 `dtc-event-speaker` is the speaker-led picture for DataTalks.Club events: big speaker
 portrait(s), name(s), type pill, weekday + date, local time, and the title. It is made
 to be read where it is shown: about 290px wide on the event page and about 500px in
-social feeds, so no text on the canvas is smaller than 40px. It has no logo, edge
-strip, or inner border; the host page draws the frame.
+social feeds, so no text on the canvas is smaller than 40px. It has no DTC logo, edge
+strip, or inner border; the host page draws the frame. A sponsored event can add the
+sponsor's logo (`sponsor`).
 
 One template serves both canvases. The layout is chosen by aspect ratio:
 
@@ -75,10 +76,11 @@ Spec fields:
 | Field | Meaning |
 |---|---|
 | `kind` | `webinar`, `workshop`, `podcast`, or `conference` (sets the colours and the pill) |
-| `title` | Event title. A title over 60 characters with a colon keeps only the part before the colon (a series episode, `Series #2: Topic: details`, keeps `Series #2: Topic`); set `headline` to override |
+| `title` | Event title. The whole title is kept when it fits at 72px or more (60px on `og`), so sibling events such as `Course: Launch` and `Course: Live Q&A` keep their own headlines. A longer title with a colon falls back to the part before the colon (a series episode, `Series #2: Topic: details`, keeps `Series #2: Topic`); set `headline` to override |
 | `date_label` | For example `Tue 19 Jan 2021`, in the event's own timezone |
 | `time_label` | For example `17:00 CET` |
 | `speakers` | List of `{"name", "image_url", "crop"}`. Up to four portraits are shown; four or more show "N speakers". An empty list shows the date in a large disc |
+| `sponsor` | Optional `{"name", "logo_url", "label"}`: draws "Sponsored by" (or `label`) and the logo on a white plate under the title (the name in bold when there is no logo). `logo_url` is any image URL, a `file://` URL, or a data URL |
 
 `crop` is optional, `{"zoom": 1.5, "x": 65, "y": 20}`: it zooms a portrait and sets
 the focus point (in percent) to hide stray edge content in the source photo. Title
@@ -86,8 +88,9 @@ and name sizes are fitted automatically in the page (`window.bannerReady`); the
 renderer waits for that before the screenshot, so the CLI, web app, and Lambda all
 produce the fitted result.
 
-More examples: `examples/dtc/dtc-event-speaker-two-speakers-luma.json` and
-`examples/dtc/dtc-event-speaker-no-speakers-luma.json`.
+More examples: `examples/dtc/dtc-event-speaker-two-speakers-luma.json`,
+`examples/dtc/dtc-event-speaker-no-speakers-luma.json`, and the sponsored
+`examples/dtc/dtc-event-speaker-sponsor-luma.json` / `-sponsor-og.json`.
 
 ## Render Specs
 

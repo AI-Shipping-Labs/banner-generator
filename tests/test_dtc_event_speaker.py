@@ -11,6 +11,8 @@ EVENT_SPECS = (
     "dtc-event-speaker-og.json",
     "dtc-event-speaker-two-speakers-luma.json",
     "dtc-event-speaker-no-speakers-luma.json",
+    "dtc-event-speaker-sponsor-luma.json",
+    "dtc-event-speaker-sponsor-og.json",
 )
 
 
@@ -90,19 +92,57 @@ def test_dtc_event_speaker_text_fits_at_a_readable_size(name, tmp_path):
     assert smallest >= 40
 
 
-def test_series_episode_headline_keeps_the_series_and_topic(tmp_path):
-    title = "Hireable With AI #2: Agentic Engineering: How I Build Software with Coding Agents"
+def _headline(tmp_path, title, *, size=(1000, 1000), sponsor=None):
+    data = {"kind": "webinar", "title": title, "date_label": "Mon 30 Nov 2026",
+            "time_label": "17:00 CET", "speakers": [{"name": "Alexey Grigorev"}]}
+    if sponsor:
+        data["sponsor"] = sponsor
     page_file = tmp_path / "page.html"
-    page_file.write_text(render_html(resolve_template("dtc-event-speaker"),
-                                     {"kind": "webinar", "title": title, "date_label": "Mon 30 Nov 2026",
-                                      "time_label": "17:00 CET", "speakers": [{"name": "Alexey Grigorev"}]}, 1000, 1000))
+    page_file.write_text(render_html(resolve_template("dtc-event-speaker"), data, *size))
     manager, browser = _browser()
     try:
-        page = browser.new_page(viewport={"width": 1000, "height": 1000})
+        page = browser.new_page(viewport={"width": size[0], "height": size[1]})
         page.goto(page_file.as_uri())
-        page.evaluate("() => window.bannerReady")
+        report = page.evaluate("() => window.bannerReady")
         headline = page.evaluate("() => document.querySelector('h1').textContent")
     finally:
         browser.close()
         manager.stop()
+    return headline, report
+
+
+def test_sibling_titles_that_fit_large_keep_their_distinguishing_part(tmp_path):
+    for title in (
+        "Production AI Agents for Generative Media: Course Launch",
+        "Production AI Agents for Generative Media: Pre-Course Live Q&A",
+    ):
+        headline, report = _headline(tmp_path, title)
+        assert headline == title
+        assert report[0]["size"] >= 72
+
+
+def test_long_title_that_does_not_fit_large_keeps_the_main_part(tmp_path):
+    title = ("Machine Learning Systems Design in Production Environments: Monitoring, "
+             "Drift Detection, Retraining Pipelines, Feature Stores and Model Registries Explained")
+    headline, _ = _headline(tmp_path, title)
+    assert headline == "Machine Learning Systems Design in Production Environments"
+
+
+def test_series_episode_headline_keeps_the_series_and_topic(tmp_path):
+    title = ("Hireable With AI #2: Agentic Engineering: How I Build Software with Coding Agents, "
+             "Review Loops, Context Engineering and Shipping Every Day")
+    headline, _ = _headline(tmp_path, title)
     assert headline == "Hireable With AI #2: Agentic Engineering"
+
+
+def test_sponsor_reaches_the_template_and_is_drawn(tmp_path):
+    html = render_html(resolve_template("dtc-event-speaker"),
+                       {"title": "T", "sponsor": {"name": "Acme", "logo_url": "https://example.test/l.png"}},
+                       1000, 1000)
+    assert 'data-sponsor="{&quot;name&quot;: &quot;Acme&quot;' in html
+    assert 'data-sponsor=""' in render_html(resolve_template("dtc-event-speaker"), {"title": "T"}, 1000, 1000)
+    for size in ((1000, 1000), (1200, 630)):
+        headline, report = _headline(tmp_path, "Building AI Agent Workflows", size=size,
+                                     sponsor={"name": "Acme Corp"})
+        assert headline == "Building AI Agent Workflows"
+        assert all(item["ok"] for item in report), report
