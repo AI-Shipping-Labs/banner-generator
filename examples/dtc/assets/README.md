@@ -14,3 +14,6 @@ existing DataTalks.Club editorial assets, copied without alteration from the
   `images/books/20260914-mlops-with-databricks-machine-learning-and-genai-applications-end-to-end/cover.jpg`
 
 Upstream: https://github.com/DataTalksClub/datatalksclub.github.io
+
+`example-sponsor.svg` is a made-up wordmark ("Examplely") drawn for the
+`dtc-event-speaker` sponsor examples; it is not a real organization.

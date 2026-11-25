@@ -1,7 +1,8 @@
 /* dtc-event-speaker: speaker-led event picture in the DataTalks.Club design system.
    Readability contract: shown ~290px wide on the event page (square) and ~500px in
-   social feeds (landscape), so no text is below 40px on the canvas. No logo, no
-   edge strip, no inner border: the host page draws one even frame. */
+   social feeds (landscape), so no text is below 40px on the canvas. No DTC logo, no
+   edge strip, no inner border: the host page draws one even frame. An optional
+   sponsor is drawn as "Sponsored by" + the sponsor's logo on a white plate. */
 @font-face { font-family: Quicksand; font-weight: 300 700;
   src: url("assets/quicksand-latin-var.woff2") format("woff2"); }
 :root {
@@ -38,6 +39,13 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .who b { display: block; line-height: 1.05; letter-spacing: -.02em; }
 .when { color: var(--accent); line-height: 1.05; white-space: nowrap; display: flex; flex-direction: column; gap: 6px; }
 .when b { letter-spacing: -.02em; } .when span { color: var(--ink); }
+/* Sponsor: the label in ink, the logo on a white plate drawn like the pill. */
+.sponsor { flex: 0 0 auto; display: flex; align-items: center; min-width: 0; }
+.sponsor-label { line-height: 1; letter-spacing: -.01em; white-space: nowrap; }
+.sponsor-plate { display: flex; align-items: center; justify-content: center; min-width: 0;
+  background: #fff; border: 5px solid var(--ink); border-radius: 22px; box-shadow: 8px 8px 0 var(--ink); }
+.sponsor-plate img { display: block; flex: 0 1 auto; width: auto; object-fit: contain; }
+.sponsor-plate b { line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
 
 /* Square (luma / event page): portraits top-left, details right, title below. */
 .square { flex-direction: column; gap: 44px; padding: 60px; }
@@ -71,3 +79,23 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .landscape .when { flex-direction: row; gap: 0; }
 .landscape .when b, .landscape .when span { font-size: 42px; color: var(--accent); }
 .landscape .when span::before { content: " · "; white-space: pre; }
+
+/* With a sponsor the portraits give up 40px and the sponsor row sits under the title. */
+.square.has-sponsor { gap: 36px; }
+.square.has-sponsor .top { height: 430px; }
+.square.has-sponsor .faces { width: 420px; height: 430px; }
+.square.has-sponsor .n1 .avatar { width: 404px; height: 404px; font-size: 156px; }
+.square.has-sponsor .n2 .avatar { width: 296px; height: 296px; font-size: 104px; }
+.square.has-sponsor .n3 .avatar, .square.has-sponsor .n4 .avatar { width: 206px; height: 206px; font-size: 74px; }
+.square .sponsor { gap: 26px; }
+.square .sponsor-label { font-size: 44px; }
+.square .sponsor-plate { height: 104px; padding: 14px 28px; max-width: 560px; }
+.square .sponsor-plate img { height: 66px; max-width: 494px; }
+.square .sponsor-plate b { font-size: 52px; }
+.landscape.has-sponsor { padding-top: 40px; padding-bottom: 40px; }
+.landscape.has-sponsor .copy { gap: 18px; }
+.landscape .sponsor { flex-direction: column; align-items: flex-start; gap: 12px; }
+.landscape .sponsor-label { font-size: 40px; }
+.landscape .sponsor-plate { height: 84px; padding: 12px 24px; max-width: 100%; }
+.landscape .sponsor-plate img { height: 50px; max-width: 460px; }
+.landscape .sponsor-plate b { font-size: 46px; }

@@ -125,6 +125,7 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("channel", "og")
     values.setdefault("speakers", "[]")
     values.setdefault("headline", "")
+    values.setdefault("sponsor", "")
     values.setdefault("date_label", "")
     values.setdefault("time_label", "")
     values.setdefault("theme", "light")
