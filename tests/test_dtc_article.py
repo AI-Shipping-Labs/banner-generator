@@ -12,6 +12,7 @@ ARTICLE_SPECS = (
     "dtc-article-og.json",
     "dtc-article-two-authors-square.json",
     "dtc-article-survey-og.json",
+    "dtc-article-picture-og.json",
 )
 
 
@@ -98,3 +99,20 @@ def test_kind_picks_the_palette(kind, tone, tmp_path):
     _, classes = _evaluate({"kind": kind, "title": "Short title", "authors": []}, 1000, 1000, tmp_path,
                            "() => document.body.className")
     assert tone in classes.split()
+
+
+def test_picture_takes_the_portraits_place_on_the_social_card(tmp_path):
+    picture = {"url": (EXAMPLES / "assets" / "mlops-with-databricks.jpg").as_uri(), "fit": "contain", "frame": True}
+    data = {"title": "Short title", "date_label": "Mar 3, 2026", "reading_time": "5 min read",
+            "authors": [{"name": "Maria Vechtomova"}], "picture": picture}
+    _, parts = _evaluate(data, 1200, 630, tmp_path,
+                         "() => [!!document.querySelector('.picture img'), !!document.querySelector('.faces'), "
+                         "!!document.querySelector('h1')]")
+    assert parts == [True, False, True]
+
+
+def test_square_picture_is_the_picture_alone(tmp_path):
+    picture = {"url": (EXAMPLES / "assets" / "mlops-with-databricks.jpg").as_uri(), "fit": "cover"}
+    _, parts = _evaluate({"title": "Short title", "picture": picture}, 1000, 1000, tmp_path,
+                         "() => [document.body.classList.contains('picture-only'), !!document.querySelector('h1')]")
+    assert parts == [True, False]

@@ -70,3 +70,21 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .landscape .when { flex-direction: row; gap: 0; }
 .landscape .when b, .landscape .when span { font-size: 40px; color: var(--accent); }
 .landscape .when span::before { content: " · "; white-space: pre; }
+
+/* Picture: the article's own image or illustration in the portraits' place. "contain"
+   keeps the whole image at its own aspect ratio; a framed picture draws the outline
+   and offset shadow around the image itself, never around empty ground. */
+.picture { position: relative; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+.picture img { display: block; }
+.picture.cover img { width: 100%; height: 100%; object-fit: cover; }
+.picture.contain img { max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.picture.framed img { border: 6px solid var(--ink); border-radius: 36px; background: #fff; box-shadow: 12px 12px 0 var(--ink); }
+.picture.framed.contain { padding: 0 12px 12px 0; }
+.landscape .picture { width: 540px; height: 530px; align-self: center; }
+.picture-only { padding: 0; }
+.picture-only .blob { display: none; }
+.picture-only .picture { width: 100%; height: 100%; }
+.picture-only .picture.contain { padding: 48px; }
+.picture-only .picture.framed.contain { padding: 48px 60px 60px 48px; }
+.picture-only .picture.framed.cover img { border: 0; border-radius: 0; box-shadow: none; }
+.picture-bare .blob { display: none; }
