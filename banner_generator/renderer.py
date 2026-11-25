@@ -131,6 +131,7 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("authors", "[]")
     values.setdefault("reading_time", "")
     values.setdefault("tone", "")
+    values.setdefault("picture", "")
     values.setdefault("date_label", "")
     values.setdefault("time_label", "")
     values.setdefault("theme", "light")

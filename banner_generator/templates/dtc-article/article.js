@@ -59,6 +59,33 @@
     return a;
   };
 
+  // Optional picture: {"url", "fit": "contain"|"cover", "frame": bool, "only": bool}.
+  // On the og card it takes the portraits' place beside the title; on the square
+  // canvas (a list thumbnail far too small for text) and with "only" it fills the
+  // canvas alone. "contain" sets the whole image on the soft ground, so a wide
+  // screenshot or an illustration is never cut; "frame" draws the outline and
+  // offset shadow a photo needs (a transparent illustration goes without).
+  let picture = null;
+  try { picture = JSON.parse(d.picture || "null"); } catch (e) { picture = null; }
+  if (picture && !picture.url) picture = null;
+  const pictureBox = () => {
+    const box = el("div", "picture" + (picture.frame ? " framed" : "") + (picture.fit === "cover" ? " cover" : " contain"));
+    const img = el("img");
+    img.alt = "";
+    images.push(new Promise((ok) => { img.onload = img.onerror = ok; }));
+    img.src = picture.url;
+    box.append(img);
+    return box;
+  };
+  // A transparent illustration brings its own watercolor ground; the blob would compete.
+  if (picture && !picture.frame) body.classList.add("picture-bare");
+  if (picture && (!landscape || picture.only)) {
+    body.classList.add("picture-only");
+    body.append(pictureBox());
+    window.bannerReady = (async () => { await document.fonts.ready; await Promise.all(images); return (window.bannerFit = []); })();
+    return;
+  }
+
   const faces = el("div", "faces n" + Math.max(n, 1));
   if (n) shown.forEach((s) => faces.appendChild(avatar(s)));
   else {  // No author on record: the disc carries the reading time.
@@ -92,7 +119,7 @@
     meta.append(who, when);
     const copy = el("div", "copy");
     copy.append(pill, titleBox, meta);
-    body.append(faces, copy);
+    body.append(picture ? pictureBox() : faces, copy);
   } else {
     title.dataset.fit = "64 120"; title.dataset.lines = "4";
     const size = { 1: 68, 2: 54, 3: 48 }[n] || 48;

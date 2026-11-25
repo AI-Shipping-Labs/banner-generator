@@ -118,9 +118,10 @@ Spec fields:
 | `date_label` | For example `25 Jan 2026` |
 | `reading_time` | For example `8 min read` |
 | `authors` | List of `{"name", "image_url", "crop"}`, same as the event `speakers`. Up to four portraits; four or more show "N authors". An empty list shows the reading time in the disc |
+| `picture` | Optional `{"url", "fit", "frame", "only"}`: the article's own image or illustration. On og it takes the portraits' place beside the title; on the square canvas (a list thumbnail too small for text) and with `"only": true` it fills the canvas alone. `fit` is `contain` (the whole image on the soft ground, for screenshots, images with words, and wide or tall shapes) or `cover`; `frame: true` draws the outline and offset shadow around a photo (leave it off for a transparent illustration, which also hides the blob) |
 
-More examples: `examples/dtc/dtc-article-two-authors-square.json` and
-`examples/dtc/dtc-article-survey-og.json`.
+More examples: `examples/dtc/dtc-article-two-authors-square.json`,
+`examples/dtc/dtc-article-survey-og.json` and `examples/dtc/dtc-article-picture-og.json`.
 
 ## Render Specs
 
