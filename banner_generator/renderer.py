@@ -83,8 +83,14 @@ def _image_source(data: dict[str, Any]) -> str:
 
 def render_html(template_path: Path, data: dict[str, Any], width: int, height: int) -> str:
     template = Template(template_path.read_text())
+    # Lists and objects (e.g. the dtc-event-speaker ``speakers``) reach the
+    # template as JSON, so template scripts can read them from an escaped
+    # data attribute.
     values = {
-        key: html.escape(str(value), quote=True)
+        key: html.escape(
+            json.dumps(value, ensure_ascii=False) if isinstance(value, (list, dict)) else str(value),
+            quote=True,
+        )
         for key, value in data.items()
         if value is not None
     }
@@ -117,6 +123,10 @@ def render_html(template_path: Path, data: dict[str, Any], width: int, height: i
     values.setdefault("name", "Jane Doe")
     values.setdefault("variant", "webinar")
     values.setdefault("channel", "og")
+    values.setdefault("speakers", "[]")
+    values.setdefault("headline", "")
+    values.setdefault("date_label", "")
+    values.setdefault("time_label", "")
     values.setdefault("person", "")
     values.setdefault("person_role", "DataTalks.Club")
     values.setdefault("person_initials", "DTC")
@@ -174,6 +184,18 @@ def output_format(spec: RenderSpec) -> str:
     return format_name
 
 
+READY_JS = "() => window.bannerReady ? Promise.resolve(window.bannerReady).then(() => true) : true"
+
+
+def wait_until_ready(page: Any) -> None:
+    """Let templates that lay out or fit text in a script finish first.
+
+    A template may set ``window.bannerReady`` to a promise (fonts loaded, text
+    fitted); the screenshot waits for it. Templates without it are unaffected.
+    """
+    page.evaluate(READY_JS)
+
+
 def render(
     spec: RenderSpec,
     *,
@@ -209,6 +231,7 @@ def render(
             )
             page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
             page.goto(tmp_path.as_uri())
+            wait_until_ready(page)
             format_name = output_format(spec)
 
             if format_name == "pdf":

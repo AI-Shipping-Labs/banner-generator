@@ -1,0 +1,20 @@
+{
+  "template": "dtc-event-speaker",
+  "format": "png",
+  "size": "luma",
+  "output": "output/dtc/event-speaker-two-speakers-luma.png",
+  "kind": "podcast",
+  "title": "Running Durable Agents in Production",
+  "date_label": "Tue 18 Aug 2026",
+  "time_label": "17:00 CEST",
+  "speakers": [
+    {
+      "name": "Nicholas Lotz",
+      "image_url": "../../../examples/dtc/assets/nicholaslotz.jpg"
+    },
+    {
+      "name": "Paul Iusztin",
+      "image_url": "../../../examples/dtc/assets/pauliusztin.jpg"
+    }
+  ]
+}

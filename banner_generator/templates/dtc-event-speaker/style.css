@@ -1,0 +1,73 @@
+/* dtc-event-speaker: speaker-led event picture in the DataTalks.Club design system.
+   Readability contract: shown ~290px wide on the event page (square) and ~500px in
+   social feeds (landscape), so no text is below 40px on the canvas. No logo, no
+   edge strip, no inner border: the host page draws one even frame. */
+@font-face { font-family: Quicksand; font-weight: 300 700;
+  src: url("assets/quicksand-latin-var.woff2") format("woff2"); }
+:root {
+  --ink: #1e2136; --cream: #fdfaf3; --lavender: #eff1fc; --lavender-deep: #dfe2f7;
+  --bubble: #b9bff0; --mint: #eff5ea; --green: #2b7a35; --indigo: #5a62c4; --gold: #e2c67a;
+}
+.t-webinar    { --ground: var(--cream);    --shape: var(--lavender-deep); --pill: var(--bubble); --pill-ink: var(--ink); --accent: var(--indigo); }
+.t-workshop   { --ground: var(--mint);     --shape: var(--lavender-deep); --pill: var(--green);  --pill-ink: #fff;       --accent: var(--green); }
+.t-podcast    { --ground: var(--cream);    --shape: #f3e3b5;              --pill: var(--gold);   --pill-ink: var(--ink); --accent: #8a6a1c; }
+.t-conference { --ground: var(--lavender); --shape: var(--bubble);        --pill: var(--indigo); --pill-ink: #fff;       --accent: var(--indigo); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: var(--width); height: var(--height); overflow: hidden; }
+body { position: relative; display: flex; font-family: Quicksand, sans-serif; font-weight: 700;
+  color: var(--ink); background: var(--ground); }
+.blob { position: absolute; z-index: -1; border-radius: 46% 54% 50% 50%; background: var(--shape); }
+h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance; padding-bottom: 4px; }
+.pill { flex: 0 0 auto; display: inline-block; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  line-height: 1; border: 5px solid var(--ink); border-radius: 999px; background: var(--pill); color: var(--pill-ink);
+  box-shadow: 8px 8px 0 var(--ink); white-space: nowrap; }
+.faces { position: relative; flex: 0 0 auto; }
+.avatar { position: absolute; display: grid; place-items: center; overflow: hidden; border: 6px solid var(--ink);
+  border-radius: 50%; background: var(--pill) center / cover no-repeat; color: var(--pill-ink);
+  box-shadow: 12px 12px 0 var(--ink); letter-spacing: .02em; text-align: center; line-height: 1.08; }
+.avatar.photo { background-color: var(--lavender); }
+.n2 .avatar:nth-child(1), .n3 .avatar:nth-child(1), .n4 .avatar:nth-child(1) { left: 0; top: 0; }
+.n2 .avatar:nth-child(2) { right: 0; bottom: 0; }
+.n3 .avatar, .n4 .avatar { box-shadow: 8px 8px 0 var(--ink); }
+.n3 .avatar:nth-child(2), .n4 .avatar:nth-child(2) { right: 8px; top: 0; }
+.n3 .avatar:nth-child(3), .n4 .avatar:nth-child(3) { left: 0; bottom: 8px; }
+.n4 .avatar:nth-child(4) { right: 8px; bottom: 8px; }
+.datedisc b, .datedisc i { display: block; font-style: normal; }
+.title-box { flex: 1 1 auto; min-height: 0; display: flex; align-items: center; }
+.who { display: flex; flex-direction: column; gap: 14px; }
+.who b { display: block; line-height: 1.05; letter-spacing: -.02em; }
+.when { color: var(--accent); line-height: 1.05; white-space: nowrap; display: flex; flex-direction: column; gap: 6px; }
+.when b { letter-spacing: -.02em; } .when span { color: var(--ink); }
+
+/* Square (luma / event page): portraits top-left, details right, title below. */
+.square { flex-direction: column; gap: 44px; padding: 60px; }
+.square .blob { left: -140px; top: -150px; width: 720px; height: 720px; }
+.square .top { display: flex; gap: 36px; height: 470px; flex: 0 0 auto; }
+.square .faces { width: 450px; height: 470px; }
+.square .n1 .avatar { left: 0; top: 0; width: 440px; height: 440px; font-size: 170px; }
+.square .n2 .avatar { width: 320px; height: 320px; font-size: 112px; }
+.square .n3 .avatar, .square .n4 .avatar { width: 222px; height: 222px; font-size: 80px; }
+.square .n3 .avatar:nth-child(3) { left: 124px; }
+.square .datedisc b { font-size: 62px; letter-spacing: -.02em; } .square .datedisc i { font-size: 52px; margin-top: 12px; }
+.square .side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; align-items: flex-end;
+  text-align: right; gap: 30px; }
+.square .pill { font-size: 44px; padding: 20px 34px 22px; margin-top: 4px; }
+.square .who { margin-top: auto; width: 100%; }
+.square .when b, .square .when span { font-size: 50px; }
+
+/* Landscape (og 1200x630: LinkedIn, X, Slack): portraits left, everything else right. */
+.landscape { gap: 48px; padding: 50px 56px; }
+.landscape .blob { left: -170px; top: -190px; width: 820px; height: 820px; }
+.landscape .faces { width: 500px; height: 530px; align-self: center; }
+.landscape .n1 .avatar { left: 10px; top: 10px; width: 500px; height: 500px; font-size: 190px; }
+.landscape .n2 .avatar { width: 340px; height: 340px; font-size: 120px; }
+.landscape .n2 .avatar:nth-child(2) { bottom: 10px; }
+.landscape .n3 .avatar, .landscape .n4 .avatar { width: 246px; height: 246px; font-size: 86px; }
+.landscape .n3 .avatar:nth-child(3) { left: 124px; }
+.landscape .datedisc b { font-size: 66px; } .landscape .datedisc i { font-size: 54px; margin-top: 12px; }
+.landscape .copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+.landscape .pill { align-self: flex-start; font-size: 40px; padding: 16px 28px 18px; }
+.landscape .meta { flex: 0 0 auto; display: flex; flex-direction: column; gap: 8px; line-height: 1.08; }
+.landscape .when { flex-direction: row; gap: 0; }
+.landscape .when b, .landscape .when span { font-size: 42px; color: var(--accent); }
+.landscape .when span::before { content: " · "; white-space: pre; }

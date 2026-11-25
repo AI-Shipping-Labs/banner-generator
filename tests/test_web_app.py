@@ -57,8 +57,8 @@ def test_example_catalog_only_includes_render_specs():
     assert "asl-blueprint-path" in {example["template"] for example in examples}
 
     dtc_cards = [example for example in examples if example["path"].startswith("examples/dtc/")]
-    assert len(dtc_cards) == 12
-    assert {card["template"] for card in dtc_cards} == {"dtc-social"}
+    assert len(dtc_cards) == 16
+    assert {card["template"] for card in dtc_cards} == {"dtc-social", "dtc-event-speaker"}
 
 
 def test_build_render_spec_accepts_custom_viewport(tmp_path: Path):

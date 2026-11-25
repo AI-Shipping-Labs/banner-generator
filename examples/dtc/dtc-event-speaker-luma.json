@@ -1,0 +1,21 @@
+{
+  "template": "dtc-event-speaker",
+  "format": "png",
+  "size": "luma",
+  "output": "output/dtc/event-speaker-luma.png",
+  "kind": "workshop",
+  "title": "How to Work with AI Coding Agents: Spec-Driven Development, Context and Loop Engineering, Workflows",
+  "date_label": "Wed 22 Jul 2026",
+  "time_label": "09:00 CEST",
+  "speakers": [
+    {
+      "name": "Alexey Grigorev",
+      "image_url": "../../../examples/dtc/assets/alexeygrigorev.jpg",
+      "crop": {
+        "zoom": 1.5,
+        "x": 65,
+        "y": 20
+      }
+    }
+  ]
+}

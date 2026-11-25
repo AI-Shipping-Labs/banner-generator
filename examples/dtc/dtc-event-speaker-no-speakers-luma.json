@@ -1,0 +1,11 @@
+{
+  "template": "dtc-event-speaker",
+  "format": "png",
+  "size": "luma",
+  "output": "output/dtc/event-speaker-no-speakers-luma.png",
+  "kind": "webinar",
+  "title": "Data Engineering Zoomcamp 2025 Pre-Course Live Q&A",
+  "date_label": "Mon 13 Jan 2025",
+  "time_label": "17:00 CET",
+  "speakers": []
+}

@@ -58,6 +58,43 @@ cream/lavender/mint surfaces, ink outlines, offset shadows, and separate cadence
 for Luma/Meetup, Open Graph, YouTube, and website previews. Use `channel: "luma"` with
 the `luma` size for the 1000 x 1000 event artwork.
 
+### DataTalks.Club event pictures (`dtc-event-speaker`)
+
+`dtc-event-speaker` is the speaker-led picture for DataTalks.Club events: big speaker
+portrait(s), name(s), type pill, weekday + date, local time, and the title. It is made
+to be read where it is shown: about 290px wide on the event page and about 500px in
+social feeds, so no text on the canvas is smaller than 40px. It has no logo, edge
+strip, or inner border; the host page draws the frame.
+
+One template serves both canvases. The layout is chosen by aspect ratio:
+
+- `size: "luma"` (1000 x 1000): the event page and Luma/Meetup artwork.
+- `size: "og"` (1200 x 630): Open Graph, LinkedIn, X, and Slack previews.
+
+```bash
+uv run banner-generator render examples/dtc/dtc-event-speaker-luma.json
+uv run banner-generator render examples/dtc/dtc-event-speaker-og.json
+```
+
+Spec fields:
+
+| Field | Meaning |
+|---|---|
+| `kind` | `webinar`, `workshop`, `podcast`, or `conference` (sets the colours and the pill) |
+| `title` | Event title. A title over 60 characters with a colon keeps only the part before the colon; set `headline` to override |
+| `date_label` | For example `Tue 19 Jan 2021`, in the event's own timezone |
+| `time_label` | For example `17:00 CET` |
+| `speakers` | List of `{"name", "image_url", "crop"}`. Up to four portraits are shown; four or more show "N speakers". An empty list shows the date in a large disc |
+
+`crop` is optional, `{"zoom": 1.5, "x": 65, "y": 20}`: it zooms a portrait and sets
+the focus point (in percent) to hide stray edge content in the source photo. Title
+and name sizes are fitted automatically in the page (`window.bannerReady`); the
+renderer waits for that before the screenshot, so the CLI, web app, and Lambda all
+produce the fitted result.
+
+More examples: `examples/dtc/dtc-event-speaker-two-speakers-luma.json` and
+`examples/dtc/dtc-event-speaker-no-speakers-luma.json`.
+
 ## Render Specs
 
 Specs are JSON files. See `examples/dtc/dtc-article-preview.json` for a complete
