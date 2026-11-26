@@ -37,7 +37,8 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .avatar + .avatar { margin-left: -28px; }
 .byline-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
 .names { display: block; line-height: 1.08; letter-spacing: -.02em; }
-.meta { color: var(--accent); line-height: 1.08; white-space: nowrap; letter-spacing: -.01em; }
+.meta { color: var(--accent); line-height: 1.08; letter-spacing: -.01em; }
+.meta > span { white-space: nowrap; }
 
 /* Author card: flat tinted field, the title from the top, a thin rule, then the byline. */
 .square.l-editorial { padding: 72px 72px 64px; gap: 36px; }
@@ -67,6 +68,11 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .landscape.l-picture .picture { width: 500px; height: 100%; border-right: 6px solid var(--ink); }
 .landscape.l-picture .picture.contain { padding: 40px; }
 .landscape.l-picture .copy { padding: 46px 60px 46px 52px; gap: 22px; }
+/* The copy column beside the picture is ~580px: only the first author's face (the
+   name line lists every author), and the date line may wrap after the date. */
+.landscape.l-picture .avatar + .avatar { display: none; }
+.landscape.l-picture .byline { gap: 22px; }
+.landscape.l-picture .avatar, .landscape.l-picture .n2 .avatar, .landscape.l-picture .n3 .avatar { width: 88px; height: 88px; }
 
 .picture-only { padding: 0; }
 .picture-only .picture { width: 100%; height: 100%; background: var(--ground); }
