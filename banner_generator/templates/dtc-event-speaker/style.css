@@ -89,7 +89,7 @@ h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance;
 .landscape.tall .faces { width: 500px; height: 560px; }
 .landscape.tall .n1 .avatar { top: 30px; width: 500px; height: 500px; }
 .landscape.tall .n2 .avatar { width: 360px; height: 360px; font-size: 126px; }
-.landscape .when span::before { content: " · "; white-space: pre; }
+.landscape .when b + span::before { content: " · "; white-space: pre; }
 
 /* With a sponsor the portraits give up 40px and the sponsor row sits under the title. */
 .square.has-sponsor { gap: 36px; }
