@@ -1,11 +1,18 @@
 // Builds the dtc-article preview from <body data-*> and fits the text. The renderer
-// awaits window.bannerReady before taking the screenshot. Same structure as
-// dtc-event-speaker: portraits, a type pill, names, date line and the title.
+// awaits window.bannerReady before taking the screenshot.
+//
+// An article is laid out title-first so it never reads as a dtc-event-speaker
+// picture (big portrait circle on an arc, pill top-right, title at the bottom): no
+// pill, the title large from the top of the canvas, and a slim byline at the bottom
+// (small portrait, name, date and reading time) under a thin rule. The social card
+// adds the DataTalks.Club logo top-left. An optional picture (the article's own image
+// or illustration) fills the square list thumbnail alone, and is a cover panel
+// beside the logo, title and byline on the social card.
 (() => {
   const body = document.body;
   const d = body.dataset;
-  // The pill shows `kind` as written ("Article", "Survey", "Case study"); the colour
-  // comes from `tone`, or from the kind when no tone is given.
+  // The palette comes from `tone`, or from `kind` ("Article", "Survey", "Case
+  // study") when no tone is given.
   const TONES = ["coral", "teal", "plum"];
   const KIND_TONES = { guide: "teal", course: "teal", tutorial: "teal", survey: "plum",
     research: "plum", "case study": "plum" };
@@ -14,10 +21,18 @@
   const tone = TONES.includes((d.tone || "").toLowerCase()) ? d.tone.toLowerCase() : toneOf(kind);
   let authors = [];
   try { authors = JSON.parse(d.authors || "[]"); } catch (e) { authors = []; }
-  const shown = authors.slice(0, 4);
-  const n = shown.length;
+  const n = authors.length;
   const landscape = window.innerWidth > window.innerHeight * 1.2;
-  body.classList.add(landscape ? "landscape" : "square", "t-" + tone);
+
+  // Optional picture: {"url", "fit": "contain"|"cover", "frame": bool, "only": bool}.
+  // "contain" sets the whole image on a tinted field, so a wide screenshot or an
+  // illustration is never cut; "frame" draws the outline and offset shadow a photo
+  // needs (a transparent illustration goes without); "only" fills the canvas alone.
+  let picture = null;
+  try { picture = JSON.parse(d.picture || "null"); } catch (e) { picture = null; }
+  if (picture && !picture.url) picture = null;
+  const layout = picture ? "picture" : "editorial";
+  body.classList.add(landscape ? "landscape" : "square", "t-" + tone, "l-" + layout);
 
   // A title that fits at a large size is kept whole. A long "Main part: details"
   // (or "Main part — details") title that does not fit falls back to the main part,
@@ -58,16 +73,6 @@
     }
     return a;
   };
-
-  // Optional picture: {"url", "fit": "contain"|"cover", "frame": bool, "only": bool}.
-  // On the og card it takes the portraits' place beside the title; on the square
-  // canvas (a list thumbnail far too small for text) and with "only" it fills the
-  // canvas alone. "contain" sets the whole image on the soft ground, so a wide
-  // screenshot or an illustration is never cut; "frame" draws the outline and
-  // offset shadow a photo needs (a transparent illustration goes without).
-  let picture = null;
-  try { picture = JSON.parse(d.picture || "null"); } catch (e) { picture = null; }
-  if (picture && !picture.url) picture = null;
   const pictureBox = () => {
     const box = el("div", "picture" + (picture.frame ? " framed" : "") + (picture.fit === "cover" ? " cover" : " contain"));
     const img = el("img");
@@ -77,62 +82,65 @@
     box.append(img);
     return box;
   };
-  // A transparent illustration brings its own watercolor ground; the blob would compete.
-  if (picture && !picture.frame) body.classList.add("picture-bare");
-  if (picture && (!landscape || picture.only)) {
+  // The square canvas is a list thumbnail (~120-290px wide): a picture there fills it
+  // alone, as it does anywhere with "only".
+  if (picture && (picture.only || !landscape)) {
     body.classList.add("picture-only");
     body.append(pictureBox());
     window.bannerReady = (async () => { await document.fonts.ready; await Promise.all(images); return (window.bannerFit = []); })();
     return;
   }
 
-  const faces = el("div", "faces n" + Math.max(n, 1));
-  if (n) shown.forEach((s) => faces.appendChild(avatar(s)));
-  else {  // No author on record: the disc carries the reading time.
-    const disc = el("div", "avatar readdisc");
-    const span = el("span");
-    const minutes = (d.reading || "").match(/^(\d+)\s*(.*)$/);
-    if (minutes) { span.append(el("b", "", minutes[1]), el("i", "", minutes[2] || "min read")); }
-    else span.append(el("i", "", d.reading || kind));
-    disc.append(span);
-    faces.appendChild(disc);
-  }
-
-  const pill = el("span", "pill", kind);
+  const names = n === 0 ? "" : n === 1 ? authors[0].name
+    : n === 2 ? `${authors[0].name} & ${authors[1].name}` : `${authors[0].name} & ${n - 1} others`;
+  const metaLine = [d.date, d.reading].filter(Boolean).join(" · ");
   const title = el("h1", "", headline);
   const titleBox = el("div", "title-box fit-box");
   titleBox.append(title);
-  const who = el("div", "who");
-  const when = el("div", "when");
-  if (d.date) when.append(el("b", "", d.date));
-  if (d.reading && n) when.append(el("span", "", d.reading));
+  const fitText = (node, range, lines) => { node.dataset.fit = range; node.dataset.lines = String(lines); return node; };
 
-  if (landscape) {
-    title.dataset.fit = "52 92"; title.dataset.lines = "4";
-    if (n === 1 || n === 2) {
-      const b = el("b", "", shown.map((s) => s.name).join(" & "));
-      b.style.fontSize = "48px"; b.dataset.fit = "40 48"; who.append(b);
-    } else if (n > 2) {
-      const b = el("b", "", `${authors.length} authors`); b.style.fontSize = "48px"; who.append(b);
+  // The byline: up to three small overlapping portraits, the name(s), then the date line.
+  const byline = (withFaces) => {
+    const row = el("div", "byline");
+    if (withFaces && n) {
+      const faces = el("div", "faces n" + Math.min(n, 3));
+      authors.slice(0, 3).forEach((s) => faces.append(avatar(s)));
+      row.append(faces);
     }
-    const meta = el("div", "meta");
-    meta.append(who, when);
-    const copy = el("div", "copy");
-    copy.append(pill, titleBox, meta);
-    body.append(picture ? pictureBox() : faces, copy);
+    const text = el("div", "byline-text");
+    if (names) text.append(fitText(el("b", "names", names), landscape ? "40 46" : "40 52", 2));
+    if (metaLine) text.append(el("span", "meta", metaLine));
+    row.append(text);
+    return row;
+  };
+
+  // The social card travels off-site, so it carries the brand top-left: the site's
+  // masthead mark and the DataTalks.Club wordmark, in ink, as in the masthead.
+  const brand = () => {
+    const b = el("div", "brand");
+    const mark = el("img", "brand-mark");
+    mark.alt = "";
+    images.push(new Promise((ok) => { mark.onload = mark.onerror = ok; }));
+    mark.src = "assets/dtc-mark.svg";
+    b.append(mark, el("span", "brand-name", "DataTalks.Club"));
+    return b;
+  };
+
+  let titleFloor;
+  if (layout === "editorial") {
+    // No type pill: the title starts at the top and takes the room; the palette
+    // (coral, teal, plum) still tells the types apart.
+    fitText(title, landscape ? "60 116" : "76 156", landscape ? 4 : 6);
+    titleFloor = landscape ? 64 : 84;
+    if (landscape) body.append(brand());
+    body.append(titleBox, byline(true));
   } else {
-    title.dataset.fit = "64 120"; title.dataset.lines = "4";
-    const size = { 1: 68, 2: 54, 3: 48 }[n] || 48;
-    if (n >= 4) {
-      const b = el("b", "", `${authors.length} authors`); b.style.fontSize = "62px"; who.append(b);
-    } else {
-      shown.forEach((s) => { const b = el("b", "", s.name); b.style.fontSize = size + "px"; b.dataset.fit = `44 ${size}`; who.append(b); });
-    }
-    const side = el("div", "side");
-    side.append(pill, who, when);
-    const top = el("div", "top");
-    top.append(faces, side);
-    body.append(top, titleBox);
+    fitText(title, "52 88", 4);
+    titleFloor = 56;
+    const copy = el("div", "copy");
+    copy.append(brand(), titleBox, byline(true));
+    if (picture && !picture.frame) body.classList.add("picture-bare");
+    body.append(pictureBox(), copy);
   }
 
   // Shrink a [data-fit="min max"] element until its .fit-box stops overflowing,
@@ -159,12 +167,13 @@
     const probe = el("span");
     probe.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap";
     body.appendChild(probe);
-    // The whole title stays when it fits at a large size (72px square, 60px social);
-    // otherwise the shortened headline is fitted in the normal range.
-    if (headline !== shortTitle && !fitNode(title, probe, landscape ? 60 : 72).ok) {
-      title.textContent = shortTitle;
-    }
-    const report = [...document.querySelectorAll("[data-fit]")].map((node) => fitNode(node, probe));
+    // Names first: the byline's height sets the room left for the title.
+    const others = [...document.querySelectorAll("[data-fit]")].filter((node) => node !== title);
+    const report = others.map((node) => fitNode(node, probe));
+    // The whole title stays when it fits at a large size; otherwise the shortened
+    // headline is fitted in the normal range.
+    if (headline !== shortTitle && !fitNode(title, probe, titleFloor).ok) title.textContent = shortTitle;
+    report.unshift(fitNode(title, probe));
     probe.remove();
     return report;
   };

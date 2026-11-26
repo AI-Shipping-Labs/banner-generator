@@ -10,5 +10,5 @@
   "authors": [
     {"name": "Maria Vechtomova", "image_url": "../../../examples/dtc/assets/mariavechtomova.jpg"}
   ],
-  "picture": {"url": "../../../examples/dtc/assets/mlops-with-databricks.jpg", "fit": "contain", "frame": true}
+  "picture": {"url": "../../../examples/dtc/assets/mlops-with-databricks.jpg", "fit": "cover", "frame": true}
 }
