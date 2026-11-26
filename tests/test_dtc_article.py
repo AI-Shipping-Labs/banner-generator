@@ -13,6 +13,7 @@ ARTICLE_SPECS = (
     "dtc-article-two-authors-square.json",
     "dtc-article-survey-og.json",
     "dtc-article-picture-og.json",
+    "dtc-article-picture-square.json",
 )
 
 
@@ -81,6 +82,9 @@ SMALLEST_TEXT = """() => Math.min(...[...document.querySelectorAll('body *')]
 def test_dtc_article_text_fits_at_a_readable_size(name, tmp_path):
     spec = load_spec(EXAMPLES / name)
     report, smallest = _evaluate(spec.data, *spec.viewport, tmp_path, SMALLEST_TEXT)
+    if spec.data.get("picture") and spec.viewport == (1000, 1000):
+        assert report == []  # the square picture stands alone, with no text to fit
+        return
     assert report and all(item["ok"] for item in report), report
     assert smallest >= 40
 
@@ -101,14 +105,30 @@ def test_kind_picks_the_palette(kind, tone, tmp_path):
     assert tone in classes.split()
 
 
-def test_picture_takes_the_portraits_place_on_the_social_card(tmp_path):
-    picture = {"url": (EXAMPLES / "assets" / "mlops-with-databricks.jpg").as_uri(), "fit": "contain", "frame": True}
-    data = {"title": "Short title", "date_label": "Mar 3, 2026", "reading_time": "5 min read",
-            "authors": [{"name": "Maria Vechtomova"}], "picture": picture}
-    _, parts = _evaluate(data, 1200, 630, tmp_path,
-                         "() => [!!document.querySelector('.picture img'), !!document.querySelector('.faces'), "
-                         "!!document.querySelector('h1')]")
-    assert parts == [True, False, True]
+LAYOUT = """() => {
+  const box = (sel) => { const e = document.querySelector(sel); return e && e.getBoundingClientRect(); };
+  const avatar = box('.avatar'), title = box('h1'), byline = box('.byline');
+  return {pill: !!document.querySelector('.pill'), brand: !!document.querySelector('.brand img[src$="dtc-mark.svg"]'),
+          avatar: avatar && avatar.width, titleTop: title && title.top, bylineTop: byline && byline.top,
+          picture: !!document.querySelector('.picture img'), h1: !!title};
+}"""
+AUTHOR = {"title": "Benefits of Learning in Public and Why It Works", "date_label": "Jan 25, 2026",
+          "reading_time": "8 min read", "authors": [{"name": "Alexey Grigorev"}]}
+
+
+@pytest.mark.parametrize(("width", "height", "brand"), [(1000, 1000, False), (1200, 630, True)])
+def test_author_card_is_title_first_with_a_small_byline_portrait(width, height, brand, tmp_path):
+    _, parts = _evaluate(AUTHOR, width, height, tmp_path, LAYOUT)
+    assert not parts["pill"]  # no type pill: the palette tells the types apart
+    assert parts["brand"] is brand  # the social card carries the DataTalks.Club logo
+    assert parts["avatar"] <= 160  # a byline portrait, not the event's big circle
+    assert parts["titleTop"] < parts["bylineTop"]  # the title leads, the byline closes
+
+
+def test_picture_is_a_cover_panel_beside_the_title_on_the_social_card(tmp_path):
+    picture = {"url": (EXAMPLES / "assets" / "mlops-with-databricks.jpg").as_uri(), "fit": "cover", "frame": True}
+    _, parts = _evaluate({**AUTHOR, "picture": picture}, 1200, 630, tmp_path, LAYOUT)
+    assert parts["picture"] and parts["h1"] and parts["brand"] and not parts["pill"]
 
 
 def test_square_picture_is_the_picture_alone(tmp_path):

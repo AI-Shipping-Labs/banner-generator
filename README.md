@@ -96,12 +96,18 @@ More examples: `examples/dtc/dtc-event-speaker-two-speakers-luma.json`,
 
 ### DataTalks.Club article previews (`dtc-article`)
 
-`dtc-article` is the blog counterpart of `dtc-event-speaker`: the author portrait(s),
-name(s), a type pill, the date, the reading time and the title, in the same outlined,
-offset-shadow style but with its own palettes, so an article never reads as an event.
-It replaces a cropped cover image as the thumbnail of a blog list card (about 290px
-wide, the square canvas) and as the article's social card (the og canvas). As with
-the event picture, no text is smaller than 40px and there is no logo or edge strip.
+`dtc-article` is the blog article preview, in the same Quicksand type, ink outlines
+and offset shadows as `dtc-event-speaker` but with its own palettes and a different
+arrangement, so an article and a podcast episode read as different things at a
+glance. It is title-first: the title is set large from the top of a flat tinted
+field, and a thin rule leads to a slim byline at the bottom with small round
+portrait(s), the author name(s) and "date · reading time". There is no type pill,
+no big portrait circle and no coloured arc. When the article has its own picture,
+the square list thumbnail is that picture alone, and the social card shows it as a
+full-height cover panel beside the type pill, the title and the byline. It is used
+as the thumbnail of a blog list card (the square canvas) and as the article's social
+card (the og canvas). As with the event picture, no text is smaller than 40px and
+there is no logo or edge strip.
 
 ```bash
 uv run banner-generator render examples/dtc/dtc-article-square.json
@@ -112,16 +118,17 @@ Spec fields:
 
 | Field | Meaning |
 |---|---|
-| `kind` | The pill text, as written: `Article` (default), `Guide`, `Survey`, `Case study`, ... |
+| `kind` | The type, as written: `Article` (default), `Guide`, `Survey`, `Case study`, ... It picks the palette, and is the pill text on a social card with a picture |
 | `tone` | Optional palette: `coral`, `teal` or `plum`. Without it the kind decides: guides, courses and tutorials are teal; surveys, research and case studies plum; everything else coral |
-| `title` | Article title. A title that does not fit at 72px (60px on og) with a colon (or a spaced dash) keeps only the part before it; set `headline` to override |
+| `title` | Article title. A title that does not fit at 84px (64px on og) with a colon (or a spaced dash) keeps only the part before it; set `headline` to override |
 | `date_label` | For example `25 Jan 2026` |
 | `reading_time` | For example `8 min read` |
-| `authors` | List of `{"name", "image_url", "crop"}`, same as the event `speakers`. Up to four portraits; four or more show "N authors". An empty list shows the reading time in the disc |
-| `picture` | Optional `{"url", "fit", "frame", "only"}`: the article's own image or illustration. On og it takes the portraits' place beside the title; on the square canvas (a list thumbnail too small for text) and with `"only": true` it fills the canvas alone. `fit` is `contain` (the whole image on the soft ground, for screenshots, images with words, and wide or tall shapes) or `cover`; `frame: true` draws the outline and offset shadow around a photo (leave it off for a transparent illustration, which also hides the blob) |
+| `authors` | List of `{"name", "image_url", "crop"}`, same as the event `speakers`. Up to three small overlapping portraits in the byline; two names are joined with "&", three or more read "First Author & N others". An empty list leaves only the date line |
+| `picture` | Optional `{"url", "fit", "frame", "only"}`: the article's own image or illustration. On the square canvas (a list thumbnail too small for text) and with `"only": true` it fills the canvas alone; on og it is a full-height cover panel on the left. `fit` is `contain` (the whole image on a tinted field, for screenshots, images with words, and wide or tall shapes) or `cover` (photos); `frame: true` draws the outline and offset shadow around a contained photo (leave it off for a transparent illustration) |
 
 More examples: `examples/dtc/dtc-article-two-authors-square.json`,
-`examples/dtc/dtc-article-survey-og.json` and `examples/dtc/dtc-article-picture-og.json`.
+`examples/dtc/dtc-article-survey-og.json`, `examples/dtc/dtc-article-picture-og.json`
+(picture as a cover panel) and `examples/dtc/dtc-article-picture-square.json` (picture alone).
 
 ## Render Specs
 

@@ -1,6 +1,8 @@
-/* dtc-article: author-led blog article preview in the DataTalks.Club design system,
-   the article counterpart of dtc-event-speaker (same portraits, pill, outlines and
-   offset shadows; its own palettes so an article never reads as an event).
+/* dtc-article: blog article preview in the DataTalks.Club design system (the same
+   Quicksand type, ink outlines and offset shadows as dtc-event-speaker, with
+   its own palettes). The arrangement is deliberately not the event one: the title
+   leads, and a portrait is at most a small byline avatar, so an article and a
+   podcast episode read as different things at a glance.
    Readability contract: shown ~290px wide in the blog list (square) and ~500px in
    social feeds (landscape), so no text is below 40px on the canvas. No logo, no
    edge strip, no inner border: the host page draws one even frame. */
@@ -13,78 +15,60 @@
 .t-plum  { --ground: #f6f0fa; --shape: #e3d2ef; --pill: #9b5fb5; --pill-ink: #fff;       --accent: #7a3f96; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: var(--width); height: var(--height); overflow: hidden; }
-body { position: relative; display: flex; font-family: Quicksand, sans-serif; font-weight: 700;
-  color: var(--ink); background: var(--ground); }
-.blob { position: absolute; z-index: -1; border-radius: 46% 54% 50% 50%; background: var(--shape); }
+body { position: relative; display: flex; flex-direction: column; font-family: Quicksand, sans-serif;
+  font-weight: 700; color: var(--ink); background: var(--ground); }
 h1 { width: 100%; letter-spacing: -.03em; line-height: 1.04; text-wrap: balance; padding-bottom: 4px; }
-.pill { flex: 0 0 auto; display: inline-block; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  line-height: 1; border: 5px solid var(--ink); border-radius: 999px; background: var(--pill); color: var(--pill-ink);
-  box-shadow: 8px 8px 0 var(--ink); white-space: nowrap; }
-.faces { position: relative; flex: 0 0 auto; }
-.avatar { position: absolute; display: grid; place-items: center; overflow: hidden; border: 6px solid var(--ink);
+.title-box { flex: 1 1 auto; min-height: 0; min-width: 0; display: flex; align-items: center; }
+.l-editorial .title-box { align-items: flex-start; }
+
+/* Social card brand: the masthead mark and wordmark (mark 1.9x the text, as on the site). */
+.brand { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; font-size: 40px; line-height: 1;
+  letter-spacing: -.02em; white-space: nowrap; }
+.brand-mark { display: block; height: 76px; width: auto; }
+.brand-name { margin-bottom: 7px; }
+
+/* Byline: small overlapping portraits, the name(s) and "date · reading time". */
+.byline { flex: 0 0 auto; display: flex; align-items: center; border-top: 4px solid var(--ink); }
+.faces { flex: 0 0 auto; display: flex; }
+.avatar { flex: 0 0 auto; display: grid; place-items: center; overflow: hidden; border: 5px solid var(--ink);
   border-radius: 50%; background: var(--pill) center / cover no-repeat; color: var(--pill-ink);
-  box-shadow: 12px 12px 0 var(--ink); letter-spacing: .02em; text-align: center; line-height: 1.08; }
+  box-shadow: 6px 6px 0 var(--ink); letter-spacing: .02em; line-height: 1; }
 .avatar.photo { background-color: var(--lavender); }
-.n2 .avatar:nth-child(1), .n3 .avatar:nth-child(1), .n4 .avatar:nth-child(1) { left: 0; top: 0; }
-.n2 .avatar:nth-child(2) { right: 0; bottom: 0; }
-.n3 .avatar, .n4 .avatar { box-shadow: 8px 8px 0 var(--ink); }
-.n3 .avatar:nth-child(2), .n4 .avatar:nth-child(2) { right: 8px; top: 0; }
-.n3 .avatar:nth-child(3), .n4 .avatar:nth-child(3) { left: 0; bottom: 8px; }
-.n4 .avatar:nth-child(4) { right: 8px; bottom: 8px; }
-.readdisc b, .readdisc i { display: block; font-style: normal; }
-.title-box { flex: 1 1 auto; min-height: 0; display: flex; align-items: center; }
-.who { display: flex; flex-direction: column; gap: 14px; }
-.who b { display: block; line-height: 1.05; letter-spacing: -.02em; }
-.when { color: var(--accent); line-height: 1.05; white-space: nowrap; display: flex; flex-direction: column; gap: 6px; }
-.when b { letter-spacing: -.02em; } .when span { color: var(--ink); }
+.avatar + .avatar { margin-left: -28px; }
+.byline-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.names { display: block; line-height: 1.08; letter-spacing: -.02em; }
+.meta { color: var(--accent); line-height: 1.08; white-space: nowrap; letter-spacing: -.01em; }
 
-/* Square (blog list thumbnail): portraits top-left, details right, title below. */
-.square { flex-direction: column; gap: 44px; padding: 60px; }
-.square .blob { left: -140px; top: -150px; width: 720px; height: 720px; }
-.square .top { display: flex; gap: 36px; height: 470px; flex: 0 0 auto; }
-.square .faces { width: 450px; height: 470px; }
-.square .n1 .avatar { left: 0; top: 0; width: 440px; height: 440px; font-size: 170px; }
-.square .n2 .avatar { width: 320px; height: 320px; font-size: 112px; }
-.square .n3 .avatar, .square .n4 .avatar { width: 222px; height: 222px; font-size: 80px; }
-.square .n3 .avatar:nth-child(3) { left: 124px; }
-.square .readdisc b { font-size: 150px; letter-spacing: -.03em; } .square .readdisc i { font-size: 52px; }
-.square .side { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; align-items: flex-end;
-  text-align: right; gap: 30px; }
-.square .pill { font-size: 44px; padding: 20px 34px 22px; margin-top: 4px; }
-.square .who { margin-top: auto; width: 100%; }
-.square .when b, .square .when span { font-size: 48px; }
+/* Author card: flat tinted field, the title from the top, a thin rule, then the byline. */
+.square.l-editorial { padding: 72px 72px 64px; gap: 36px; }
+.square.l-editorial .byline { gap: 30px; padding-top: 40px; }
+.square .avatar { width: 150px; height: 150px; font-size: 54px; }
+.square .n2 .avatar, .square .n3 .avatar { width: 124px; height: 124px; font-size: 44px; }
+.square .meta { font-size: 42px; }
+.landscape.l-editorial { padding: 52px 64px 46px; gap: 24px; }
+.landscape .byline { gap: 26px; padding-top: 26px; }
+.landscape .avatar { width: 108px; height: 108px; font-size: 40px; }
+.landscape .n2 .avatar, .landscape .n3 .avatar { width: 96px; height: 96px; }
+.landscape .meta { font-size: 40px; }
 
-/* Landscape (og 1200x630: LinkedIn, X, Slack): portraits left, everything else right. */
-.landscape { gap: 48px; padding: 50px 56px; }
-.landscape .blob { left: -170px; top: -190px; width: 820px; height: 820px; }
-.landscape .faces { width: 500px; height: 530px; align-self: center; }
-.landscape .n1 .avatar { left: 10px; top: 10px; width: 500px; height: 500px; font-size: 190px; }
-.landscape .n2 .avatar { width: 340px; height: 340px; font-size: 120px; }
-.landscape .n2 .avatar:nth-child(2) { bottom: 10px; }
-.landscape .n3 .avatar, .landscape .n4 .avatar { width: 246px; height: 246px; font-size: 86px; }
-.landscape .n3 .avatar:nth-child(3) { left: 124px; }
-.landscape .readdisc b { font-size: 160px; } .landscape .readdisc i { font-size: 54px; }
-.landscape .copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
-.landscape .pill { align-self: flex-start; font-size: 40px; padding: 16px 28px 18px; }
-.landscape .meta { flex: 0 0 auto; display: flex; flex-direction: column; gap: 8px; line-height: 1.08; }
-.landscape .when { flex-direction: row; gap: 0; }
-.landscape .when b, .landscape .when span { font-size: 40px; color: var(--accent); }
-.landscape .when span::before { content: " · "; white-space: pre; }
-
-/* Picture: the article's own image or illustration in the portraits' place. "contain"
-   keeps the whole image at its own aspect ratio; a framed picture draws the outline
-   and offset shadow around the image itself, never around empty ground. */
-.picture { position: relative; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+/* Picture: on the social card the article's own image is a full-height cover panel
+   with the title and byline beside it; on the square it fills the canvas alone.
+   "contain" keeps the whole image at its own aspect ratio on a tinted field; a
+   framed picture draws the outline and offset shadow around the image itself. */
+.picture { position: relative; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--shape); }
 .picture img { display: block; }
 .picture.cover img { width: 100%; height: 100%; object-fit: cover; }
 .picture.contain img { max-width: 100%; max-height: 100%; width: auto; height: auto; }
-.picture.framed img { border: 6px solid var(--ink); border-radius: 36px; background: #fff; box-shadow: 12px 12px 0 var(--ink); }
-.picture.framed.contain { padding: 0 12px 12px 0; }
-.landscape .picture { width: 540px; height: 530px; align-self: center; }
+.picture.framed.contain img { border: 5px solid var(--ink); border-radius: 24px; background: #fff;
+  box-shadow: 10px 10px 0 var(--ink); }
+.l-picture .copy { flex: 1 1 auto; min-height: 0; min-width: 0; display: flex; flex-direction: column; }
+.landscape.l-picture { flex-direction: row; }
+.landscape.l-picture .picture { width: 500px; height: 100%; border-right: 6px solid var(--ink); }
+.landscape.l-picture .picture.contain { padding: 40px; }
+.landscape.l-picture .copy { padding: 46px 60px 46px 52px; gap: 22px; }
+
 .picture-only { padding: 0; }
-.picture-only .blob { display: none; }
-.picture-only .picture { width: 100%; height: 100%; }
+.picture-only .picture { width: 100%; height: 100%; background: var(--ground); }
 .picture-only .picture.contain { padding: 48px; }
 .picture-only .picture.framed.contain { padding: 48px 60px 60px 48px; }
-.picture-only .picture.framed.cover img { border: 0; border-radius: 0; box-shadow: none; }
-.picture-bare .blob { display: none; }

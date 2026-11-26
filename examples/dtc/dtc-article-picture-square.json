@@ -1,0 +1,14 @@
+{
+  "template": "dtc-article",
+  "format": "png",
+  "size": "luma",
+  "output": "output/dtc/article-picture-square.png",
+  "kind": "Article",
+  "title": "MLOps with Databricks: From Notebook to Production",
+  "date_label": "Mar 3, 2026",
+  "reading_time": "11 min read",
+  "authors": [
+    {"name": "Maria Vechtomova", "image_url": "../../../examples/dtc/assets/mariavechtomova.jpg"}
+  ],
+  "picture": {"url": "../../../examples/dtc/assets/mlops-with-databricks.jpg", "fit": "contain", "frame": true}
+}

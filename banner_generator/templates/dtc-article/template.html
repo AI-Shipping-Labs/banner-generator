@@ -7,15 +7,14 @@
   <link rel="stylesheet" href="style.css">
   <style>:root { --width: ${width}px; --height: ${height}px; }</style>
 </head>
-<!-- Author-led DataTalks.Club article preview, the blog counterpart of
-     dtc-event-speaker. article.js builds the layout from the data attributes, so one
-     template serves 1-4+ authors, the square 1000x1000 list thumbnail and the
+<!-- DataTalks.Club blog article preview. Title-first, so it never reads as a
+     dtc-event-speaker picture. article.js builds the layout from the data attributes,
+     so one template serves 0-4+ authors, the square 1000x1000 list thumbnail and the
      1200x630 (og) social card. An optional picture (the article's own image or
-     illustration) takes the portraits' place. -->
+     illustration) fills the square alone and is a cover panel on the og card. -->
 <body data-kind="${kind}" data-tone="${tone}" data-title="${title}" data-headline="${headline}"
       data-date="${date_label}" data-reading="${reading_time}" data-authors="${authors}"
       data-picture="${picture}">
-  <div class="blob" aria-hidden="true"></div>
   <script src="article.js"></script>
 </body>
 </html>
