@@ -78,7 +78,7 @@ Spec fields:
 |---|---|
 | `kind` | `webinar`, `workshop`, `podcast`, or `conference` (sets the colours and the pill) |
 | `title` | Event title. The whole title is kept when it fits at 72px or more (60px on `og`), so sibling events such as `Course: Launch` and `Course: Live Q&A` keep their own headlines. A longer title with a colon falls back to the part before the colon (a series episode, `Series #2: Topic: details`, keeps `Series #2: Topic`); set `headline` to override |
-| `date_label` | For example `Tue 19 Jan 2021`, in the event's own timezone |
+| `date_label` | For example `Tue 19 Jan 2021`, in the event's own timezone. Optional: leave it (and `time_label`) empty for an evergreen picture such as a podcast episode cover, and no date line is drawn |
 | `time_label` | For example `17:00 CET` |
 | `speakers` | List of `{"name", "image_url", "crop"}`. Up to four portraits are shown; four or more show "N speakers". An empty list shows the date in a large disc |
 | `sponsor` | Optional `{"name", "logo_url", "label"}`: draws "Sponsored by" (or `label`) and the logo on a white plate under the title (the name in bold when there is no logo). `logo_url` is any image URL, a `file://` URL, or a data URL |

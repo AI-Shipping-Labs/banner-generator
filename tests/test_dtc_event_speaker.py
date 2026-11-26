@@ -177,3 +177,27 @@ def test_youtube_size_is_16_by_9():
     from banner_generator.renderer import SIZES
 
     assert SIZES["youtube"] == (1280, 720)
+
+
+@pytest.mark.parametrize("size", ((1000, 1000), (1280, 720), (1200, 630)))
+def test_date_line_is_optional(size, tmp_path):
+    """An evergreen picture (a podcast episode cover) draws no date line at all."""
+
+    data = {"kind": "podcast", "title": "Building AI Evaluations You Can Actually Trust",
+            "series": "DataTalks.Club Podcast · S25 E9", "speakers": [{"name": "Alexey Grigorev"}]}
+    page_file = tmp_path / "page.html"
+    page_file.write_text(render_html(resolve_template("dtc-event-speaker"), data, *size))
+    manager, browser = _browser()
+    try:
+        page = browser.new_page(viewport={"width": size[0], "height": size[1]})
+        page.goto(page_file.as_uri())
+        report = page.evaluate("() => window.bannerReady")
+        whens = page.evaluate("() => document.querySelectorAll('.when').length")
+        series = page.evaluate("() => document.querySelector('.series')?.textContent")
+    finally:
+        browser.close()
+        manager.stop()
+    assert whens == 0
+    assert all(item["ok"] for item in report), report
+    if size != (1000, 1000):
+        assert series == data["series"]

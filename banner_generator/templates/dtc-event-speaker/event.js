@@ -105,7 +105,9 @@
   titleBox.append(title);
   const who = el("div", "who");
   const when = el("div", "when");
-  if (n) { when.append(el("b", "", d.date || "")); if (d.time) when.append(el("span", "", d.time)); }
+  // The date line is optional: an evergreen picture (a podcast episode cover) has none.
+  const hasWhen = Boolean(n && (d.date || d.time));
+  if (hasWhen) { if (d.date) when.append(el("b", "", d.date)); if (d.time) when.append(el("span", "", d.time)); }
 
   const fits = [];
   if (landscape) {
@@ -117,7 +119,7 @@
       const b = el("b", "", `${speakers.length} speakers`); b.style.fontSize = "52px"; who.append(b);
     }
     const meta = el("div", "meta");
-    meta.append(who); if (series) meta.append(el("div", "series", series)); if (n) meta.append(when);
+    meta.append(who); if (series) meta.append(el("div", "series", series)); if (hasWhen) meta.append(when);
     const copy = el("div", "copy");
     copy.append(pill, titleBox, meta);
     if (sponsor) copy.append(sponsorRow());
@@ -133,7 +135,7 @@
     const side = el("div", "side");
     side.append(pill, who);
     if (series) side.append(el("div", "series", series));
-    if (n) side.append(when);
+    if (hasWhen) side.append(when);
     const top = el("div", "top");
     top.append(faces, side);
     body.append(top, titleBox);
