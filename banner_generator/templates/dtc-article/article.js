@@ -93,7 +93,6 @@
 
   const names = n === 0 ? "" : n === 1 ? authors[0].name
     : n === 2 ? `${authors[0].name} & ${authors[1].name}` : `${authors[0].name} & ${n - 1} others`;
-  const metaLine = [d.date, d.reading].filter(Boolean).join(" · ");
   const title = el("h1", "", headline);
   const titleBox = el("div", "title-box fit-box");
   titleBox.append(title);
@@ -109,7 +108,15 @@
     }
     const text = el("div", "byline-text");
     if (names) text.append(fitText(el("b", "names", names), landscape ? "40 46" : "40 52", 2));
-    if (metaLine) text.append(el("span", "meta", metaLine));
+    // "date · reading time": the two parts stay whole, and wrap between them in the
+    // narrow column beside a picture instead of running past the edge.
+    if (d.date || d.reading) {
+      const meta = el("span", "meta");
+      if (d.date) meta.append(el("span", "", d.date + (d.reading ? " ·" : "")));
+      if (d.date && d.reading) meta.append(" ");
+      if (d.reading) meta.append(el("span", "", d.reading));
+      text.append(meta);
+    }
     row.append(text);
     return row;
   };

@@ -136,3 +136,13 @@ def test_square_picture_is_the_picture_alone(tmp_path):
     _, parts = _evaluate({"title": "Short title", "picture": picture}, 1000, 1000, tmp_path,
                          "() => [document.body.classList.contains('picture-only'), !!document.querySelector('h1')]")
     assert parts == [True, False]
+
+
+def test_two_author_byline_stays_inside_the_social_card_beside_a_picture(tmp_path):
+    picture = {"url": (EXAMPLES / "assets" / "mlops-with-databricks.jpg").as_uri(), "fit": "cover", "frame": True}
+    data = {"title": "How to Build a Blood Cell Classifier", "date_label": "Aug 11, 2025", "reading_time": "9 min read",
+            "authors": [{"name": "Alexander Daniel Rios"}, {"name": "Valeriia Kuka"}], "picture": picture}
+    _, right = _evaluate(data, 1200, 630, tmp_path,
+                         "() => Math.max(...[...document.querySelectorAll('.byline-text > *')]"
+                         ".map(e => e.getBoundingClientRect().left + e.scrollWidth))")
+    assert right <= 1200 - 60  # the date line ends inside the right padding
